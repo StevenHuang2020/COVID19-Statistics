@@ -46,9 +46,13 @@ def plotData(df):
     number = 20
     df = preprocessData(df)
     #df = df.iloc[1:number,:]
+    df = df.sort_values(by=['Confirmed Cases'],ascending=False)
     df1 = df.iloc[1:number,[0]]
+    df = df.sort_values(by=['Case_Per_1Mpeople'],ascending=False)
     df2 = df.iloc[1:number,[1]]
+    df = df.sort_values(by=['Recovered'],ascending=False)
     df3 = df.iloc[1:number,[2]]
+    df = df.sort_values(by=['Deaths'],ascending=False)
     df4 = df.iloc[1:number,[3]]
 
     #print(df.head())
@@ -121,6 +125,6 @@ def Load(url):
     return parseHtml(html)
     
 if __name__ == '__main__':
-    #mainUrl=r'file:///E:/python/spider/coronavirus/cov.html'
+    mainUrl=r'file:///E:/python/spider/coronavirus/cov.html'
     Load(mainUrl)
     
