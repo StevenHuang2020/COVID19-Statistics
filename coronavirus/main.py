@@ -125,6 +125,6 @@ def Load(url):
     return parseHtml(html)
     
 if __name__ == '__main__':
-    mainUrl=r'file:///E:/python/spider/coronavirus/cov.html'
+    #mainUrl=r'file:///E:/python/spider/coronavirus/cov.html'
     Load(mainUrl)
     
