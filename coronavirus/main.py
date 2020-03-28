@@ -16,8 +16,8 @@ import matplotlib.pyplot as plt
 mainUrl = "https://google.org/crisisresponse/covid19-map"
 
 def preprocessData(df):
-    print(df)
-    #print('before preprocess:\n\n',df.head())
+    #print(df)
+    print('\n\nBefore preprocess:\n',df.head())
     #print(df.isnull())
     #print(df.isnull().any(axis=1))
     #null_columns=df.columns[df.isnull().any()]
@@ -38,13 +38,25 @@ def preprocessData(df):
     df['Deaths'] = pd.to_numeric(df['Deaths'])
     df['Deaths'] = df['Deaths'].astype('int64')
     
+    '''Add coloumn mortality rate: df['Deaths'] / df['Confirmed Cases'].
+    But please note that this is not necessarily the correct defintion.
+    '''
+    Mortality = df['Deaths']/df['Confirmed Cases']
+    #print(type(Mortality))
+    #print(Mortality)
+    dfMortality = pd.DataFrame(Mortality, columns=['Mortality'])
+
+    df = pd.concat([df, dfMortality], axis=1)
     df.set_index(["Localtion"], inplace=True)
+
+    print('\n\nAfter preprocess:\n',df.head())
     return df
 
 def plotData(df):
     #['Localtion', 'Confirmed Cases',  'Case_Per_1Mpeople', 'Recovered', 'Deaths']
     number = 20
     df = preprocessData(df)
+
     #df = df.iloc[1:number,:]
     df = df.sort_values(by=['Confirmed Cases'],ascending=False)
     df1 = df.iloc[1:number,[0]]
@@ -54,15 +66,21 @@ def plotData(df):
     df3 = df.iloc[1:number,[2]]
     df = df.sort_values(by=['Deaths'],ascending=False)
     df4 = df.iloc[1:number,[3]]
+    df = df.sort_values(by=['Mortality'],ascending=False)
+    df5 = df.iloc[1:number,[4]]
 
     #print(df.head())
     #print(df.dtypes)
-    dfs = [('Confirmed Cases',df1),('Case_Per_1Mpeople',df2),('Recovered',df3),('Deaths',df4)]
+    dfs = [('Confirmed Cases',df1),('Case_Per_1Mpeople',df2),('Recovered',df3),('Deaths',df4),('Mortality',df5)]
     for i,data in enumerate(dfs): 
         df = data[1]
         title = data[0]
 
-        ax = df.plot(kind='bar')
+        if i==4: #mortality
+            ax = df.plot(kind='bar',color='r')
+        else:
+            ax = df.plot(kind='bar')
+
         ax.set_title(title)
         ax.legend()
         plt.setp(ax.get_xticklabels(), rotation=30, ha="right")
