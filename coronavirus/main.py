@@ -71,7 +71,20 @@ def plotData(df):
 
     #print(df.head())
     #print(df.dtypes)
-    dfs = [('Confirmed Cases',df1),('Case_Per_1Mpeople',df2),('Recovered',df3),('Deaths',df4),('Mortality',df5)]
+    #worldDf = df.loc[df['Deaths'] == 24073]
+    worldDf = df.loc['Worldwide']
+    #print(worldDf,worldMor)
+    ccWorld = 'Confirmed Cases(world: ' + str(int(worldDf['Confirmed Cases'])) + ')'
+    cpWorld = 'Case_Per_1Mpeople(world: ' + str(int(worldDf['Case_Per_1Mpeople'])) + ')'
+    reWorld = 'Recovered(world: ' + str(int(worldDf['Recovered'])) + ')'
+    deWorld = 'Deaths(world: ' + str(int(worldDf['Deaths'])) + ')'
+    moWorld = 'Mortality(world: ' + str(round(worldDf['Mortality'],3)) + ')'
+    # print(ccWorld)
+    # print(cpWorld)
+    # print(reWorld)
+    # print(deWorld)
+    # print(moWorld)
+    dfs = [(ccWorld, df1),(cpWorld, df2),(reWorld, df3),(deWorld, df4),(moWorld, df5)]
     for i,data in enumerate(dfs): 
         df = data[1]
         title = data[0]
