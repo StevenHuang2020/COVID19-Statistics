@@ -39,8 +39,8 @@ def preprocessData(df):
     df['Confirmed'] = pd.to_numeric(df['Confirmed'])
     df['Confirmed'] = df['Confirmed'].astype('int64')
 
-    df['Case_Per_1Mpeople'] = pd.to_numeric(df['Case_Per_1Mpeople'])
-    df['Case_Per_1Mpeople'] = df['Case_Per_1Mpeople'].astype(float)
+    df['Case_Per_1M_people'] = pd.to_numeric(df['Case_Per_1M_people'])
+    df['Case_Per_1M_people'] = df['Case_Per_1M_people'].astype(float)
 
     df['Recovered'] = pd.to_numeric(df['Recovered'])
     df['Recovered'] = df['Recovered'].astype('int64')
@@ -65,14 +65,14 @@ def preprocessData(df):
     return df
 
 def plotData(df):
-    #['Localtion', 'Confirmed',  'Case_Per_1Mpeople', 'Recovered', 'Deaths']
+    #['Localtion', 'Confirmed',  'Case_Per_1M_people', 'Recovered', 'Deaths']
     number = 20
     df = preprocessData(df)
     
     #df = df.iloc[1:number,:]
     df = df.sort_values(by=['Confirmed'],ascending=False)
     df1 = df.iloc[1:number,[0]]
-    df = df.sort_values(by=['Case_Per_1Mpeople'],ascending=False)
+    df = df.sort_values(by=['Case_Per_1M_people'],ascending=False)
     df2 = df.iloc[1:number,[1]]
     df = df.sort_values(by=['Recovered'],ascending=False)
     df3 = df.iloc[1:number,[2]]
@@ -87,7 +87,7 @@ def plotData(df):
     worldDf = df.loc['Worldwide']
     #print(worldDf,worldMor)
     ccWorld = 'Confirmed(world: ' + str(int(worldDf['Confirmed'])) + ')'
-    cpWorld = 'Case_Per_1Mpeople(world: ' + str(int(worldDf['Case_Per_1Mpeople'])) + ')'
+    cpWorld = 'Case_Per_1M_people(world: ' + str(int(worldDf['Case_Per_1M_people'])) + ')'
     reWorld = 'Recovered(world: ' + str(int(worldDf['Recovered'])) + ')'
     deWorld = 'Deaths(world: ' + str(int(worldDf['Deaths'])) + ')'
     moWorld = 'Mortality(world: ' + str(round(worldDf['Mortality'],3)) + ')'
@@ -116,7 +116,7 @@ def parseXpathTr(tr):
     html = etree.HTML(etree.tostring(tr))
     result = html.xpath('//td') 
     #print(len(result),result)
-    location,confirmed,casePer_1Mpeople,recovered,deaths = '','','','',''
+    location,confirmed,Case_Per_1M_people,recovered,deaths = '','','','',''
 
     for i,td in enumerate(result):
         if i == 0:
@@ -133,8 +133,8 @@ def parseXpathTr(tr):
         elif i == 4:
             deaths = td.text.strip()
 
-    if casePer_1Mpeople == '' or casePer_1Mpeople == '—':
-        casePer_1Mpeople = '0'
+    if Case_Per_1M_people == '' or Case_Per_1M_people == '—':
+        Case_Per_1M_people = '0'
     if recovered == '' or recovered == '—':
         recovered = '0'
     if deaths == '' or deaths == '—':
@@ -142,9 +142,9 @@ def parseXpathTr(tr):
     if confirmed == '' or confirmed == '—':
         confirmed = '0'
 
-    #print('Location:',location,'Confirmed:',confirmed,'Case_Per_1Mpeople:',casePer_1Mpeople,'Recovered:',recovered,'deaths:',deaths)
-    columns=['Localtion', 'Confirmed',  'Case_Per_1Mpeople', 'Recovered', 'Deaths']
-    dfLine = pd.DataFrame([[location, confirmed, casePer_1Mpeople, recovered, deaths]], columns=columns)
+    #print('Location:',location,'Confirmed:',confirmed,'Case_Per_1M_people:',Case_Per_1M_people,'Recovered:',recovered,'deaths:',deaths)
+    columns=['Localtion', 'Confirmed',  'Case_Per_1M_people', 'Recovered', 'Deaths']
+    dfLine = pd.DataFrame([[location, confirmed, Case_Per_1M_people, recovered, deaths]], columns=columns)
     return dfLine
 
 def parseHtml(htmlContent):
