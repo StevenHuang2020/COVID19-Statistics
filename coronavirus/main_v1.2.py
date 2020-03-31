@@ -1,6 +1,6 @@
 #python3 unicode
-#author:Steven Huang 27/03/20
-#function: Query cases of COVID-19 from website
+#author:Steven Huang 31/03/20
+#function: Query cases of COVID-19 from website using selenium
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 #usgae:
@@ -10,17 +10,17 @@ import sys
 sys.path.append("..")
 import datetime
 import pandas as pd
-from lxml import etree
-from common.getHtml import openUrl, openUrlUrlLib
 import matplotlib.pyplot as plt
+from selenium import webdriver
+from time import sleep
+from selenium.webdriver.common.by import By
 
-mainUrl = "https://google.com/covid19-map/" #"https://google.org/crisisresponse/covid19-map"
+mainUrl = "https://google.com/covid19-map/"
 
 def writeToCsv(df):
     daytime = datetime.datetime.now()
     today = datetime.date.today()
     t = str(today) + '_' + str(daytime.hour) + str(daytime.minute)
-    
     #file='coronavirous.csv'
     file='coronavirous' + t + '.csv'
     df.to_csv(file,index=True)
@@ -39,8 +39,8 @@ def preprocessData(df):
     df['Confirmed'] = pd.to_numeric(df['Confirmed'])
     df['Confirmed'] = df['Confirmed'].astype('int64')
 
-    df['Case_Per_1Mpeople'] = pd.to_numeric(df['Case_Per_1Mpeople'])
-    df['Case_Per_1Mpeople'] = df['Case_Per_1Mpeople'].astype(float)
+    df['Case_Per_1M_people'] = pd.to_numeric(df['Case_Per_1M_people'])
+    df['Case_Per_1M_people'] = df['Case_Per_1M_people'].astype(float)
 
     df['Recovered'] = pd.to_numeric(df['Recovered'])
     df['Recovered'] = df['Recovered'].astype('int64')
@@ -60,19 +60,18 @@ def preprocessData(df):
     df.set_index(["Localtion"], inplace=True)
 
     print('\n\nAfter preprocess:\n',df.head())
-
-    #writeToCsv(df)
+    writeToCsv(df)
     return df
 
 def plotData(df):
-    #['Localtion', 'Confirmed',  'Case_Per_1Mpeople', 'Recovered', 'Deaths']
+    #['Localtion', 'Confirmed',  'Case_Per_1M_people', 'Recovered', 'Deaths']
     number = 20
     df = preprocessData(df)
     
     #df = df.iloc[1:number,:]
     df = df.sort_values(by=['Confirmed'],ascending=False)
     df1 = df.iloc[1:number,[0]]
-    df = df.sort_values(by=['Case_Per_1Mpeople'],ascending=False)
+    df = df.sort_values(by=['Case_Per_1M_people'],ascending=False)
     df2 = df.iloc[1:number,[1]]
     df = df.sort_values(by=['Recovered'],ascending=False)
     df3 = df.iloc[1:number,[2]]
@@ -87,7 +86,7 @@ def plotData(df):
     worldDf = df.loc['Worldwide']
     #print(worldDf,worldMor)
     ccWorld = 'Confirmed(world: ' + str(int(worldDf['Confirmed'])) + ')'
-    cpWorld = 'Case_Per_1Mpeople(world: ' + str(int(worldDf['Case_Per_1Mpeople'])) + ')'
+    cpWorld = 'Case_Per_1M_people(world: ' + str(int(worldDf['Case_Per_1M_people'])) + ')'
     reWorld = 'Recovered(world: ' + str(int(worldDf['Recovered'])) + ')'
     deWorld = 'Deaths(world: ' + str(int(worldDf['Deaths'])) + ')'
     moWorld = 'Mortality(world: ' + str(round(worldDf['Mortality'],3)) + ')'
@@ -113,17 +112,13 @@ def plotData(df):
 
 
 def parseXpathTr(tr):
-    html = etree.HTML(etree.tostring(tr))
-    result = html.xpath('//td') 
-    #print(len(result),result)
-    location,confirmed,casePer_1Mpeople,recovered,deaths = '','','','',''
+    tds = tr.find_elements(By.TAG_NAME, "td")
+    #print(len(tds))
 
-    for i,td in enumerate(result):
+    location,confirmed,casePer_1Mpeople,recovered,deaths = '','','','',''
+    for i,td in enumerate(tds):
         if i == 0:
-            span = etree.HTML(etree.tostring(td)).xpath('//span')
-            #print(len(span),span)
-            #print(span[0].text)
-            location = span[0].text
+            location = td.find_element(By.TAG_NAME, "span").text
         elif i == 1:
             confirmed = td.text.strip()
         elif i == 2:
@@ -142,33 +137,45 @@ def parseXpathTr(tr):
     if confirmed == '' or confirmed == '—':
         confirmed = '0'
 
-    #print('Location:',location,'Confirmed:',confirmed,'Case_Per_1Mpeople:',casePer_1Mpeople,'Recovered:',recovered,'deaths:',deaths)
-    columns=['Localtion', 'Confirmed',  'Case_Per_1Mpeople', 'Recovered', 'Deaths']
+    #print('Location:',location,'Confirmed:',confirmed,'Case_Per_1M_people:',casePer_1Mpeople,'Recovered:',recovered,'deaths:',deaths)
+    columns=['Localtion', 'Confirmed',  'Case_Per_1M_people', 'Recovered', 'Deaths']
     dfLine = pd.DataFrame([[location, confirmed, casePer_1Mpeople, recovered, deaths]], columns=columns)
     return dfLine
 
-def parseHtml(htmlContent):
-    html = etree.HTML(htmlContent)
-    #X = '//*[@id="main"]/div[2]/div/div/div/div/div[1]/table'
-    #X = '//*[@id="main"]/div[2]/div/div/div/div/div[1]/table/tbody/tr'
-    #X = '//*[@id="yDmH0d"]/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table/tbody/tr'
-    #X = '/html/body/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table/tbody/tr'
-    X = '//table[@class="SAGQRd"]//tr' #[@class="SAGQRD"]'
-    result = html.xpath(X)
-    print(len(result))
-    df  = pd. DataFrame()
+def getHeader(thead):
+    ths = thead.find_elements_by_xpath('//th')
+    #print('len=',len(ths))
+    lc,cf,cp,re,de = '','','','',''
+    for i,th in enumerate(ths):
+        lc = th.find_element_by_xpath("//div[@id='c1']").text
+        cf = th.find_element_by_xpath("//div[@id='c2']").text
+        cp = th.find_element_by_xpath("//div[@id='c3']").text
+        re = th.find_element_by_xpath("//div[@id='c4']").text
+        de = th.find_element_by_xpath("//div[@id='c5']").text
+    return [lc,cf,cp,re,de]
+
+def Load(url):
+    print("Open:",url)
+    driver = webdriver.Chrome()
+    driver.get(mainUrl)
+    sleep(1)
+    
+    #table_id = driver.find_element_by_class_name('SAGQRd')
+    X = '//*[@id="yDmH0d"]/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table'
+    table_id = driver.find_element_by_xpath(X)
+    thead = table_id.find_element_by_tag_name('thead')
+    tbody = table_id.find_element_by_tag_name('tbody')
+
+    columns = getHeader(thead)
+
+    result = tbody.find_elements(By.TAG_NAME, "tr")
+
+    df = pd.DataFrame()
     for i in result:
         df = df.append(parseXpathTr(i),ignore_index=True)
     print('df.shape=', df.shape)
     plotData(df)
 
-def Load(url):
-    print("Open:",url)
-    html = openUrl(url)
-    #html = openUrlUrlLib(url)
-    #print(html)
-    return parseHtml(html)
-    
 if __name__ == '__main__':
     #mainUrl=r'file:///E:/python/spider/coronavirus/cov.html'
     #mainUrl = 'file:///E:/python/spider/coronavirus/Coronavirus%20(COVID-19)%20map.html'
