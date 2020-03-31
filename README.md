@@ -13,9 +13,9 @@ Reference:https://google.com/covid19-map/
 
 #### main_v1.2.py
 Using selenium to crawl data.
-Requirment: pip install selenium
+Requirment: pip install selenium <br/>
 Download proper verison of chromdriver.exe (https://chromedriver.chromium.org/downloads)
-Then put it in to you python install path(.\python36\Scripts\)
+then put it in to you python install path(.\python36\Scripts\)
 <br/>
 Coronavirus global data on 31/03/2020.
 <br/>
