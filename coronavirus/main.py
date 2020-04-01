@@ -84,7 +84,9 @@ def plotData(df):
     #print(df.dtypes)
     worldDf = df.loc['Worldwide']
     #print(worldDf,worldMor)
-    today = str(' Date:') + str(datetime.date.today())
+    now = datetime.datetime.now()
+    
+    today = str(' Date:') + str(now.strftime("%Y-%m-%d %H:%M:%S"))
     
     ccWorld = 'Confirmed(World: ' + str(int(worldDf['Confirmed'])) + today + ')'
     cpWorld = 'Case_Per_1M_people(World: ' + str(int(worldDf['Case_Per_1M_people'])) + today + ')'
