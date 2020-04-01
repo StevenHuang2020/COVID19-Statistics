@@ -17,11 +17,11 @@ Requirment: pip install selenium <br/>
 Download proper verison of chromdriver.exe (https://chromedriver.chromium.org/downloads)
 then put it in to you python install path(.\python36\Scripts\).
 <br/>
-Coronavirus global data updated on 31/03/2020.
+Coronavirus global data updated.
 <br/>
-<img src="images/50.png" width="320" height="240">
-<img src="images/20.png" width="320" height="240">
-<img src="images/30.png" width="320" height="240">
-<img src="images/40.png" width="320" height="240">
-<img src="images/10.png" width="320" height="240">
+<img src="images/5.png" width="320" height="240">
+<img src="images/2.png" width="320" height="240">
+<img src="images/3.png" width="320" height="240">
+<img src="images/4.png" width="320" height="240">
+<img src="images/1.png" width="320" height="240">
 
