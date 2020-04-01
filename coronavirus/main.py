@@ -82,14 +82,15 @@ def plotData(df):
 
     #print(df.head())
     #print(df.dtypes)
-    #worldDf = df.loc[df['Deaths'] == 24073]
     worldDf = df.loc['Worldwide']
     #print(worldDf,worldMor)
-    ccWorld = 'Confirmed(world: ' + str(int(worldDf['Confirmed'])) + ')'
-    cpWorld = 'Case_Per_1M_people(world: ' + str(int(worldDf['Case_Per_1M_people'])) + ')'
-    reWorld = 'Recovered(world: ' + str(int(worldDf['Recovered'])) + ')'
-    deWorld = 'Deaths(world: ' + str(int(worldDf['Deaths'])) + ')'
-    moWorld = 'Mortality(world: ' + str(round(worldDf['Mortality'],3)) + ')'
+    today = str(' Date:') + str(datetime.date.today())
+    
+    ccWorld = 'Confirmed(World: ' + str(int(worldDf['Confirmed'])) + today + ')'
+    cpWorld = 'Case_Per_1M_people(World: ' + str(int(worldDf['Case_Per_1M_people'])) + today + ')'
+    reWorld = 'Recovered(World: ' + str(int(worldDf['Recovered'])) + today + ')'
+    deWorld = 'Deaths(World: ' + str(int(worldDf['Deaths']))+ today + ')'
+    moWorld = 'Mortality(World: ' + str(round(worldDf['Mortality'],3)) + today + ')'
     # print(ccWorld)
     # print(cpWorld)
     # print(reWorld)
