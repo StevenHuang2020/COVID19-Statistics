@@ -24,7 +24,8 @@ def writeToCsv(df):
     #file='coronavirous.csv'
     file='coronavirous' + t + '.csv'
     df.to_csv(file,index=True)
-              
+          
+#columns=['Location', 'Confirmed', 'Case_Per_1M_people', 'Recovered', 'Deaths']    
 def preprocessData(df):
     #print(df)
     print('\n\nBefore preprocess:\n',df.head())
@@ -57,18 +58,16 @@ def preprocessData(df):
     dfMortality = pd.DataFrame(Mortality, columns=['Mortality'])
 
     df = pd.concat([df, dfMortality], axis=1)
-    df.set_index(["Localtion"], inplace=True)
+    df.set_index(["Location"], inplace=True)
 
     print('\n\nAfter preprocess:\n',df.head())
-
-    #writeToCsv(df)
+    writeToCsv(df)
     return df
 
 def plotData(df):
-    #['Localtion', 'Confirmed',  'Case_Per_1M_people', 'Recovered', 'Deaths']
     number = 20
     df = preprocessData(df)
-    
+
     #df = df.iloc[1:number,:]
     df = df.sort_values(by=['Confirmed'],ascending=False)
     df1 = df.iloc[1:number,[0]]
@@ -112,7 +111,7 @@ def plotData(df):
     plt.show()
 
 
-def parseXpathTr(tr):
+def parseXpathTr(tr, columns):
     html = etree.HTML(etree.tostring(tr))
     result = html.xpath('//td') 
     #print(len(result),result)
@@ -127,7 +126,7 @@ def parseXpathTr(tr):
         elif i == 1:
             confirmed = td.text.strip()
         elif i == 2:
-            casePer_1Mpeople = td.text.strip() 
+            Case_Per_1M_people = td.text.strip() 
         elif i == 3:
             recovered = td.text.strip()
         elif i == 4:
@@ -142,10 +141,30 @@ def parseXpathTr(tr):
     if confirmed == '' or confirmed == '—':
         confirmed = '0'
 
-    #print('Location:',location,'Confirmed:',confirmed,'Case_Per_1M_people:',Case_Per_1M_people,'Recovered:',recovered,'deaths:',deaths)
-    columns=['Localtion', 'Confirmed',  'Case_Per_1M_people', 'Recovered', 'Deaths']
+    print('Location:',location,'Confirmed:',confirmed,'Case_Per_1M_people:',Case_Per_1M_people,'Recovered:',recovered,'deaths:',deaths)
+    #columns=['Location', 'Confirmed', 'Cases per 1M people', 'Recovered', 'Deaths']
     dfLine = pd.DataFrame([[location, confirmed, Case_Per_1M_people, recovered, deaths]], columns=columns)
     return dfLine
+
+def getHeader(thead):
+    html = etree.HTML(etree.tostring(thead))
+    #res = html.xpath('//th//div[@id="c1"]')
+    res = html.xpath('//div[@class="DdCLrb"]')
+    #print(len(res))
+    lc,cf,cp,re,de = '','','','',''
+    for i,div in enumerate(res):
+        if i == 0:
+            lc = div.text
+        elif i == 1:
+            cf = div.text
+        elif i == 2:
+            cp = div.text
+        elif i == 3:
+            re = div.text
+        elif i == 4:
+            de = div.text
+                 
+    return [lc,cf,cp,re,de]
 
 def parseHtml(htmlContent):
     html = etree.HTML(htmlContent)
@@ -153,24 +172,32 @@ def parseHtml(htmlContent):
     #X = '//*[@id="main"]/div[2]/div/div/div/div/div[1]/table/tbody/tr'
     #X = '//*[@id="yDmH0d"]/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table/tbody/tr'
     #X = '/html/body/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table/tbody/tr'
+    X = '//table[@class="SAGQRd"]/thead'
+    #X = '//table'
+    resHead = html.xpath(X)
+    #print(len(resHead))    
+    columns = getHeader(resHead[0])
+    #print(columns)
+    columns[2]='Case_Per_1M_people'
+    
+    
     X = '//table[@class="SAGQRd"]//tr' #[@class="SAGQRD"]'
     result = html.xpath(X)
     print(len(result))
     df  = pd. DataFrame()
     for i in result:
-        df = df.append(parseXpathTr(i),ignore_index=True)
+        df = df.append(parseXpathTr(i, columns),ignore_index=True)
     print('df.shape=', df.shape)
     plotData(df)
 
 def Load(url):
     print("Open:",url)
-    html = openUrl(url)
-    #html = openUrlUrlLib(url)
+    #html = openUrl(url)
+    html = openUrlUrlLib(url)
     #print(html)
     return parseHtml(html)
     
 if __name__ == '__main__':
-    #mainUrl=r'file:///E:/python/spider/coronavirus/cov.html'
-    #mainUrl = 'file:///E:/python/spider/coronavirus/Coronavirus%20(COVID-19)%20map.html'
+    #mainUrl=r'file:///E:/python/spider/coronavirus/a.html'
     Load(mainUrl)
     

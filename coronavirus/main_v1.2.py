@@ -4,13 +4,10 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 #usgae:
-#python main.py
+#python .\main_v1.2.py
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-import sys
-sys.path.append("..")
 import datetime
 import pandas as pd
-import matplotlib.pyplot as plt
 from selenium import webdriver
 from time import sleep
 from selenium.webdriver.common.by import By
@@ -19,7 +16,7 @@ from main import plotData
 
 mainUrl = "https://google.com/covid19-map/"
 
-def parseXpathTr(tr):
+def parseXpathTr(tr,columns):
     tds = tr.find_elements(By.TAG_NAME, "td")
     #print(len(tds))
 
@@ -30,7 +27,7 @@ def parseXpathTr(tr):
         elif i == 1:
             confirmed = td.text.strip()
         elif i == 2:
-            Case_Per_1_Mpeople = td.text.strip()
+            Case_Per_1M_people = td.text.strip()
         elif i == 3:
             recovered = td.text.strip()
         elif i == 4:
@@ -46,7 +43,7 @@ def parseXpathTr(tr):
         confirmed = '0'
 
     #print('Location:',location,'Confirmed:',confirmed,'Case_Per_1M_people:',Case_Per_1M_people,'Recovered:',recovered,'deaths:',deaths)
-    columns=['Localtion', 'Confirmed',  'Case_Per_1M_people', 'Recovered', 'Deaths']
+    #columns=['Localtion', 'Confirmed',  'Case_Per_1M_people', 'Recovered', 'Deaths']
     dfLine = pd.DataFrame([[location, confirmed, Case_Per_1M_people, recovered, deaths]], columns=columns)
     return dfLine
 
@@ -75,17 +72,18 @@ def Load(url):
     tbody = table_id.find_element_by_tag_name('tbody')
 
     columns = getHeader(thead)
-
-    result = tbody.find_elements(By.TAG_NAME, "tr")
-
+    #print('columns = ', columns)
+    columns[2]='Case_Per_1M_people'
+    
     df = pd.DataFrame()
+    result = tbody.find_elements(By.TAG_NAME, "tr")
     for i in result:
-        df = df.append(parseXpathTr(i),ignore_index=True)
+        df = df.append(parseXpathTr(i, columns),ignore_index=True)
+    
     print('df.shape=', df.shape)
     plotData(df)
 
 if __name__ == '__main__':
-    #mainUrl=r'file:///E:/python/spider/coronavirus/cov.html'
-    #mainUrl = 'file:///E:/python/spider/coronavirus/Coronavirus%20(COVID-19)%20map.html'
+    #mainUrl=r'file:///E:/python/spider/coronavirus/a.html'
     Load(mainUrl)
     
