@@ -66,7 +66,8 @@ def Load(url):
     sleep(1)
     
     #table_id = driver.find_element_by_class_name('SAGQRd')
-    X = '//*[@id="yDmH0d"]/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table'
+    #X = '//*[@id="yDmH0d"]/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table'
+    X = '//table[@class="SAGQRd"]'
     table_id = driver.find_element_by_xpath(X)
     thead = table_id.find_element_by_tag_name('thead')
     tbody = table_id.find_element_by_tag_name('tbody')
