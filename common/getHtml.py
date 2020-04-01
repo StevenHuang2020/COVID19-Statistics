@@ -12,10 +12,10 @@ def getUrlByUrllib(url):
     try:
         with urllib.request.urlopen(url) as response:
             charset = response.info().get_content_charset()
+            #print('charset = ', charset)
             if charset == None:
                 charset = "utf-8"
             html = response.read().decode(charset, 'ignore')
-
             return html
     except:
         return "Something Wrong by Urllib!"
