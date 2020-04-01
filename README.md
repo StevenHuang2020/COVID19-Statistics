@@ -16,9 +16,9 @@ Coronavirus global data updated.
 For detailed statistics of covid-19 in NZ, please refer to:
 https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases
 <br/>
-<img src="images/51.png" width="320" height="240">
-<img src="images/21.png" width="320" height="240">
-<img src="images/31.png" width="320" height="240">
-<img src="images/41.png" width="320" height="240">
-<img src="images/11.png" width="320" height="240">
+<img src="images/5.png" width="320" height="240">
+<img src="images/2.png" width="320" height="240">
+<img src="images/3.png" width="320" height="240">
+<img src="images/41png" width="320" height="240">
+<img src="images/1.png" width="320" height="240">
 
