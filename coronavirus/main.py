@@ -111,6 +111,7 @@ def plotData(df):
         ax.set_title(title)
         ax.legend()
         plt.setp(ax.get_xticklabels(), rotation=30, ha="right")
+        plt.savefig(str(i+1)+'.png')
     plt.show()
 
 
