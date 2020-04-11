@@ -10,6 +10,7 @@ import pandas as pd
 from selenium import webdriver
 from time import sleep
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 
 from main import plotData
 
@@ -22,7 +23,12 @@ def parseXpathTr(tr,columns):
     location,confirmed,Case_Per_1M_people,recovered,deaths = '','','','',''
     for i,td in enumerate(tds):
         if i == 0:
-            location = td.find_element(By.TAG_NAME, "span").text
+            spans = td.find_elements(By.TAG_NAME, "span")
+            #print('spans = ',len(spans),spans[0].text)
+            if len(spans)>1:
+                location = spans[1].text
+            else:            
+                location = spans[0].text
         elif i == 1:
             confirmed = td.text.strip()
         elif i == 2:
@@ -64,15 +70,33 @@ def getHeader(thead):
         #print(th.text)
     return [lc,cf,cp,re,de]
 
+def clickBtn(driver,btnXpath):
+        btn = driver.find_element_by_xpath(btnXpath)
+        if btn:
+            btn.click()
+
+def scroll_down_element(driver, element):
+    try:
+        action = ActionChains(driver)
+        action.move_to_element(element).perform()
+        element.click() 
+    except Exception as e:
+        print('error scrolling down web element', e)
+        
 def Load(url):
     print("Open:",url)
     driver = webdriver.Chrome()
     driver.get(mainUrl)
     sleep(1)
     
+    btn_More='//*[@id="yDmH0d"]/c-wiz/div/div[2]/div[2]/div[2]/div[2]'
+    clickBtn(driver,btn_More)
+        
     #X = '//*[@id="yDmH0d"]/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table'
     X = '//table[@class="pH8O4c"]'
     table_id = driver.find_element_by_xpath(X)
+    scroll_down_element(driver,table_id) #do an table action to get all table lines
+    
     thead = table_id.find_element_by_tag_name('thead')
     tbody = table_id.find_element_by_tag_name('tbody')
 
