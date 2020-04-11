@@ -22,6 +22,6 @@ https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coron
 <img src="images/4.png" width="320" height="240">
 <img src="images/5.png" width="320" height="240">
 
-#### main_v1.2.py
+#### main_v1.3.py
 Updated to adapt to the new google page on April 11
 
