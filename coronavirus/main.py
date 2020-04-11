@@ -103,7 +103,7 @@ def plotData(df):
         df = data[1]
         title = data[0]
 
-        if i==4: #mortality
+        if i==3 or i==4: #deaths mortality
             ax = df.plot(kind='bar',color='r')
         else:
             ax = df.plot(kind='bar')
