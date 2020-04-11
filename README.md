@@ -1,6 +1,6 @@
 # WebSpider
 
-### coronavirus
+### Coronavirus Statistics
 #### main.py
 Using lxml to get data from website.
 Reference:https://google.com/covid19-map/
