@@ -17,8 +17,8 @@ For detailed statistics of covid-19 in NZ, please refer to:
 https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases
 
 #### main_v1.3.py
-Updated to adapt to the new google page on April 11.
-Refer to: https://news.google.com/covid19/map
+Updated to adapt to the new google page on April 11.<br/>
+Reference: https://news.google.com/covid19/map
 
 <br/>
 <img src="images/1.png" width="320" height="240">
