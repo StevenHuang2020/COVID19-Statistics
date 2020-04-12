@@ -10,7 +10,7 @@ Reference:https://google.com/covid19-map/
 Using selenium to crawl data.
 Requirment: pip install selenium <br/>
 Download proper verison of chromdriver.exe (https://chromedriver.chromium.org/downloads)
-then put it in to you python install path(.\python36\Scripts\).
+then put it in to your python install path(.\python36\Scripts\).
 <br/>
 Coronavirus global data updated. 
 For detailed statistics of covid-19 in NZ, please refer to:
