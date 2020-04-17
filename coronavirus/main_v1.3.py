@@ -17,25 +17,23 @@ from main import plotData
 mainUrl = "https://google.com/covid19-map/"
 
 def parseXpathTr(tr,columns):
+    location,confirmed,Case_Per_1M_people,recovered,deaths = '','','','',''
+
+    #span = tr.find_element_by_xpath('//th[@class="l3HOY"]/div/span')
+    span = tr.find_element(By.TAG_NAME, "span")
+    if span:
+        location = span.text
+    
     tds = tr.find_elements(By.TAG_NAME, "td")
     #print(len(tds))
-
-    location,confirmed,Case_Per_1M_people,recovered,deaths = '','','','',''
     for i,td in enumerate(tds):
         if i == 0:
-            spans = td.find_elements(By.TAG_NAME, "span")
-            #print('spans = ',len(spans),spans[0].text)
-            if len(spans)>1:
-                location = spans[1].text
-            else:            
-                location = spans[0].text
-        elif i == 1:
             confirmed = td.text.strip()
-        elif i == 2:
+        elif i == 1:
             Case_Per_1M_people = td.text.strip()
-        elif i == 3:
+        elif i == 2:
             recovered = td.text.strip()
-        elif i == 4:
+        elif i == 3:
             deaths = td.text.strip()
 
     if Case_Per_1M_people == '' or Case_Per_1M_people == '—':
@@ -106,6 +104,7 @@ def Load(url):
     
     df = pd.DataFrame()
     result = tbody.find_elements(By.TAG_NAME, "tr")
+    print('result=',len(result))
     for i in result:
         df = df.append(parseXpathTr(i, columns),ignore_index=True)
     
