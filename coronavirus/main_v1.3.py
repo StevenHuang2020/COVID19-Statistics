@@ -87,7 +87,7 @@ def Load(url):
     driver.get(mainUrl)
     sleep(1)
     
-    btn_More='//*[@id="yDmH0d"]/c-wiz/div/div[2]/div[2]/div[2]/div[2]'
+    btn_More='//*[@id="yDmH0d"]/c-wiz/div/div[2]/div[2]/div[4]/div'
     clickBtn(driver,btn_More)
         
     #X = '//*[@id="yDmH0d"]/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table'
