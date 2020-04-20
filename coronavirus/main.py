@@ -80,6 +80,9 @@ def plotData(df):
     df = df.sort_values(by=['Mortality'],ascending=False)
     df5 = df.iloc[1:number,[4]]
 
+    dfDeaths = df[df['Deaths'] > 200]
+    df6 = dfDeaths.sort_values(by=['Mortality'],ascending=True).iloc[1:number,[4]]
+    
     #print(df.head())
     #print(df.dtypes)
     worldDf = df.loc['Worldwide']
@@ -93,17 +96,14 @@ def plotData(df):
     reWorld = 'Recovered(World: ' + str(int(worldDf['Recovered'])) + today + ')'
     deWorld = 'Deaths(World: ' + str(int(worldDf['Deaths']))+ today + ')'
     moWorld = 'Mortality(World: ' + str(round(worldDf['Mortality'],3)) + today + ')'
-    # print(ccWorld)
-    # print(cpWorld)
-    # print(reWorld)
-    # print(deWorld)
-    # print(moWorld)
-    dfs = [(ccWorld, df1),(cpWorld, df2),(reWorld, df3),(deWorld, df4),(moWorld, df5)]
+    moCountries = 'Mortality(Countries: ' + str(dfDeaths.shape[0]) + ' Deaths>200' + today + ')'
+    
+    dfs = [(ccWorld, df1),(cpWorld, df2),(reWorld, df3),(deWorld, df4),(moWorld, df5),(moCountries,df6)]
     for i,data in enumerate(dfs): 
         df = data[1]
         title = data[0]
 
-        if i==3 or i==4: #deaths mortality
+        if i==3 or i==4 or i==5: #deaths mortality
             ax = df.plot(kind='bar',color='r')
         else:
             ax = df.plot(kind='bar')
