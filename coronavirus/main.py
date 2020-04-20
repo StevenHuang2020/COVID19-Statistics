@@ -81,7 +81,7 @@ def plotData(df):
     df5 = df.iloc[1:number,[4]]
 
     dfDeaths = df[df['Deaths'] > 200]
-    df6 = dfDeaths.sort_values(by=['Mortality'],ascending=True).iloc[1:number,[4]]
+    df6 = dfDeaths.sort_values(by=['Mortality'],ascending=True).iloc[:,[4]]
     
     #print(df.head())
     #print(df.dtypes)
