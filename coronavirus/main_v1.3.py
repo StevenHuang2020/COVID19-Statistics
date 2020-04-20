@@ -20,10 +20,12 @@ def parseXpathTr(tr,columns):
     location,confirmed,Case_Per_1M_people,recovered,deaths = '','','','',''
 
     #span = tr.find_element_by_xpath('//th[@class="l3HOY"]/div/span')
-    span = tr.find_element(By.TAG_NAME, "span")
-    if span:
-        location = span.text
-    
+    span = tr.find_elements(By.TAG_NAME, "span")
+    if len(span) > 1:
+        location = span[1].text
+    elif len(span) == 1:
+        location = span[0].text
+        
     tds = tr.find_elements(By.TAG_NAME, "td")
     #print(len(tds))
     for i,td in enumerate(tds):
