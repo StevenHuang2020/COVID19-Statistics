@@ -173,7 +173,6 @@ def getHeader(thead):
 def parseHtml(htmlContent):
     html = etree.HTML(htmlContent)
     #X = '//*[@id="main"]/div[2]/div/div/div/div/div[1]/table'
-    #X = '//*[@id="main"]/div[2]/div/div/div/div/div[1]/table/tbody/tr'
     #X = '//*[@id="yDmH0d"]/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table/tbody/tr'
     #X = '/html/body/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table/tbody/tr'
     X = '//table[@class="SAGQRd"]/thead'
@@ -183,7 +182,6 @@ def parseHtml(htmlContent):
     columns = getHeader(resHead[0])
     #print(columns)
     columns[2]='Case_Per_1M_people'
-    
     
     X = '//table[@class="SAGQRd"]//tr' #[@class="SAGQRD"]'
     result = html.xpath(X)
