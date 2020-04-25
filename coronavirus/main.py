@@ -65,7 +65,7 @@ def preprocessData(df):
     return df
 
 def plotData(df):
-    number = 20
+    number = 25
     df = preprocessData(df)
 
     #df = df.iloc[1:number,:]
@@ -81,8 +81,11 @@ def plotData(df):
     df5 = df.iloc[1:number,[4]]
 
     dfDeaths = df[df['Deaths'] > 200]
-    df6 = dfDeaths.sort_values(by=['Mortality'],ascending=True).iloc[:,[4]]
+    df6 = dfDeaths.sort_values(by=['Mortality'],ascending=True).iloc[:number,[4]]
     
+    dfConfirmed = df[df['Confirmed'] > 5000]
+    df7 = dfConfirmed.sort_values(by=['Mortality'],ascending=True).iloc[:number,[4]]
+        
     #print(df.head())
     #print(df.dtypes)
     worldDf = df.loc['Worldwide']
@@ -97,43 +100,47 @@ def plotData(df):
     deWorld = 'Deaths(World: ' + str(int(worldDf['Deaths']))+ today + ')'
     moWorld = 'Mortality(World: ' + str(round(worldDf['Mortality'],3)) + today + ')'
     moCountries = 'Mortality(Countries: ' + str(dfDeaths.shape[0]) + ' Deaths>200' + today + ')'
+    coCountries = 'Mortality(Countries: ' + str(dfConfirmed.shape[0]) + ' Confirmed>5k' + today + ')'
     
-    dfs = [(ccWorld, df1),(cpWorld, df2),(reWorld, df3),(deWorld, df4),(moWorld, df5),(moCountries,df6)]
+    dfs = [(ccWorld, df1),(cpWorld, df2),(reWorld, df3),(deWorld, df4),(moWorld, df5),(moCountries,df6),(coCountries,df7)]
+    fontsize = 8
     for i,data in enumerate(dfs): 
         df = data[1]
         title = data[0]
 
-        if i==3 or i==4 or i==5: #deaths mortality
+        if i==3 or i==4 or i==5 or i==6: #deaths mortality
             ax = df.plot(kind='bar',color='r')
         else:
             ax = df.plot(kind='bar')
 
-        ax.set_title(title)
+        ax.set_title(title,fontsize=fontsize)
         ax.legend()
-        plt.setp(ax.get_xticklabels(), rotation=30, ha="right")
+        plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
+        plt.setp(ax.get_yticklabels(),fontsize=fontsize)
         plt.savefig(str(i+1)+'.png')
     plt.show()
 
 
 def parseXpathTr(tr, columns):
     html = etree.HTML(etree.tostring(tr))
-    result = html.xpath('//td') 
+    
     #print(len(result),result)
     location,confirmed,Case_Per_1M_people,recovered,deaths = '','','','',''
-
+    span = html.xpath('//span')
+    if len(span) > 1:
+        location = span[1].text
+    elif len(span) == 1:
+        location = span[0].text
+    
+    result = html.xpath('//td') 
     for i,td in enumerate(result):
         if i == 0:
-            span = etree.HTML(etree.tostring(td)).xpath('//span')
-            #print(len(span),span)
-            #print(span[0].text)
-            location = span[0].text
-        elif i == 1:
             confirmed = td.text.strip()
-        elif i == 2:
+        elif i == 1:
             Case_Per_1M_people = td.text.strip() 
-        elif i == 3:
+        elif i == 2:
             recovered = td.text.strip()
-        elif i == 4:
+        elif i == 3:
             deaths = td.text.strip()
 
     if Case_Per_1M_people == '' or Case_Per_1M_people == '—':
@@ -153,8 +160,9 @@ def parseXpathTr(tr, columns):
 def getHeader(thead):
     html = etree.HTML(etree.tostring(thead))
     #res = html.xpath('//th//div[@id="c1"]')
-    res = html.xpath('//div[@class="DdCLrb"]')
-    #print(len(res))
+    #res = html.xpath('//div[@class="DdCLrb"]')
+    res = html.xpath('//tr[@class="sgXwHf"]//span')
+    print(len(res))
     lc,cf,cp,re,de = '','','','',''
     for i,div in enumerate(res):
         if i == 0:
@@ -175,7 +183,7 @@ def parseHtml(htmlContent):
     #X = '//*[@id="main"]/div[2]/div/div/div/div/div[1]/table'
     #X = '//*[@id="yDmH0d"]/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table/tbody/tr'
     #X = '/html/body/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table/tbody/tr'
-    X = '//table[@class="SAGQRd"]/thead'
+    X = '//table[@class="pH8O4c"]/thead'
     #X = '//table'
     resHead = html.xpath(X)
     #print(len(resHead))    
@@ -183,7 +191,7 @@ def parseHtml(htmlContent):
     #print(columns)
     columns[2]='Case_Per_1M_people'
     
-    X = '//table[@class="SAGQRd"]//tr' #[@class="SAGQRD"]'
+    X = '//table[@class="pH8O4c"]//tr' #[@class="SAGQRD"]'
     result = html.xpath(X)
     print(len(result))
     df  = pd. DataFrame()

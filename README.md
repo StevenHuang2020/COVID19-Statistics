@@ -26,4 +26,4 @@ Reference: https://news.google.com/covid19/map
 <img src="images/4.png" width="320" height="240">
 <img src="images/5.png" width="320" height="240">
 <img src="images/6.png" width="320" height="240">
-
+<img src="images/7.png" width="320" height="240">
