@@ -86,6 +86,12 @@ def plotData(df):
     dfConfirmed = df[df['Confirmed'] > 5000]
     df7 = dfConfirmed.sort_values(by=['Mortality'],ascending=True).iloc[:number,[4]]
         
+    dfDeathsZero = df[df['Deaths'] == 0]
+    df8 = dfDeathsZero.sort_values(by=['Confirmed'],ascending=False).iloc[:number,[0]]
+    
+    dfDeathsThanZero = df[df['Deaths'] > 0]
+    df9 = dfDeathsThanZero.sort_values(by=['Mortality'],ascending=True).iloc[:number,[4]]
+    
     #print(df.head())
     #print(df.dtypes)
     worldDf = df.loc['Worldwide']
@@ -101,8 +107,12 @@ def plotData(df):
     moWorld = 'Mortality(World: ' + str(round(worldDf['Mortality'],3)) + today + ')'
     moCountries = 'Mortality(Countries: ' + str(dfDeaths.shape[0]) + ' Deaths>200' + today + ')'
     coCountries = 'Mortality(Countries: ' + str(dfConfirmed.shape[0]) + ' Confirmed>5k' + today + ')'
+    dzCountries = 'Confirmed(Countries: ' + str(dfDeathsZero.shape[0]) + ' Deaths==0' + today + ')'
+    dnzCountries = 'Mortality(Countries: ' + str(dfDeathsThanZero.shape[0]) + ' Deaths>0' + today + ')'
     
-    dfs = [(ccWorld, df1),(cpWorld, df2),(reWorld, df3),(deWorld, df4),(moWorld, df5),(moCountries,df6),(coCountries,df7)]
+    dfs = [(ccWorld, df1),(cpWorld, df2),(reWorld, df3),(deWorld, df4),(moWorld, df5),\
+        (moCountries,df6),(coCountries,df7),(dzCountries,df8),(dnzCountries,df9)]
+    
     fontsize = 8
     for i,data in enumerate(dfs): 
         df = data[1]
