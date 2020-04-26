@@ -64,8 +64,7 @@ def preprocessData(df):
     writeToCsv(df)
     return df
 
-def plotData(df):
-    number = 25
+def plotData(df,number = 25):    
     df = preprocessData(df)
 
     #df = df.iloc[1:number,:]
@@ -116,20 +115,43 @@ def plotData(df):
     fontsize = 8
     for i,data in enumerate(dfs): 
         df = data[1]
+        kind='bar'
+        if number>25:
+            df = binaryDf(df)
+            kind='barh'
+             
         title = data[0]
 
         if i==3 or i==4 or i==5 or i==6: #deaths mortality
-            ax = df.plot(kind='bar',color='r')
+            ax = df.plot(kind=kind,color='r')
         else:
-            ax = df.plot(kind='bar')
+            ax = df.plot(kind=kind)
 
         ax.set_title(title,fontsize=fontsize)
         ax.legend()
         plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
         plt.setp(ax.get_yticklabels(),fontsize=fontsize)
+        
+        if number>25:
+            plt.subplots_adjust(left=0.30, bottom=None, right=0.98, top=None, wspace=None, hspace=None)
+        
         plt.savefig(str(i+1)+'.png')
     plt.show()
 
+def binaryDf(df):
+    newdf = pd.DataFrame(columns=df.columns)
+    #print('pd.shape=',df.shape)
+    newIndex = []
+    for i in range(df.shape[0]//2):
+        dd = df.loc[df.index[i*2], :]
+        #print('dd=',df.index[i*2], dd.values)
+        newIndex.append(df.index[i*2] +',' + df.index[i*2+1])
+        newdf = newdf.append(dd,ignore_index=True)
+        
+    #print('newIndex=',len(newIndex),newIndex)
+    #print('newdf.shape=',newdf.shape)
+    newdf.index = newIndex
+    return newdf
 
 def parseXpathTr(tr, columns):
     html = etree.HTML(etree.tostring(tr))

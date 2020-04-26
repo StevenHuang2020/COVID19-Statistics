@@ -111,7 +111,7 @@ def Load(url):
         df = df.append(parseXpathTr(i, columns),ignore_index=True)
     
     print('df.shape=', df.shape)
-    plotData(df)
+    plotData(df,50)
 
 if __name__ == '__main__':
     #mainUrl=r'file:///E:/python/spider/coronavirus/a.html'
