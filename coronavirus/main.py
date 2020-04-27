@@ -98,12 +98,13 @@ def plotData(df,number = 25):
     now = datetime.datetime.now()
     
     today = str(' Date:') + str(now.strftime("%Y-%m-%d %H:%M:%S"))
+    topStr = 'Top '+str(number) + ' '
     
-    ccWorld = 'Confirmed(World: ' + str(int(worldDf['Confirmed'])) + today + ')'
-    cpWorld = 'Case_Per_1M_people(World: ' + str(int(worldDf['Case_Per_1M_people'])) + today + ')'
-    reWorld = 'Recovered(World: ' + str(int(worldDf['Recovered'])) + today + ')'
-    deWorld = 'Deaths(World: ' + str(int(worldDf['Deaths']))+ today + ')'
-    moWorld = 'Mortality(World: ' + str(round(worldDf['Mortality'],3)) + today + ')'
+    ccWorld = topStr + 'Confirmed(World: ' + str(int(worldDf['Confirmed'])) + today + ')'
+    cpWorld = topStr + 'Case_Per_1M_people(World: ' + str(int(worldDf['Case_Per_1M_people'])) + today + ')'
+    reWorld = topStr + 'Recovered(World: ' + str(int(worldDf['Recovered'])) + today + ')'
+    deWorld = topStr + 'Deaths(World: ' + str(int(worldDf['Deaths']))+ today + ')'
+    moWorld = topStr + 'Mortality(World: ' + str(round(worldDf['Mortality'],3)) + today + ')'
     moCountries = 'Mortality(Countries: ' + str(dfDeaths.shape[0]) + ' Deaths>200' + today + ')'
     coCountries = 'Mortality(Countries: ' + str(dfConfirmed.shape[0]) + ' Confirmed>5k' + today + ')'
     dzCountries = 'Confirmed(Countries: ' + str(dfDeathsZero.shape[0]) + ' Deaths==0' + today + ')'
