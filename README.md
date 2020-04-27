@@ -1,5 +1,5 @@
 # WebSpider
-![GitHub watchers](https://img.shields.io/github/downloads/StevenHuang2020/WebSpider/total)
+![GitHub Downloads](https://img.shields.io/github/downloads/StevenHuang2020/WebSpider/total)
 ![GitHub watchers](https://img.shields.io/github/watchers/StevenHuang2020/WebSpider?label=Watch)
 ### COVID-19 Statistics
 #### main.py
