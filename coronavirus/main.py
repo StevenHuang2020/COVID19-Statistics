@@ -14,6 +14,8 @@ from lxml import etree
 from common.getHtml import openUrl, openUrlUrlLib
 import matplotlib.pyplot as plt
 
+from jsonUpdate import updateJson
+
 mainUrl = "https://google.com/covid19-map/" #"https://google.org/crisisresponse/covid19-map"
 
 def writeToCsv(df):
@@ -62,6 +64,7 @@ def preprocessData(df):
 
     print('\n\nAfter preprocess:\n',df.head())
     writeToCsv(df)
+    updateJson()
     return df
 
 def plotData(df,number = 25):    
