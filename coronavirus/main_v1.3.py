@@ -114,6 +114,4 @@ def Load(url):
     plotData(df,50)
 
 if __name__ == '__main__':
-    #mainUrl=r'file:///E:/python/spider/coronavirus/a.html'
     Load(mainUrl)
-    

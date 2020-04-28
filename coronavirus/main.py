@@ -21,10 +21,10 @@ mainUrl = "https://google.com/covid19-map/" #"https://google.org/crisisresponse/
 def writeToCsv(df):
     daytime = datetime.datetime.now()
     today = datetime.date.today()
-    t = str(today) + '_' + str(daytime.hour) + str(daytime.minute)
+    t = str(today) + '_' + str(daytime.__format__('%H%M%S'))
     
     #file='coronavirous.csv'
-    file='coronavirous' + t + '.csv'
+    file='coronavirous_' + t + '.csv'
     df.to_csv(file,index=True)
           
 #columns=['Location', 'Confirmed', 'Case_Per_1M_people', 'Recovered', 'Deaths']    
