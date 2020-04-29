@@ -108,8 +108,8 @@ def readCsv(file):
     #df = df.apply(pd.to_numeric, axis=0)
     #print('df.dtypes = ',df.dtypes)
     #plotTest(df)
-    #plotDataCompare(df)
-    plotData(df)
+    plotDataCompare(df)
+    #plotData(df)
       
 def plotTest(df,number = 20):
     #df = df.iloc[1:number,:]
@@ -227,29 +227,10 @@ def plotDataCompare(df,number = 50):
         (moCountries,df6),(coCountries,df7),(dzCountries,df8),(dnzCountries,df9)]
     
     fontsize = 8
-    if 0:
-        for i,data in enumerate(dfs): 
-            df = data[1]
-            df = binaryDf(df)  #index divide 2
-            title = data[0]
-
-            if i==3 or i==4 or i==5 or i==6: #deaths mortality
-                ax = df.plot(kind='barh',color='r')
-            else:
-                ax = df.plot(kind='barh')
-
-            ax.set_title(title,fontsize=fontsize)
-            ax.legend()
-            plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
-            plt.setp(ax.get_yticklabels(),fontsize=fontsize)
-            plt.subplots_adjust(left=0.30, bottom=None, right=0.98, top=None, wspace=None, hspace=None)
-            
-            plt.savefig(str(i+1)+'new.png')
-        plt.show()
-    
     #------------------------#
     df = df.sort_values(by=['Confirmed'],ascending=False)
-    df = binaryDf(df)
+    if number>25:
+        df = binaryDf(df)
     
     dfConfirmed = df.iloc[1:number,[0]]
     dfCase_Per_1M_people = df.iloc[1:number,[1]]
@@ -257,66 +238,73 @@ def plotDataCompare(df,number = 50):
     dfDeaths = df.iloc[1:number,[3]]
     dfMortality = df.iloc[1:number,[4]]
     
-    # dfConfirmed = binaryDf(dfConfirmed)
-    # dfRecovered = binaryDf(dfRecovered)
-    # dfDeaths = binaryDf(dfDeaths)
     # print(dfConfirmed.head())
     # print(dfRecovered.head())
     # print(dfDeaths.head())
     
     width = 0.5
     ax = plt.subplot(1,1,1)
-    if 0:
-        ax.barh(dfConfirmed.index, dfConfirmed.iloc[:,0] , width, label='Confirmed',color='b')
-        ax.barh(dfConfirmed.index, dfRecovered.iloc[:,0] , width, label='Recovered',color='g',left=dfConfirmed['Confirmed'])
-        ax.barh(dfConfirmed.index, dfDeaths.iloc[:,0] , width, label='Deaths',color='r',left=dfRecovered['Recovered']+dfConfirmed['Confirmed'])
-        #ax.bar(df.index, df['b'], width, bottom = df['a'], label='b')
-    else:
-        colors=['b','g','r']
-        dd = []
-        ddName=[]
-        dd.append(dfConfirmed.iloc[:,0]),ddName.append('Confirmed')
-        dd.append(dfRecovered.iloc[:,0]),ddName.append('Recovered')
-        dd.append(dfDeaths.iloc[:,0]),ddName.append('Deaths')
-        dfCompareds = [(ddName, dd)]
-        
-        # dd = []
-        # ddName=[]
-        # dd.append(dfDeaths.iloc[:,0]),ddName.append('Deaths')
-        # dd.append(dfMortality.iloc[:,0]),ddName.append('Mortality')
-        # dfCompareds.append((ddName, dd))
-       
-        for i in dfCompareds:
-            newDf = pd.DataFrame()
-            for id,(name,data) in enumerate(zip(i[0],i[1])):
-                print(id,name)
-                color = colors[id%len(colors)]
-                if 1: #style1 cumulate
-                    if id==0:
-                        ax.barh(data.index, data , width, label=name,color=color)
-                        lf = i[1][id]
-                    else:
-                        ax.barh(data.index, data , width, label=name,color=color,left=lf)
-                        lf +=i[1][id]
-                else:
-                    newDf[name] = data
-                    #newDf = newDf.append(pd.DataFrame({name: data}, index=data.index))
-                    
-                
-                
+    
+    colors=['b','g','r']
+    dd = []
+    ddName=[]
+    dd.append(dfConfirmed.iloc[:,0]),ddName.append('Confirmed')
+    dd.append(dfRecovered.iloc[:,0]),ddName.append('Recovered')
+    dd.append(dfDeaths.iloc[:,0]),ddName.append('Deaths')
+    dfCompareds = [(ddName, dd, 'covid-19 statistics')]
+    
+    # dd = []
+    # ddName=[]
+    # dd.append(dfDeaths.iloc[:,0]),ddName.append('Deaths')
+    # dd.append(dfMortality.iloc[:,0]),ddName.append('Mortality')
+    # dfCompareds.append((ddName, dd))
+    '''
+    for i in dfCompareds:
+        newDf = pd.DataFrame()
+        title = i[2]
+        for id,(name,data) in enumerate(zip(i[0],i[1])):
+            print(id,name,title)
+            color = colors[id%len(colors)]
+            if 1: #style1 cumulate
+                if id==0:
                     ax.barh(data.index, data , width, label=name,color=color)
-               
-            #print(newDf.head())
-            #ax = newDf.plot.barh(rot=0,width=0.8)  
-             
-            ax.legend()
-            plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
-            plt.setp(ax.get_yticklabels(),fontsize=fontsize)
-            plt.subplots_adjust(left=0.30, bottom=None, right=0.98, top=None, wspace=None, hspace=None)
-            #plt.savefig(str(i+1)+'new.png')
-            plt.show()   
-           
-
+                    lf = i[1][id]
+                else:
+                    ax.barh(data.index, data , width, label=name,color=color,left=lf)
+                    lf +=i[1][id]
+            else:
+                newDf[name] = data
+                #newDf = newDf.append(pd.DataFrame({name: data}, index=data.index))
+                ax.barh(data.index, data , width, label=name,color=color)
+            
+        #print(newDf.head())
+        #ax = newDf.plot.barh(rot=0,width=0.8)  
+        ax.legend()
+        ax.set_title(title)
+        
+        plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
+        plt.setp(ax.get_yticklabels(),fontsize=fontsize)
+        plt.subplots_adjust(left=0.30, bottom=None, right=0.98, top=None, wspace=None, hspace=None)
+        #plt.savefig(str(i+1)+'new.png')
+        plt.show()   
+    '''
+       
+    #-------------------------#
+    dC = dfConfirmed.iloc[:,0]
+    dM = dfMortality.iloc[:,0]
+    dD = dfDeaths.iloc[:,0]
+    ax.bar(dC.index, dC , width, label='Confirmed',color=colors[0])
+    #ax.plot(dC.index, dC)
+    #print(dC.index,dC.shape)
+    ax.plot(dM.index, dM)
+    ax.plot(dD.index, dD)
+    #print(dM.index,dM.shape)
+    ax.set_title('Confirmed & Mortality')
+    
+    plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
+    plt.setp(ax.get_yticklabels(),fontsize=fontsize)
+    plt.subplots_adjust(left=0.30, bottom=None, right=0.98, top=None, wspace=None, hspace=None)
+    plt.show()   
         
 if __name__ == '__main__':
     readCsv(r'./coronavirous2020-04-26_1457.csv')
