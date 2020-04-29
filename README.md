@@ -2,7 +2,7 @@
 ![GitHub Downloads](https://img.shields.io/github/downloads/StevenHuang2020/WebSpider/total?label=Downloads)
 ![GitHub watchers](https://img.shields.io/github/watchers/StevenHuang2020/WebSpider?label=Watch) 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![Python Version](https://img.shields.io/badge/python-v3.6-blue)
+![Python Version](https://img.shields.io/badge/Python-v3.6-blue)
 ![Last update](https://img.shields.io/endpoint?color=brightgreen&style=flat-square&url=https%3A%2F%2Fraw.githubusercontent.com%2FStevenHuang2020%2FWebSpider%2Fmaster%2Fcoronavirus%2Fupdate.json)
 
 #### main.py
