@@ -12,7 +12,7 @@ from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 
-from main import plotData
+from main import plotData,preprocessData
 
 mainUrl = "https://google.com/covid19-map/"
 
@@ -111,6 +111,8 @@ def Load(url):
         df = df.append(parseXpathTr(i, columns),ignore_index=True)
     
     print('df.shape=', df.shape)
+    
+    df = preprocessData(df)
     plotData(df,50)
 
 if __name__ == '__main__':
