@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 
 def plotData(df,number = 25):    
     #df = df.iloc[1:number,:]
+    worldDf = df.iloc[:1,:]
+    
     df = df.sort_values(by=['Confirmed'],ascending=False)
     df1 = df.iloc[1:number,[0]]
     df = df.sort_values(by=['Case_Per_1M_people'],ascending=False)
@@ -37,7 +39,7 @@ def plotData(df,number = 25):
     
     #print(df.head())
     #print(df.dtypes)
-    worldDf = df.loc['Worldwide']
+    #worldDf = df.loc['Worldwide']
     #print(worldDf,worldMor)
     now = datetime.datetime.now()
     
@@ -59,18 +61,18 @@ def plotData(df,number = 25):
     
     fontsize = 8
     for i,data in enumerate(dfs): 
-        df = data[1]
+        dataFrame = data[1]
         kind='bar'
         if number>25:
-            df = binaryDf(df)
+            dataFrame = binaryDf(dataFrame)
             kind='barh'
              
         title = data[0]
 
         if i==3 or i==4 or i==5 or i==6: #deaths mortality
-            ax = df.plot(kind=kind,color='r')
+            ax = dataFrame.plot(kind=kind,color='r')
         else:
-            ax = df.plot(kind=kind)
+            ax = dataFrame.plot(kind=kind)
 
         ax.set_title(title,fontsize=fontsize)
         ax.legend()
@@ -82,7 +84,9 @@ def plotData(df,number = 25):
         
         plt.savefig(str(i+1)+'.png')
     plt.show()
-
+    
+    #plotTable(worldDf)
+    
 def binaryDf(df):
     newdf = pd.DataFrame(columns=df.columns)
     #print('pd.shape=',df.shape)
@@ -98,6 +102,20 @@ def binaryDf(df):
     newdf.index = newIndex
     return newdf
 
+def plotTable(df):
+    return
+    print(df)
+    fig, ax = plt.subplots()
+    # hide axes
+    #fig.patch.set_visible(False)
+    ax.axis('off')
+    ax.axis('tight')
+    
+    ax.table(cellText=df.values, colLabels=df.columns, loc='center')
+    plt.title('World statitic')
+    #fig.tight_layout()
+    plt.show()
+    
 def readCsv(file):
     df = pd.read_csv(file)
     print(df.describe().transpose())
@@ -108,8 +126,8 @@ def readCsv(file):
     #df = df.apply(pd.to_numeric, axis=0)
     #print('df.dtypes = ',df.dtypes)
     #plotTest(df)
-    plotDataCompare(df)
-    #plotData(df)
+    #plotDataCompare(df)
+    plotData(df)
       
 def plotTest(df,number = 20):
     #df = df.iloc[1:number,:]
