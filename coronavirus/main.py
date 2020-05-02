@@ -20,12 +20,13 @@ from jsonUpdate import updateJson
 mainUrl = "https://google.com/covid19-map/" #"https://google.org/crisisresponse/covid19-map"
 
 def writeToCsv(df):
+    base=r'./data/'
     daytime = datetime.datetime.now()
     today = datetime.date.today()
     t = str(today) + '_' + str(daytime.__format__('%H%M%S'))
     
     #file='coronavirous.csv'
-    file='coronavirous_' + t + '.csv'
+    file = base + 'coronavirous_' + t + '.csv'
     df.to_csv(file,index=True)
           
 #columns=['Location', 'Confirmed', 'Case_Per_1M_people', 'Recovered', 'Deaths']    
@@ -70,7 +71,6 @@ def preprocessData(df):
 
 def parseXpathTr(tr, columns):
     html = etree.HTML(etree.tostring(tr))
-    
     #print(len(result),result)
     location,confirmed,Case_Per_1M_people,recovered,deaths = '','','','',''
     span = html.xpath('//span')
@@ -159,4 +159,3 @@ def Load(url):
 if __name__ == '__main__':
     #mainUrl=r'file:///E:/python/spider/coronavirus/a.html'
     Load(mainUrl)
-    

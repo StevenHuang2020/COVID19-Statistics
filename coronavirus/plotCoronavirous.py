@@ -2,10 +2,7 @@
 #author:Steven Huang 25/04/20
 #function: Query cases of COVID-19 from website
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-#usgae:
-#python main.py
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
+import os
 import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -103,7 +100,6 @@ def binaryDf(df):
     return newdf
 
 def plotTable(df):
-    return
     print(df)
     fig, ax = plt.subplots()
     # hide axes
@@ -118,16 +114,17 @@ def plotTable(df):
     
 def readCsv(file):
     df = pd.read_csv(file)
-    print(df.describe().transpose())
-    print(df.head())
+    #print(df.describe().transpose())
+    #print(df.head())
     df.set_index(["Location"], inplace=True)
-    print('df.columns=',df.columns)
+    #print('df.columns=',df.columns)
     #print('df.dtypes = ',df.dtypes)
     #df = df.apply(pd.to_numeric, axis=0)
     #print('df.dtypes = ',df.dtypes)
     #plotTest(df)
     #plotDataCompare(df)
-    plotData(df)
+    #plotData(df)
+    return df
       
 def plotTest(df,number = 20):
     #df = df.iloc[1:number,:]
@@ -324,6 +321,73 @@ def plotDataCompare(df,number = 50):
     plt.subplots_adjust(left=0.30, bottom=None, right=0.98, top=None, wspace=None, hspace=None)
     plt.show()   
         
-if __name__ == '__main__':
-    readCsv(r'./coronavirous2020-04-26_1457.csv')
+def pathsFiles(dir,filter=''): #"cpp h txt jpg"
+    def getExtFile(file):
+        return file[file.find('.')+1:]
     
+    def getFmtFile(path):
+        #/home/User/Desktop/file.txt    /home/User/Desktop/file     .txt
+        root_ext = os.path.splitext(path) 
+        return root_ext[1]
+
+    fmts = filter.split()    
+    if fmts:
+        for dirpath, dirnames, filenames in os.walk(dir):
+            for filename in filenames:
+                if getExtFile(getFmtFile(filename)) in fmts:
+                    yield dirpath+'\\'+filename
+    else:
+        for dirpath, dirnames, filenames in os.walk(dir):
+            for filename in filenames:
+                yield dirpath+'\\'+filename    
+           
+def getDateFromFileName(name):
+    name = name[name.find('s')+1 : ]
+    name = name[: name.find('.')]
+    
+    if name[0] == '_':
+        name = name[1 : ]
+    
+    name = name[: name.rfind('_')]
+    #print('name=',name)
+    return name
+
+def plotChangeBydata(csvpath=r'./data/'):
+    pdDate = pd.DataFrame()
+    for i in pathsFiles(csvpath,'csv'):
+        #print(i,getDateFromFileName(i))
+        df = readCsv(i)
+        dateTime = getDateFromFileName(i)
+        
+        #print(worldDf)
+        #print(worldDf.values)
+        if pdDate.shape[0]>0:
+            if pdDate['DataTime'].isin([dateTime]).any():
+                continue
+            
+        worldDf = df.iloc[:1,:]
+        worldDf['DataTime'] = dateTime
+        pdDate = pdDate.append(worldDf)
+        
+    print(pdDate.shape)
+    #print(pdDate.head())
+    pdDate.set_index(["DataTime"], inplace=True)
+    df = pdDate.sort_values(by=['DataTime'],ascending=False)
+    print(pdDate.head())
+    
+    df1 = pdDate.iloc[:,[0]]
+    
+    fontsize = 8
+    ax = pdDate.plot(kind='line')
+    ax.set_title('World COVID19 Change')
+    
+    plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
+    plt.setp(ax.get_yticklabels(),fontsize=fontsize)
+    plt.subplots_adjust(left=0.07, bottom=0.16, right=0.96, top=0.94, wspace=None, hspace=None)
+    plt.savefig('WorldChange.png')
+    plt.show()
+    
+if __name__ == '__main__':
+    csvpath=r'./data/'
+    #readCsv(r'./coronavirous2020-04-26_1457.csv')
+    plotChangeBydata(csvpath)
