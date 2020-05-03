@@ -83,6 +83,7 @@ def plotData(df,number = 25):
     plt.show()
     
     #plotTable(worldDf)
+    plotChangeBydata()
     
 def binaryDf(df):
     newdf = pd.DataFrame(columns=df.columns)
