@@ -1,7 +1,7 @@
 #python3 unicode
 #author:Steven Huang 25/04/20
 #function: Query cases of COVID-19 from website
-
+#World case statistics by time reference: https://ourworldindata.org/covid-cases
 import os
 import datetime
 import pandas as pd
@@ -84,6 +84,7 @@ def plotData(df,number = 25):
     
     #plotTable(worldDf)
     plotChangeBydata()
+    plotWorldStatisticByTime()
     
 def binaryDf(df):
     newdf = pd.DataFrame(columns=df.columns)
@@ -117,7 +118,7 @@ def readCsv(file):
     df = pd.read_csv(file)
     #print(df.describe().transpose())
     #print(df.head())
-    df.set_index(["Location"], inplace=True)
+    #df.set_index(["Location"], inplace=True)
     #print('df.columns=',df.columns)
     #print('df.dtypes = ',df.dtypes)
     #df = df.apply(pd.to_numeric, axis=0)
@@ -358,6 +359,8 @@ def plotChangeBydata(csvpath=r'./data/'):
     for i in pathsFiles(csvpath,'csv'):
         #print(i,getDateFromFileName(i))
         df = readCsv(i)
+        df.set_index(["Location"], inplace=True)
+        
         dateTime = getDateFromFileName(i)
         
         #print(worldDf)
@@ -370,11 +373,11 @@ def plotChangeBydata(csvpath=r'./data/'):
         worldDf['DataTime'] = dateTime
         pdDate = pdDate.append(worldDf)
         
-    print(pdDate.shape)
+    #print(pdDate.shape)
     #print(pdDate.head())
     pdDate.set_index(["DataTime"], inplace=True)
     df = pdDate.sort_values(by=['DataTime'],ascending=False)
-    print(pdDate.head())
+    #print(pdDate.head())
     
     df1 = pdDate.iloc[:,[0]]
     
@@ -388,7 +391,31 @@ def plotChangeBydata(csvpath=r'./data/'):
     plt.savefig('WorldChange.png')
     plt.show()
     
+def plotWorldStatisticByTime(csvpath=r'./'):
+    csv = csvpath + 'total-cases-covid-19.csv'
+    df = readCsv(csv)
+    df = df[df['Entity'] == 'World' ]
+    df = df.rename(columns={"Total confirmed cases of COVID-19 (cases)": "Cases"})
+    #print(df.head())
+    
+    data = {'Date':df['Date'], 'Cases': df['Cases']}
+    dfWorld = pd.DataFrame(data=data)
+    dfWorld.set_index(["Date"], inplace=True)
+    #print(dfWorld.head())
+    dfWorld = dfWorld.iloc[::3] # even #dfWorld.iloc[1::2] #odd
+    
+    fontsize = 7
+    ax = dfWorld.plot(kind='barh')
+    ax.set_title('World COVID-19 Cases',fontsize=fontsize)
+    
+    plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
+    plt.setp(ax.get_yticklabels(),fontsize=fontsize)
+    #plt.subplots_adjust(left=0.07, bottom=0.16, right=0.96, top=0.94, wspace=None, hspace=None)
+    plt.savefig('WorldChangeX.png')
+    plt.show()
+    
 if __name__ == '__main__':
     csvpath=r'./data/'
     #readCsv(r'./coronavirous2020-04-26_1457.csv')
-    plotChangeBydata(csvpath)
+    #plotChangeBydata(csvpath)
+    plotWorldStatisticByTime()
