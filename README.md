@@ -32,5 +32,6 @@ Reference: https://news.google.com/covid19/map
 <img src="images/7.png" width="320" height="240">
 <img src="images/8.png" width="320" height="240">
 <img src="images/9.png" width="320" height="240">
+<br/>
 <img src="images/WorldChange.png" width="320" height="240">
 <img src="images/WorldChangeX.png" width="320" height="240">
