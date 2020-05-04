@@ -2,6 +2,7 @@
 #author:Steven Huang 25/04/20
 #function: Query cases of COVID-19 from website
 #World case statistics by time reference: https://ourworldindata.org/covid-cases
+
 import os
 import datetime
 import pandas as pd
@@ -391,6 +392,23 @@ def plotChangeBydata(csvpath=r'./data/'):
     plt.savefig('WorldChange.png')
     plt.show()
     
+def plotPdColumn(index,data,title,label,color=None):
+    fontsize = 6
+    ax = plt.subplot(1,1,1)
+    
+    ax.set_title(title,fontsize=fontsize)
+    #ax.barh(dfWorld.index,dfWorld['Cases'])
+    if color:
+        ax.bar(index,data,label=label,width=0.8,color=color)
+    else:            
+        ax.bar(index,data,label=label,width=0.8)
+    
+    plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
+    plt.setp(ax.get_yticklabels(),fontsize=fontsize)
+    plt.subplots_adjust(left=0.06, bottom=None, right=0.98, top=0.92, wspace=None, hspace=None)
+    plt.savefig(label+'World.png')
+    plt.show()
+        
 def plotWorldStatisticByTime(csvpath=r'./'):
     csv = csvpath + 'total-cases-covid-19.csv'
     df = readCsv(csv)
@@ -402,17 +420,25 @@ def plotWorldStatisticByTime(csvpath=r'./'):
     dfWorld = pd.DataFrame(data=data)
     dfWorld.set_index(["Date"], inplace=True)
     #print(dfWorld.head())
+    #print(dfWorld['Cases'].shape)
+    #print(dfWorld['Cases'])
+    
+    dfNewCases = [0]
+    for i in range(len(dfWorld['Cases']) -1):
+        numberI = dfWorld.iloc[i,0]
+        numberINext = dfWorld.iloc[i+1,0]
+        newCases = numberINext-numberI
+        #print(numberI,numberINext,newCases)
+        dfNewCases.append(newCases)
+        
+    #print(len(dfNewCases))
+    dfWorld['newCases'] = dfNewCases
+    #print(dfWorld.head())
+
     dfWorld = dfWorld.iloc[::3] # even #dfWorld.iloc[1::2] #odd
     
-    fontsize = 7
-    ax = dfWorld.plot(kind='barh')
-    ax.set_title('World COVID-19 Cases',fontsize=fontsize)
-    
-    plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
-    plt.setp(ax.get_yticklabels(),fontsize=fontsize)
-    #plt.subplots_adjust(left=0.07, bottom=0.16, right=0.96, top=0.94, wspace=None, hspace=None)
-    plt.savefig('WorldChangeX.png')
-    plt.show()
+    plotPdColumn(dfWorld.index,dfWorld['Cases'],title='World COVID-19 Cases',label='Cases')
+    plotPdColumn(dfWorld.index,dfWorld['newCases'],title='World COVID-19 New Cases',label='newCases',color='y')
     
 if __name__ == '__main__':
     csvpath=r'./data/'
