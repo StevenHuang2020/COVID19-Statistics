@@ -38,17 +38,17 @@ def plotData(df,number = 25):
     #print(df.head())
     #print(df.dtypes)
     #worldDf = df.loc['Worldwide']
-    #print(worldDf,worldMor)
+    #print(worldDf)
     now = datetime.datetime.now()
     
     today = str(' Date:') + str(now.strftime("%Y-%m-%d %H:%M:%S"))
     topStr = 'Top '+str(number) + ' '
     
-    ccWorld = topStr + 'Confirmed(World: ' + str(int(worldDf['Confirmed'])) + today + ')'
-    cpWorld = topStr + 'Case_Per_1M_people(World: ' + str(int(worldDf['Case_Per_1M_people'])) + today + ')'
-    reWorld = topStr + 'Recovered(World: ' + str(int(worldDf['Recovered'])) + today + ')'
-    deWorld = topStr + 'Deaths(World: ' + str(int(worldDf['Deaths']))+ today + ')'
-    moWorld = topStr + 'Mortality(World: ' + str(round(worldDf['Mortality'],3)) + today + ')'
+    ccWorld = topStr + 'Confirmed(World: ' + str(int(worldDf['Confirmed'][0])) + today + ')'
+    cpWorld = topStr + 'Case_Per_1M_people(World: ' + str(int(worldDf['Case_Per_1M_people'][0])) + today + ')'
+    reWorld = topStr + 'Recovered(World: ' + str(int(worldDf['Recovered'][0])) + today + ')'
+    deWorld = topStr + 'Deaths(World: ' + str(int(worldDf['Deaths'][0]))+ today + ')'
+    moWorld = topStr + 'Mortality(World: ' + str(round(worldDf['Mortality'][0],3)) + today + ')'
     moCountries = 'Mortality(Countries: ' + str(dfDeaths.shape[0]) + ' Deaths>200' + today + ')'
     coCountries = 'Mortality(Countries: ' + str(dfConfirmed.shape[0]) + ' Confirmed>5k' + today + ')'
     dzCountries = 'Confirmed(Countries: ' + str(dfDeathsZero.shape[0]) + ' Deaths==0' + today + ')'
@@ -56,7 +56,7 @@ def plotData(df,number = 25):
     
     dfs = [(ccWorld, df1),(cpWorld, df2),(reWorld, df3),(deWorld, df4),(moWorld, df5),\
         (moCountries,df6),(coCountries,df7),(dzCountries,df8),(dnzCountries,df9)]
-    
+
     fontsize = 8
     for i,data in enumerate(dfs): 
         dataFrame = data[1]
@@ -126,7 +126,6 @@ def readCsv(file):
     #print('df.dtypes = ',df.dtypes)
     #plotTest(df)
     #plotDataCompare(df)
-    #plotData(df)
     return df
       
 def plotTest(df,number = 20):
@@ -370,10 +369,11 @@ def plotChangeBydata(csvpath=r'./data/'):
             if pdDate['DataTime'].isin([dateTime]).any():
                 continue
             
-        worldDf = df.iloc[:1,:]
-        worldDf['DataTime'] = dateTime
+        worldDf = df.iloc[:1,:]        
+        #worldDf['DataTime'] = dateTime
+        worldDf.insert(5, "DataTime", dateTime, True) 
         pdDate = pdDate.append(worldDf)
-        
+  
     #print(pdDate.shape)
     #print(pdDate.head())
     pdDate.set_index(["DataTime"], inplace=True)
@@ -419,7 +419,7 @@ def plotWorldStatisticByTime(csvpath=r'./'):
     data = {'Date':df['Date'], 'Cases': df['Cases']}
     dfWorld = pd.DataFrame(data=data)
     dfWorld.set_index(["Date"], inplace=True)
-    #print(dfWorld.head())
+    #print(dfWorld.tail())
     #print(dfWorld['Cases'].shape)
     #print(dfWorld['Cases'])
     
@@ -434,7 +434,8 @@ def plotWorldStatisticByTime(csvpath=r'./'):
     #print(len(dfNewCases))
     dfWorld['newCases'] = dfNewCases
     #print(dfWorld.head())
-
+    #print(dfWorld.index)
+    
     dfWorld = dfWorld.iloc[::3] # even #dfWorld.iloc[1::2] #odd
     
     plotPdColumn(dfWorld.index,dfWorld['Cases'],title='World COVID-19 Cases',label='Cases')
@@ -442,6 +443,6 @@ def plotWorldStatisticByTime(csvpath=r'./'):
     
 if __name__ == '__main__':
     csvpath=r'./data/'
-    #readCsv(r'./coronavirous2020-04-26_1457.csv')
-    #plotChangeBydata(csvpath)
-    plotWorldStatisticByTime()
+    #readCsv(csvpath+'coronavirous_2020-05-05_193026.csv')
+    plotChangeBydata(csvpath)
+    #plotWorldStatisticByTime()
