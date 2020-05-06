@@ -35,4 +35,5 @@ Reference: https://news.google.com/covid19/map
 <br/>
 <img src="images/CasesWorld.png" width="320" height="240">
 <img src="images/newCasesWorld.png" width="320" height="240">
+<img src="images/recentNewCasesWorld.png" width="320" height="240">
 <img src="images/WorldChange.png" width="320" height="240">

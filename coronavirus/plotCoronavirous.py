@@ -399,13 +399,13 @@ def plotPdColumn(index,data,title,label,color=None):
     ax.set_title(title,fontsize=fontsize)
     #ax.barh(dfWorld.index,dfWorld['Cases'])
     if color:
-        ax.bar(index,data,label=label,width=0.8,color=color)
+        ax.bar(index,data,label=label,width=0.6,color=color)
     else:            
-        ax.bar(index,data,label=label,width=0.8)
+        ax.bar(index,data,label=label,width=0.6)
     
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
     plt.setp(ax.get_yticklabels(),fontsize=fontsize)
-    plt.subplots_adjust(left=0.06, bottom=None, right=0.98, top=0.92, wspace=None, hspace=None)
+    plt.subplots_adjust(left=0.08, bottom=None, right=0.98, top=0.92, wspace=None, hspace=None)
     plt.savefig(label+'World.png')
     plt.show()
         
@@ -436,13 +436,17 @@ def plotWorldStatisticByTime(csvpath=r'./'):
     #print(dfWorld.head())
     #print(dfWorld.index)
     
+    newRecentDays = 40
+    dfWorldNew = dfWorld.iloc[-1-newRecentDays:-1, :]
     dfWorld = dfWorld.iloc[::3] # even #dfWorld.iloc[1::2] #odd
+    #print(dfWorldNew.shape)
     
     plotPdColumn(dfWorld.index,dfWorld['Cases'],title='World COVID-19 Cases',label='Cases')
     plotPdColumn(dfWorld.index,dfWorld['newCases'],title='World COVID-19 New Cases',label='newCases',color='y')
+    plotPdColumn(dfWorldNew.index,dfWorldNew['newCases'],title='World COVID-19 Recent New Cases',label='recentNewCases',color='y')
     
 if __name__ == '__main__':
     csvpath=r'./data/'
     #readCsv(csvpath+'coronavirous_2020-05-05_193026.csv')
-    plotChangeBydata(csvpath)
-    #plotWorldStatisticByTime()
+    #plotChangeBydata(csvpath)
+    plotWorldStatisticByTime()
