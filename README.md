@@ -34,6 +34,8 @@ Reference: https://ourworldindata.org/covid-cases
 <img src="images/8.png" width="320" height="240">
 <img src="images/9.png" width="320" height="240">
 <br/>
+#### Statistics cases by time
+
 <img src="images/CasesWorld.png" width="320" height="240">
 <img src="images/newCasesWorld.png" width="320" height="240">
 <img src="images/recentNewCasesWorld.png" width="320" height="240">
