@@ -20,12 +20,21 @@ def parseXpathTr(tr,columns):
     location,confirmed,Case_Per_1M_people,recovered,deaths = '','','','',''
 
     #span = tr.find_element_by_xpath('//th[@class="l3HOY"]/div/span')
-    span = tr.find_elements(By.TAG_NAME, "span")
-    if len(span) > 1:
-        location = span[1].text
-    elif len(span) == 1:
-        location = span[0].text
-        
+    #span = tr.find_elements(By.TAG_NAME, "span")
+    #if len(span) > 1:
+        #location = span[1].text
+    #elif len(span) == 1:
+        #location = span[0].text
+    
+    #path='//th[@class="l3HOY"]/div/div[@class="pcAJd"]'
+    #path='//th/div[@class="pcAJd"]'
+    #path='//th//div'
+    #div = tr.find_elements_by_xpath(path)
+    div = tr.find_elements(By.TAG_NAME,'div')
+    #print('len=',len(div))
+    if len(div)>0:
+        location = div[1].text
+    
     tds = tr.find_elements(By.TAG_NAME, "td")
     #print(len(tds))
     for i,td in enumerate(tds):
@@ -53,7 +62,7 @@ def parseXpathTr(tr,columns):
     return dfLine
 
 def getHeader(thead):
-    ths = thead.find_elements_by_xpath('//tr[@class="sgXwHf"]//span')
+    ths = thead.find_elements_by_xpath('//tr[@class="sgXwHf"]//div[@class="XmCM0b"]')
     print('len=',len(ths))
     lc,cf,cp,re,de = '','','','',''
     for i,th in enumerate(ths):
@@ -89,19 +98,20 @@ def Load(url):
     driver.get(mainUrl)
     sleep(1)
     
-    btn_More='//*[@id="yDmH0d"]/c-wiz/div/div[2]/div[2]/div[4]/div'
-    clickBtn(driver,btn_More)
-        
+    #btn_More='//*[@id="yDmH0d"]/c-wiz/div/div[2]/div[2]/div[4]/div'
+    #clickBtn(driver,btn_More)
+    
     #X = '//*[@id="yDmH0d"]/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table'
     X = '//table[@class="pH8O4c"]'
     table_id = driver.find_element_by_xpath(X)
     scroll_down_element(driver,table_id) #do an table action to get all table lines
+    sleep(1)
     
     thead = table_id.find_element_by_tag_name('thead')
     tbody = table_id.find_element_by_tag_name('tbody')
-
+    
     columns = getHeader(thead)
-    #print('columns = ', columns)
+    print('columns = ', columns)
     columns[2]='Case_Per_1M_people'
     
     df = pd.DataFrame()

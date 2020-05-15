@@ -73,11 +73,18 @@ def parseXpathTr(tr, columns):
     html = etree.HTML(etree.tostring(tr))
     #print(len(result),result)
     location,confirmed,Case_Per_1M_people,recovered,deaths = '','','','',''
-    span = html.xpath('//span')
-    if len(span) > 1:
-        location = span[1].text
-    elif len(span) == 1:
-        location = span[0].text
+    # span = html.xpath('//span')
+    # if len(span) > 1:
+    #     location = span[1].text
+    # elif len(span) == 1:
+    #     location = span[0].text
+    
+    path='//th//div' #'//div[@class="pcAJd"]' #'//th[@class="l3HOY"]//div[@class="pcAJd"]' #
+    div = html.xpath(path)  
+    #print('div=',len(div))
+    location=''
+    if len(div)==2:
+        location = div[1].text
     
     result = html.xpath('//td') 
     for i,td in enumerate(result):
@@ -108,7 +115,7 @@ def getHeader(thead):
     html = etree.HTML(etree.tostring(thead))
     #res = html.xpath('//th//div[@id="c1"]')
     #res = html.xpath('//div[@class="DdCLrb"]')
-    res = html.xpath('//tr[@class="sgXwHf"]//span')
+    res = html.xpath('//tr[@class="sgXwHf"]//div[@class="XmCM0b"]')
     print(len(res))
     lc,cf,cp,re,de = '','','','',''
     for i,div in enumerate(res):
@@ -138,7 +145,7 @@ def parseHtml(htmlContent):
     #print(columns)
     columns[2]='Case_Per_1M_people'
     
-    X = '//table[@class="pH8O4c"]//tr' #[@class="SAGQRD"]'
+    X = '//table[@class="pH8O4c"]//tbody/tr' #[@class="SAGQRD"]'
     result = html.xpath(X)
     print(len(result))
     df  = pd. DataFrame()

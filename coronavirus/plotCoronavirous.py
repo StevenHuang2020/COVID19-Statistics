@@ -60,6 +60,7 @@ def plotData(df,number = 25):
     fontsize = 8
     for i,data in enumerate(dfs): 
         dataFrame = data[1]
+        #print('dataFrame.shape=',i,dataFrame.shape)
         kind='bar'
         if number>25:
             dataFrame = binaryDf(dataFrame)
