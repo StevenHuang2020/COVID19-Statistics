@@ -40,3 +40,6 @@ Reference: https://ourworldindata.org/covid-cases
 <img src="images/newCasesWorld.png" width="320" height="240">
 <img src="images/recentNewCasesWorld.png" width="320" height="240">
 <img src="images/WorldChange.png" width="320" height="240">
+
+#### World predicted confirmed cases
+<img src="images/WorldPredict.png" width="320" height="240">
