@@ -14,6 +14,8 @@ from sklearn.model_selection import train_test_split, cross_val_score
 
 scaler = MinMaxScaler(feature_range=(0, 1))
 
+gSaveBasePath=r'.\images\\'
+
 def plotDataSet(data):
     plt.plot(data)
     plt.show()
@@ -165,7 +167,7 @@ def train(dataset):
         plotData(ax,index[offset:],data[offset:],'now cases')
         plotData(ax,newIndex,pred,'predict cases')
         ax.table(cellText=df.values, colLabels=df.columns, loc='center') #,clip_box=[[0,5],[0+100,5+100]]
-        plt.savefig('WorldPredict.png')
+        plt.savefig(gSaveBasePath + 'WorldPredict.png')
         plt.show()
     
 def predict():

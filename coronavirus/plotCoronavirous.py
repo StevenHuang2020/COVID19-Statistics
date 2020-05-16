@@ -8,6 +8,8 @@ import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
 
+gSaveBasePath=r'.\images\\'
+
 def plotData(df,number = 25):    
     #df = df.iloc[1:number,:]
     worldDf = df.iloc[:1,:]
@@ -81,7 +83,7 @@ def plotData(df,number = 25):
         if number>25:
             plt.subplots_adjust(left=0.30, bottom=None, right=0.98, top=None, wspace=None, hspace=None)
         
-        plt.savefig(str(i+1)+'.png')
+        plt.savefig(gSaveBasePath + str(i+1)+'.png')
     plt.show()
     
     #plotTable(worldDf)
@@ -390,7 +392,7 @@ def plotChangeBydata(csvpath=r'./data/'):
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
     plt.setp(ax.get_yticklabels(),fontsize=fontsize)
     plt.subplots_adjust(left=0.07, bottom=0.16, right=0.96, top=0.94, wspace=None, hspace=None)
-    plt.savefig('WorldChange.png')
+    plt.savefig(gSaveBasePath + 'WorldChange.png')
     plt.show()
     
 def plotPdColumn(index,data,title,label,color=None):
@@ -407,7 +409,7 @@ def plotPdColumn(index,data,title,label,color=None):
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
     plt.setp(ax.get_yticklabels(),fontsize=fontsize)
     plt.subplots_adjust(left=0.08, bottom=None, right=0.98, top=0.92, wspace=None, hspace=None)
-    plt.savefig(label+'World.png')
+    plt.savefig(gSaveBasePath + label+'World.png')
     plt.show()
         
 def plotWorldStatisticByTime(csvpath=r'./'):
