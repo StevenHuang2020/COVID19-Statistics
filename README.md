@@ -41,5 +41,8 @@ Reference: https://ourworldindata.org/covid-cases
 <img src="images/recentNewCasesWorld.png" width="320" height="240">
 <img src="images/WorldChange.png" width="320" height="240">
 
-#### World predicted confirmed cases
+#### predictStatistics.py
+World predicted confirmed cases by using LSTM algorithm.<br/>
+Source reference: https://ourworldindata.org/covid-cases
+<br/>
 <img src="images/WorldPredict.png" width="320" height="240">
