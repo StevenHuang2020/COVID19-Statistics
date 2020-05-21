@@ -15,17 +15,11 @@ from selenium.webdriver.common.action_chains import ActionChains
 from main import plotData,preprocessData
 #from predictStatistics import predict
 
-mainUrl = "https://google.com/covid19-map/"
+#mainUrl = 'https://google.com/covid19-map/'
+mainUrl = 'https://news.google.com/covid19/map'
 
 def parseXpathTr(tr,columns):
     location,confirmed,Case_Per_1M_people,recovered,deaths = '','','','',''
-
-    #span = tr.find_element_by_xpath('//th[@class="l3HOY"]/div/span')
-    #span = tr.find_elements(By.TAG_NAME, "span")
-    #if len(span) > 1:
-        #location = span[1].text
-    #elif len(span) == 1:
-        #location = span[0].text
     
     #path='//th[@class="l3HOY"]/div/div[@class="pcAJd"]'
     #path='//th/div[@class="pcAJd"]'
@@ -57,10 +51,9 @@ def parseXpathTr(tr,columns):
     if confirmed == '' or confirmed == '—':
         confirmed = '0'
 
-    #print('Location:',location,'Confirmed:',confirmed,'Case_Per_1M_people:',Case_Per_1M_people,'Recovered:',recovered,'deaths:',deaths)
-    #columns=['Localtion', 'Confirmed',  'Case_Per_1M_people', 'Recovered', 'Deaths']
-    dfLine = pd.DataFrame([[location, confirmed, Case_Per_1M_people, recovered, deaths]], columns=columns)
-    return dfLine
+    print('Location:',location,'Confirmed:',confirmed,'Case_Per_1M_people:',Case_Per_1M_people,'Recovered:',recovered,'deaths:',deaths)
+    return pd.DataFrame([[location, confirmed, Case_Per_1M_people, recovered, deaths]], columns=columns)
+
 
 def getHeader(thead):
     ths = thead.find_elements_by_xpath('//tr[@class="sgXwHf"]//div[@class="XmCM0b"]')
@@ -97,7 +90,7 @@ def Load(url):
     print("Open:",url)
     driver = webdriver.Chrome()
     driver.get(mainUrl)
-    sleep(1)
+    sleep(2)
     
     #btn_More='//*[@id="yDmH0d"]/c-wiz/div/div[2]/div[2]/div[4]/div'
     #clickBtn(driver,btn_More)
@@ -105,8 +98,9 @@ def Load(url):
     #X = '//*[@id="yDmH0d"]/c-wiz/div/div/div/div/div[2]/div[2]/c-wiz/div/div[2]/div/div[1]/table'
     X = '//table[@class="pH8O4c"]'
     table_id = driver.find_element_by_xpath(X)
-    scroll_down_element(driver,table_id) #do an table action to get all table lines
-    sleep(1)
+    
+    #scroll_down_element(driver,table_id) #do an table action to get all table lines
+    #sleep(1)
     
     thead = table_id.find_element_by_tag_name('thead')
     tbody = table_id.find_element_by_tag_name('tbody')

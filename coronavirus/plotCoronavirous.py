@@ -11,6 +11,8 @@ import matplotlib.pyplot as plt
 gSaveBasePath=r'.\images\\'
 
 def plotData(df,number = 25):    
+    if number>df.shape[0]:
+        number = df.shape[0]
     #df = df.iloc[1:number,:]
     worldDf = df.iloc[:1,:]
     
@@ -63,6 +65,9 @@ def plotData(df,number = 25):
     for i,data in enumerate(dfs): 
         dataFrame = data[1]
         #print('dataFrame.shape=',i,dataFrame.shape)
+        if dataFrame.shape[0] == 0:
+            continue
+            
         kind='bar'
         if number>25:
             dataFrame = binaryDf(dataFrame)
