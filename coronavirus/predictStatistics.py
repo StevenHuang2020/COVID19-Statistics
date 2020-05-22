@@ -162,7 +162,7 @@ def train(dataset):
         
         offset=70 #120
         plt.figure(figsize=(8,6))
-        plt.title('Future Covid19 ' + str(Number) + ' days forecast')
+        plt.title('Future Covid19 ' + str(Number) + ' days prediction')
         ax = plt.subplot(1,1,1)
         plotData(ax,index[offset:],data[offset:],'now cases')
         plotData(ax,newIndex,pred,'predict cases')

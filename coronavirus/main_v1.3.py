@@ -15,8 +15,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from main import plotData,preprocessData
 #from predictStatistics import predict
 
-#mainUrl = 'https://google.com/covid19-map/'
-mainUrl = 'https://news.google.com/covid19/map'
+mainUrl = 'https://google.com/covid19-map/'
 
 def parseXpathTr(tr,columns):
     location,confirmed,Case_Per_1M_people,recovered,deaths = '','','','',''
@@ -51,7 +50,7 @@ def parseXpathTr(tr,columns):
     if confirmed == '' or confirmed == '—':
         confirmed = '0'
 
-    print('Location:',location,'Confirmed:',confirmed,'Case_Per_1M_people:',Case_Per_1M_people,'Recovered:',recovered,'deaths:',deaths)
+    #print('Location:',location,'Confirmed:',confirmed,'Case_Per_1M_people:',Case_Per_1M_people,'Recovered:',recovered,'deaths:',deaths)
     return pd.DataFrame([[location, confirmed, Case_Per_1M_people, recovered, deaths]], columns=columns)
 
 
@@ -82,7 +81,7 @@ def scroll_down_element(driver, element):
     try:
         action = ActionChains(driver)
         action.move_to_element(element).perform()
-        element.click() 
+        #element.click() 
     except Exception as e:
         print('error scrolling down web element', e)
         
@@ -99,8 +98,8 @@ def Load(url):
     X = '//table[@class="pH8O4c"]'
     table_id = driver.find_element_by_xpath(X)
     
-    #scroll_down_element(driver,table_id) #do an table action to get all table lines
-    #sleep(1)
+    scroll_down_element(driver,table_id) #do an table action to get all table lines
+    sleep(1)
     
     thead = table_id.find_element_by_tag_name('thead')
     tbody = table_id.find_element_by_tag_name('tbody')
