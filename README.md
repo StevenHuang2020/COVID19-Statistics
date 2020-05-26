@@ -1,4 +1,5 @@
-# COVID-19 Statistics  
+# COVID-19 Statistics
+![GitHub Stars](https://img.shields.io/github/stars/StevenHuang2020/WebSpider?label=Stars*&style=social)
 ![GitHub Downloads](https://img.shields.io/github/downloads/StevenHuang2020/WebSpider/total?label=Downloads)
 ![GitHub watchers](https://img.shields.io/github/watchers/StevenHuang2020/WebSpider?label=Watch) 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
