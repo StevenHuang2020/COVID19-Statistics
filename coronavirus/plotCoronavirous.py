@@ -81,13 +81,13 @@ def plotData(df,number = 25):
             ax = dataFrame.plot(kind=kind)
 
         ax.set_title(title,fontsize=fontsize)
-        ax.legend()
+        ax.legend(fontsize=fontsize)
         plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
         plt.setp(ax.get_yticklabels(),fontsize=fontsize)
         
         if number>25:
             plt.subplots_adjust(left=0.30, bottom=None, right=0.98, top=None, wspace=None, hspace=None)
-        
+            
         plt.savefig(gSaveBasePath + str(i+1)+'.png')
     plt.show()
     
@@ -397,6 +397,7 @@ def plotChangeBydata(csvpath=r'./data/'):
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
     plt.setp(ax.get_yticklabels(),fontsize=fontsize)
     plt.subplots_adjust(left=0.07, bottom=0.16, right=0.96, top=0.94, wspace=None, hspace=None)
+    #plt.yscale("log")
     plt.savefig(gSaveBasePath + 'WorldChange.png')
     plt.show()
     
@@ -414,7 +415,8 @@ def plotPdColumn(index,data,title,label,color=None):
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
     plt.setp(ax.get_yticklabels(),fontsize=fontsize)
     plt.subplots_adjust(left=0.08, bottom=None, right=0.98, top=0.92, wspace=None, hspace=None)
-    plt.savefig(gSaveBasePath + label+'World.png')
+    #plt.yscale("log")
+    plt.savefig(gSaveBasePath + 'World_' + label+'.png')
     plt.show()
         
 def plotWorldStatisticByTime(csvpath=r'./'):
