@@ -37,12 +37,12 @@ Reference: https://ourworldindata.org/covid-cases
 <img src="images/9.png" width="320" height="240">
 <br/>
 #### Statistics cases by time
-
+<br/>
 <img src="images/World_Cases.png" width="320" height="240">
 <img src="images/World_newCases.png" width="320" height="240">
 <img src="images/World_recentNewCases.png" width="320" height="240">
 <img src="images/WorldChange.png" width="320" height="240">
-
+<br/>
 #### predictStatistics.py
 World predicted confirmed cases by using LSTM algorithm.<br/>
 Source reference: https://ourworldindata.org/covid-cases
