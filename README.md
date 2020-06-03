@@ -8,7 +8,7 @@
 ![Last update](https://img.shields.io/endpoint?color=brightgreen&style=flat-square&url=https%3A%2F%2Fraw.githubusercontent.com%2FStevenHuang2020%2FWebSpider%2Fmaster%2Fcoronavirus%2Fupdate.json)
 
 
-The added columnmortality rate: df['Deaths'] / df['Confirmed'].
+The added column mortality rate: df['Deaths'] / df['Confirmed'].<br/>
 Please note that this is not necessarily the correct definition.
 #### main.py
 Using lxml to get data from website.
