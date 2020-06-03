@@ -95,18 +95,14 @@ def plotData(df,number = 25):
     plotChangeBydata()
     plotWorldStatisticByTime()
     
-def binaryDf(df,labelAdd=True):
+def binaryDf(df):
     newdf = pd.DataFrame(columns=df.columns)
     #print('pd.shape=',df.shape)
     newIndex = []
     for i in range(df.shape[0]//2):
         dd = df.loc[df.index[i*2], :]
         #print('dd=',df.index[i*2], dd.values)
-        if labelAdd:
-            newIndex.append(df.index[i*2] +',' + df.index[i*2+1]) #combine
-        else:
-            newIndex.append(df.index[i*2])#drop
-            
+        newIndex.append(df.index[i*2] +',' + df.index[i*2+1])
         newdf = newdf.append(dd,ignore_index=True)
         
     #print('newIndex=',len(newIndex),newIndex)
@@ -406,7 +402,7 @@ def plotChangeBydata(csvpath=r'./data/'):
     plt.show()
     
 def plotPdColumn(index,data,title,label,color=None):
-    fontsize = 7
+    fontsize = 6
     ax = plt.subplot(1,1,1)
     
     ax.set_title(title,fontsize=fontsize)
@@ -450,20 +446,17 @@ def plotWorldStatisticByTime(csvpath=r'./'):
     #print(dfWorld.head())
     #print(dfWorld.index)
     
-    newRecentDays = 30
+    newRecentDays = 40
     dfWorldNew = dfWorld.iloc[-1-newRecentDays:-1, :]
     dfWorld = dfWorld.iloc[::3] # even #dfWorld.iloc[1::2] #odd
     #print(dfWorldNew.shape)
-    #print(dfWorld.shape)
-    
-    dfWorld = binaryDf(dfWorld,False) #drop half
     
     plotPdColumn(dfWorld.index,dfWorld['Cases'],title='World COVID-19 Cases',label='Cases')
-    plotPdColumn(dfWorld.index,dfWorld['newCases'],title='World COVID-19 NewCases',label='newCases',color='y')
-    plotPdColumn(dfWorldNew.index,dfWorldNew['newCases'],title='World COVID-19 Recent NewCases',label='recentNewCases',color='y')
+    plotPdColumn(dfWorld.index,dfWorld['newCases'],title='World COVID-19 New Cases',label='newCases',color='y')
+    plotPdColumn(dfWorldNew.index,dfWorldNew['newCases'],title='World COVID-19 Recent New Cases',label='recentNewCases',color='y')
     
 if __name__ == '__main__':
     csvpath=r'./data/'
     #readCsv(csvpath+'coronavirous_2020-05-05_193026.csv')
-    #plotChangeBydata(csvpath)
-    plotWorldStatisticByTime()
+    plotChangeBydata(csvpath)
+    #plotWorldStatisticByTime()

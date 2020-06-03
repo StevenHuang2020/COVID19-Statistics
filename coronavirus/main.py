@@ -54,7 +54,7 @@ def preprocessData(df):
     df['Deaths'] = df['Deaths'].astype('int64')
     
     '''Add coloumn mortality rate: df['Deaths'] / df['Confirmed'].
-    But please note that this is not necessarily the correct defintion.
+    But please note that this is not necessarily the correct definition.
     '''
     Mortality = (df['Deaths']/df['Confirmed']).round(4)
     #print(type(Mortality))
