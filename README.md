@@ -7,6 +7,9 @@
 ![Tensorflow Version](https://img.shields.io/badge/Tensorflow-V2.2.0-brightgreen)
 ![Last update](https://img.shields.io/endpoint?color=brightgreen&style=flat-square&url=https%3A%2F%2Fraw.githubusercontent.com%2FStevenHuang2020%2FWebSpider%2Fmaster%2Fcoronavirus%2Fupdate.json)
 
+
+The added columnmortality rate: df['Deaths'] / df['Confirmed'].
+Please note that this is not necessarily the correct definition.
 #### main.py
 Using lxml to get data from website.
 Reference:https://google.com/covid19-map/
