@@ -116,7 +116,7 @@ def Load(url):
     
     print('df.shape=', df.shape)
     df = preprocessData(df)
-    plotData(df,60)
+    plotData(df,50)
     
 if __name__ == '__main__':
     Load(mainUrl)

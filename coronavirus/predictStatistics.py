@@ -8,13 +8,13 @@ import math
 from tensorflow.keras import optimizers
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense,LSTM,BatchNormalization,TimeDistributed,Dropout
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler,StandardScaler
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split, cross_val_score
 
 from plotCoronavirous import binaryDf
 
-scaler = MinMaxScaler(feature_range=(0, 1))
+gScaler = MinMaxScaler() #StandardScaler() #
 
 gSaveBasePath=r'.\images\\'
 
@@ -23,7 +23,7 @@ def plotDataSet(data):
     plt.show()
     
 def preprocessDb(dataset):
-    dataset = scaler.fit_transform(dataset)
+    dataset = gScaler.fit_transform(dataset)
     print('dataset=',dataset[:5])
     return dataset
 
@@ -32,7 +32,7 @@ def create_dataset(dataset, look_back=1):
     dataset = dataset.flatten()
     #print(dataset.shape)
     dataX, dataY = [], []
-    for i in range(len(dataset)-look_back-1):
+    for i in range(len(dataset)-look_back):
         a = dataset[i:(i+look_back)]
         dataX.append(a)
         dataY.append(dataset[i + look_back])
@@ -48,15 +48,10 @@ def getDataSet():
     
     #print(dataset.describe().T)
     print(dataset.head())
+    print(dataset.tail())
     print(dataset.shape)
     print(dataset.dtypes)
-    #db = dataset.values
-    #db = db.astype('float32')
-    #print('db.shape=',db.shape)
-    #db = db.reshape((db.shape[0],1))
-    #print('db=',db[:5])
-    #db = preprocessDb(db)
-    return dataset #db
+    return dataset
 
 def plotData(ax,x,y,label=''):
     fontsize = 5
@@ -67,53 +62,32 @@ def plotData(ax,x,y,label=''):
     plt.setp(ax.get_yticklabels(), fontsize=fontsize)
     plt.subplots_adjust(left=0.02, bottom=0.09, right=0.99, top=0.92, wspace=None, hspace=None)
 
-def createModel(look_back = 1):
-    model = Sequential()
-    #model.add(BatchNormalization(input_shape=(1, look_back)))
-    #model.add(LSTM(100, input_shape=(1, look_back)))
-    model.add(LSTM(100,input_shape=(1, look_back), activation='relu', return_sequences=True))
-    model.add(Dropout(0.1))
-    #model.add(BatchNormalization())  
-    model.add(LSTM(80, activation='relu', return_sequences=True))
-    model.add(LSTM(50, activation='relu', return_sequences=True))
-    #model.add(BatchNormalization())
-    model.add(TimeDistributed(Dense(30, activation='relu')))
-    model.add(Dense(20,activation='relu'))
-    model.add(Dense(10,activation='relu'))
-    model.add(Dense(1))
-    
-    lr = 0.001
-    #opt = optimizers.SGD(learning_rate=lr, momentum=0.8, nesterov=False)
-    opt = optimizers.Adam(learning_rate=lr)
-    #opt = optimizers.RMSprop(learning_rate=lr, rho=0.9, epsilon=1e-08)
-    
-    model.compile(optimizer=opt, loss='mean_squared_error')  #optimizer='adam'
-    model.summary()
-    return model
-  
 def predictFutuer(model,start,Number=5):
-    print('---------------futuer')
-    #print(start)
+    print('---------------future')
+    print(start)    
+    #print(start.shape,'startval:', gScaler.inverse_transform(start.reshape(1,-1)))
     start = np.array([start]).reshape(1,1,1)
-    #print(start.shape,start)
     result = []
     result.append(start.flatten()[0])
     for i in range(Number):
         next = model.predict(start)
         #print(next)
-        result.append(int(next.flatten()[0]))
+        result.append(next.flatten()[0])
         start = next
     print('predict value=',result)
+    result = gScaler.inverse_transform(np.array(result).reshape(1,-1)).flatten()
+    result = list(map(int, result))
+    print('after inverse redict value=',result)
     return result
 
 def plotPredictCompare(model,trainX,index,data):
     trainPredict = model.predict(trainX).flatten()
-    #trainPredict = scaler.inverse_transform(trainPredict.reshape((trainPredict.shape[0],1))).flatten()
+    trainPredict = gScaler.inverse_transform(trainPredict.reshape((trainPredict.shape[0],1))).flatten()
     
     data = data.flatten()
-    print(index.shape)
-    print(trainPredict.shape)    
-    print(data.shape)
+    #print(index.shape)
+    #print(trainPredict.shape)    
+    #print(data.shape)
     #print('raw=',data)
     #print('pred=',trainPredict)
 
@@ -121,14 +95,15 @@ def plotPredictCompare(model,trainX,index,data):
     plt.figure(figsize=(12,10))
     ax = plt.subplot(1,1,1)
     plotData(ax,index[offset+2:-1],data[offset+2:-1],'rawData')
-    plotData(ax,index[offset+2:-1],trainPredict[offset:-1],'predict')
+    plotData(ax,index[offset+2:-1],trainPredict[offset+1:-1],'predict')
     plt.savefig(gSaveBasePath + 'WorldPredictCompare.png')
     plt.show()
  
-def plotPredictFuture(model,index,data):
+def plotPredictFuture(model,trainY,index,data):
     Number = 10 #predict future Number days
-    pred = predictFutuer(model,data[-1],Number)
+    pred = predictFutuer(model,trainY[-1],Number)
     print('predict start date:',index[-1])
+
     startIndex = index[-1]
     sD=datetime.datetime.strptime(startIndex,'%b %d, %Y')
     newIndex=[]
@@ -153,32 +128,58 @@ def plotPredictFuture(model,index,data):
     plt.savefig(gSaveBasePath + 'WorldFuturePredict.png')
     plt.show()
     
+def createModel(look_back = 1):
+    model = Sequential()
+    #model.add(BatchNormalization(input_shape=(1, look_back)))
+    #model.add(LSTM(100, input_shape=(1, look_back)))
+    model.add(LSTM(100,input_shape=(1, look_back), activation='relu', return_sequences=True))
+    #model.add(LSTM(80, activation='relu', return_sequences=True))
+    #model.add(LSTM(50, activation='relu', return_sequences=True))
+    #model.add(BatchNormalization())
+    model.add(TimeDistributed(Dense(30, activation='relu')))
+    model.add(Dense(20,activation='relu'))
+    model.add(Dense(10,activation='relu'))
+    model.add(Dense(1))
+    
+    lr = 0.001
+    #opt = optimizers.SGD(learning_rate=lr) #optimizers.SGD(learning_rate=lr, momentum=0.8, nesterov=False)
+    opt = optimizers.Adam(learning_rate=lr)
+    #opt = optimizers.RMSprop(learning_rate=lr, rho=0.9, epsilon=1e-08)
+    model.compile(optimizer=opt, loss='mean_squared_error')  #optimizer='adam'
+    model.summary()
+    return model
+
 def train(dataset):
     index = dataset.iloc[:,0].values
-    data = dataset.iloc[:,1].values    
-    data = data.reshape((data.shape[0],1))
-    #dataH = preprocessDb(data)
+    rawdata = dataset.iloc[:,1].values    
+    rawdata = rawdata.reshape((rawdata.shape[0],1))
+    #print('raw=',rawdata[-5:])
+    data = preprocessDb(rawdata) #scaler features
+    #print('raw=',rawdata[-5:])
+    #print('index=',index[-5:])
 
     look_back = 1
-    trainX, trainY = create_dataset(data, look_back) #dataH
+    trainX, trainY = create_dataset(data, look_back) 
    
-    print(trainX[-5:])
-    #print(trainY[:5])
+    print('x=\n',trainX[-5:])
+    print('y=\n',trainY[-5:])
     print('trainX.shape = ',trainX.shape)
     print('trainY.shape = ',trainY.shape)
     trainX = np.reshape(trainX, (trainX.shape[0], 1, trainX.shape[1]))
-    print('trainX.shape = ',trainX.shape)
-        
+    #print('trainX.shape = ',trainX.shape)
+
     model = createModel(look_back)
-    model.fit(trainX, trainY, epochs=1000, batch_size=50, verbose=2)
+    model.fit(trainX, trainY, epochs=100, batch_size=50, verbose=2) #500
     
-    # a = np.array([100.0]).reshape(1,1,1)
+    # a = np.array([trainY[-1]]).reshape(-1,1,1)
+    # #a = np.array([[0.88964097]]).reshape(-1,1,1)
+    # #a = np.array([0.6]).reshape(1,1,1)
     # print(a)
-    # print('apredict', model.predict(a))
-    
+    # print('predict=', model.predict(a))
+
     #-----------------start plot---------------#
-    plotPredictCompare(model,trainX,index,data)
-    plotPredictFuture(model,index,data)
+    plotPredictCompare(model,trainX,index,rawdata)
+    plotPredictFuture(model,trainY,index,rawdata)
        
 def predict():
     dataset = getDataSet()
