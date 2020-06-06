@@ -9,10 +9,11 @@
 
 
 The added mortality column calculated by  this: df['Deaths'] / df['Confirmed'].<br/>
-Please note that this is not necessarily the correct definition.
+Please note that this is not necessarily the correct definition.<br/>
+Reference:https://google.com/covid19-map/
+
 #### main.py
 Using lxml to get data from website.
-Reference:https://google.com/covid19-map/
 <br/>
 
 #### main_v1.2.py
@@ -26,7 +27,6 @@ https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coron
 
 #### main_v1.3.py
 Updated to adapt to the new google page.<br/>
-Reference: https://news.google.com/covid19/map <br/>
 Reference: https://ourworldindata.org/covid-cases
 <br/>
 <img src="images/1.png" width="320" height="240">
