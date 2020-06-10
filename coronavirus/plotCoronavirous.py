@@ -358,7 +358,6 @@ def pathsFiles(dir,filter=''): #"cpp h txt jpg"
 def getDateFromFileName(name):
     name = name[name.find('s')+1 : ]
     name = name[: name.find('.')]
-    
     if name[0] == '_':
         name = name[1 : ]
     
@@ -375,19 +374,22 @@ def plotChangeBydata(csvpath=r'./data/'):
         
         dateTime = getDateFromFileName(i)
         
-        #print(worldDf)
+        #print(df)
         #print(worldDf.values)
         if pdDate.shape[0]>0:
             if pdDate['DataTime'].isin([dateTime]).any():
                 continue
             
-        worldDf = df.iloc[:1,:]        
+        worldDf = df.iloc[:1,:]    
+        #print('worldDf.shape=',worldDf.shape)    
         #worldDf['DataTime'] = dateTime
-        worldDf.insert(5, "DataTime", dateTime, True) 
+        worldDf.insert(worldDf.shape[1], "DataTime", dateTime, True) 
         pdDate = pdDate.append(worldDf)
   
     #print(pdDate.shape)
-    #print(pdDate.head())
+    pdDate = pdDate.loc[:,['DataTime','Confirmed','Case_Per_1M_people','Deaths','Mortality']]
+    print(pdDate.head())
+    
     pdDate.set_index(["DataTime"], inplace=True)
     df = pdDate.sort_values(by=['DataTime'],ascending=False)
     #print(pdDate.head())
@@ -465,5 +467,5 @@ def plotWorldStatisticByTime(csvpath=r'./'):
 if __name__ == '__main__':
     csvpath=r'./data/'
     #readCsv(csvpath+'coronavirous_2020-05-05_193026.csv')
-    #plotChangeBydata(csvpath)
-    plotWorldStatisticByTime()
+    plotChangeBydata(csvpath)
+    #plotWorldStatisticByTime()
