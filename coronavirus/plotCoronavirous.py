@@ -20,8 +20,8 @@ def plotData(df,number = 25):
     df1 = df.iloc[1:number,[0]]
     df = df.sort_values(by=['Case_Per_1M_people'],ascending=False)
     df2 = df.iloc[1:number,[1]]
-    df = df.sort_values(by=['Recovered'],ascending=False)
-    df3 = df.iloc[1:number,[2]]
+    #df = df.sort_values(by=['Recovered'],ascending=False)
+    #df3 = df.iloc[1:number,[2]]
     df = df.sort_values(by=['Deaths'],ascending=False)
     df4 = df.iloc[1:number,[3]]
     df = df.sort_values(by=['Mortality'],ascending=False)
@@ -50,7 +50,7 @@ def plotData(df,number = 25):
     
     ccWorld = topStr + 'Confirmed(World: ' + str(int(worldDf['Confirmed'][0])) + today + ')'
     cpWorld = topStr + 'Case_Per_1M_people(World: ' + str(int(worldDf['Case_Per_1M_people'][0])) + today + ')'
-    reWorld = topStr + 'Recovered(World: ' + str(int(worldDf['Recovered'][0])) + today + ')'
+    #reWorld = topStr + 'Recovered(World: ' + str(int(worldDf['Recovered'][0])) + today + ')'
     deWorld = topStr + 'Deaths(World: ' + str(int(worldDf['Deaths'][0]))+ today + ')'
     moWorld = topStr + 'Mortality(World: ' + str(round(worldDf['Mortality'][0],3)) + today + ')'
     moCountries = 'Mortality(Countries: ' + str(dfDeaths.shape[0]) + ' Deaths>200' + today + ')'
@@ -58,8 +58,8 @@ def plotData(df,number = 25):
     dzCountries = 'Confirmed(Countries: ' + str(dfDeathsZero.shape[0]) + ' Deaths==0' + today + ')'
     dnzCountries = 'Mortality(Countries: ' + str(dfDeathsThanZero.shape[0]) + ' Deaths>0' + today + ')'
     
-    dfs = [(ccWorld, df1),(cpWorld, df2),(reWorld, df3),(deWorld, df4),(moWorld, df5),\
-        (moCountries,df6),(coCountries,df7),(dzCountries,df8),(dnzCountries,df9)]
+    dfs = [(ccWorld, df1),(cpWorld, df2),(deWorld, df4),(moWorld, df5),\
+        (moCountries,df6),(coCountries,df7),(dzCountries,df8),(dnzCountries,df9)]  #(reWorld, df3),
 
     fontsize = 8
     for i,data in enumerate(dfs): 
