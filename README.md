@@ -38,7 +38,7 @@ Updated to adapt to the new google page.<br/>
 <img src="images/6.png" width="320" height="240">
 <img src="images/7.png" width="320" height="240">
 <img src="images/8.png" width="320" height="240">
-<img src="images/9.png" width="320" height="240">
+
 <br/>
 #### Statistics cases by time.
 <br/>
