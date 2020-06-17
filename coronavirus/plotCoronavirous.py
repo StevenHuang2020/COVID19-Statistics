@@ -9,6 +9,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 gSaveBasePath=r'.\images\\'
+gSaveChangeData=r'.\dataChange\\'
 
 def plotData(df,number = 25):    
     if number>df.shape[0]:
@@ -480,6 +481,29 @@ def getAlldateRecord(csvpath, date='2020-06-16'):
             return df
     return None
 
+def getNewCasesDf(pdDate,pdDateBefore):
+    locations = pdDate['Location']
+    pdNewCases = pd.DataFrame()
+    for i in locations:
+        dataD = pdDate[pdDate['Location'] == i]
+        dataB = pdDateBefore[pdDateBefore['Location'] == i]
+        #print('dataD=',dataD)
+        #print('dataB=',dataB)
+        location = i
+        newCases = dataD['Confirmed'].values[0] - dataB['Confirmed'].values[0]
+        newDeaths = dataD['Deaths'].values[0] - dataB['Deaths'].values[0] 
+        #print('\nline=',location,newCases,newDeaths)
+        #print(dataD.iloc[:,[1]])
+        #print(dataD['Confirmed'].values[0])
+        
+        data = {'Location': location, 'NewCases': newCases, 'NewDeaths': newDeaths}
+        #line = pd.DataFrame(data=[location,newCases,newDeaths], columns=['Location','NewCases','NewDeaths'])
+        line = pd.DataFrame(data=data,index=[0])
+        pdNewCases = pdNewCases.append(line)
+    
+    #print(pdNewCases.head())    
+    return pdNewCases
+
 def plotNewCasesByCountry(csvpath):
     daytime = datetime.datetime.now()
     today = datetime.date.today()
@@ -500,20 +524,25 @@ def plotNewCasesByCountry(csvpath):
         print('Read date record error:',dateBefore)
         return
     
-    # print(pdDate.head())
-    # print(pdDateBefore.head())
+    print(pdDate.head())
+    print(pdDateBefore.head())
     # print(pdDate.index)
     # print(pdDateBefore.index)
     # print(pdDate.index == pdDateBefore.index )
 
-    newCases = pdDate['Confirmed']-pdDateBefore['Confirmed']
-    #print(newCases)
-    newDeaths = pdDate['Deaths']-pdDateBefore['Deaths']
-    #print(newDeaths)
+    if 0:
+        newCases = pdDate['Confirmed']-pdDateBefore['Confirmed']
+        #print(newCases)
+        newDeaths = pdDate['Deaths']-pdDateBefore['Deaths']
+        #print(newDeaths)
+        
+        data = {'Location':pdDate['Location'], 'NewCases': newCases,'NewDeaths':newDeaths}
+        pdNewCases = pd.DataFrame(data=data)
+        print(pdNewCases.head())
+    else:
+        pdNewCases = getNewCasesDf(pdDate,pdDateBefore)
     
-    data = {'Location':pdDate['Location'], 'NewCases': newCases,'NewDeaths':newDeaths}
-    pdNewCases = pd.DataFrame(data=data)
-    print(pdNewCases.head())
+    pdNewCases.to_csv(gSaveChangeData+'NewCasesAndDeaths_'+date+'.csv',index=False)
     plotNewCasesByCountryData(pdNewCases)
     
 def plotNewCasesByCountryData(df,number = 25):    
@@ -542,7 +571,7 @@ def plotNewCasesByCountryData(df,number = 25):
     ncWorld = topStr + 'NewCases(World: ' + str(int(worldDf['NewCases'][0])) + today + ')'
     ndWorld = topStr + 'NewDeaths(World: ' + str(int(worldDf['NewDeaths'][0]))+ today + ')'
     
-    dfs = [('NewCases', ncWorld, df1),('NewDeaths', ndWorld, df2)]  #(name title df)
+    dfs = [('nc', ncWorld, df1),('nd', ndWorld, df2)]  #(name title df)
     #print(ncWorld,ndWorld)
     
     fontsize = 8
