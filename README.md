@@ -30,6 +30,8 @@ https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coron
 #### main_v1.3.py
 Updated to adapt to the new google page.<br/>
 <br/>
+<img src="images/nc1.png" width="320" height="240">
+<img src="images/nd2.png" width="320" height="240">
 <img src="images/1.png" width="320" height="240">
 <img src="images/2.png" width="320" height="240">
 <img src="images/3.png" width="320" height="240">
@@ -38,8 +40,6 @@ Updated to adapt to the new google page.<br/>
 <img src="images/6.png" width="320" height="240">
 <img src="images/7.png" width="320" height="240">
 <img src="images/8.png" width="320" height="240">
-<img src="images/nc1.png" width="320" height="240">
-<img src="images/nd2.png" width="320" height="240">
 <br/>
 
 #### Statistics cases by time.
