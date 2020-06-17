@@ -94,6 +94,7 @@ def plotData(df,number = 25):
     #plotTable(worldDf)
     plotChangeBydata()
     plotWorldStatisticByTime()
+    plotNewCasesByCountry()
     
 def binaryDf(df,labelAdd=True):
     newdf = pd.DataFrame(columns=df.columns)
@@ -365,7 +366,7 @@ def getDateFromFileName(name):
     #print('name=',name)
     return name
 
-def plotChangeBydata(csvpath=r'./data/'):
+def getAlldateWorldRecord(csvpath):
     pdDate = pd.DataFrame()
     for i in pathsFiles(csvpath,'csv'):
         #print(i,getDateFromFileName(i))
@@ -385,7 +386,12 @@ def plotChangeBydata(csvpath=r'./data/'):
         #worldDf['DataTime'] = dateTime
         worldDf.insert(worldDf.shape[1], "DataTime", dateTime, True) 
         pdDate = pdDate.append(worldDf)
-  
+        
+    return pdDate
+
+def plotChangeBydata(csvpath=r'./data/'):
+    pdDate = getAlldateWorldRecord(csvpath)
+    
     #print(pdDate.shape)
     pdDate = pdDate.loc[:,['DataTime','Confirmed','Case_Per_1M_people','Deaths','Mortality']]
     print(pdDate.head())
@@ -464,8 +470,120 @@ def plotWorldStatisticByTime(csvpath=r'./'):
     plotPdColumn(dfWorld.index,dfWorld['newCases'],title='World COVID-19 NewCases',label='newCases',color='y')
     plotPdColumn(dfWorldNew.index,dfWorldNew['newCases'],title='World COVID-19 Recent NewCases',label='recentNewCases',color='y')
     
+def getAlldateRecord(csvpath, date='2020-06-16'):
+    for i in pathsFiles(csvpath,'csv'):
+        #print(i,getDateFromFileName(i))
+        dateT = getDateFromFileName(i)
+        if dateT == date:
+            df = readCsv(i)
+            #print(df.head())
+            return df
+    return None
+
+def plotNewCasesByCountry(csvpath):
+    daytime = datetime.datetime.now()
+    today = datetime.date.today()
+
+    d = today - datetime.timedelta(days=1)
+    d = datetime.datetime.strftime(d,'%Y-%m-%d')
+    
+    date = str(today)#'2020-06-16'
+    dateBefore = d   #'2020-06-15'
+    #print(date,dateBefore)
+
+    pdDate = getAlldateRecord(csvpath, date)
+    pdDateBefore = getAlldateRecord(csvpath, dateBefore)
+    if pdDate is None:
+        print('Read date record error:',date)
+        return
+    if pdDateBefore is None:
+        print('Read date record error:',dateBefore)
+        return
+    
+    # print(pdDate.head())
+    # print(pdDateBefore.head())
+    # print(pdDate.index)
+    # print(pdDateBefore.index)
+    # print(pdDate.index == pdDateBefore.index )
+
+    newCases = pdDate['Confirmed']-pdDateBefore['Confirmed']
+    #print(newCases)
+    newDeaths = pdDate['Deaths']-pdDateBefore['Deaths']
+    #print(newDeaths)
+    
+    data = {'Location':pdDate['Location'], 'NewCases': newCases,'NewDeaths':newDeaths}
+    pdNewCases = pd.DataFrame(data=data)
+    print(pdNewCases.head())
+    plotNewCasesByCountryData(pdNewCases)
+    
+def plotNewCasesByCountryData(df,number = 25):    
+    df.set_index(["Location"], inplace=True)
+    
+    if number>df.shape[0]:
+        number = df.shape[0]
+    #df = df.iloc[1:number,:]
+    worldDf = df.iloc[:1,:]
+    
+    df = df.sort_values(by=['NewCases'],ascending=False)
+    df1 = df.iloc[1:number,[0]]
+    
+    df = df.sort_values(by=['NewDeaths'],ascending=False)
+    df2 = df.iloc[1:number,[1]]
+    
+    #print(df.head())
+    #print(df.dtypes)
+    #worldDf = df.loc['Worldwide']
+    #print(worldDf)
+    now = datetime.datetime.now()
+    
+    today = str(' Date:') + str(now.strftime("%Y-%m-%d %H:%M:%S"))
+    topStr = 'Top '+str(number) + ' '
+    
+    ncWorld = topStr + 'NewCases(World: ' + str(int(worldDf['NewCases'][0])) + today + ')'
+    ndWorld = topStr + 'NewDeaths(World: ' + str(int(worldDf['NewDeaths'][0]))+ today + ')'
+    
+    dfs = [('NewCases', ncWorld, df1),('NewDeaths', ndWorld, df2)]  #(name title df)
+    #print(ncWorld,ndWorld)
+    
+    fontsize = 8
+    for i,data in enumerate(dfs): 
+        dataFrame = data[2]
+        if dataFrame.shape[0] == 0:
+            continue
+        title = data[1]
+        name = data[0]
+            
+        kind='bar'
+        if number>25:
+            dataFrame = binaryDf(dataFrame)
+            kind='barh'
+             
+        if 1: #deaths mortality
+            ax = dataFrame.plot(kind=kind,color='r')
+        else:
+            ax = dataFrame.plot(kind=kind)
+
+        ax.set_title(title,fontsize=fontsize)
+        ax.legend(fontsize=fontsize)
+        plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
+        plt.setp(ax.get_yticklabels(),fontsize=fontsize)
+        
+        if number>25:
+            plt.subplots_adjust(left=0.30, bottom=None, right=0.98, top=None, wspace=None, hspace=None)
+            
+        plt.subplots_adjust(left=None, bottom=0.18, right=None, top=None, wspace=None, hspace=None)
+        #plt.axis('off')
+        # ax1 = plt.axes()
+        # x_axis = ax1.axes.get_xaxis()
+        # x_axis.set_visible(False)
+        plt.xlabel('')
+        
+        plt.savefig(gSaveBasePath + name+str(i+1)+'.png')
+    plt.show()
+    
 if __name__ == '__main__':
     csvpath=r'./data/'
     #readCsv(csvpath+'coronavirous_2020-05-05_193026.csv')
-    plotChangeBydata(csvpath)
+    #plotChangeBydata(csvpath)
     #plotWorldStatisticByTime()
+    plotNewCasesByCountry(csvpath)
