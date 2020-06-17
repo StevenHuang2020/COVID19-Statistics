@@ -96,13 +96,15 @@ def plotData(df,number = 25):
     plotChangeBydata()
     plotWorldStatisticByTime()
     plotNewCasesByCountry()
+    plotCountryInfo()
     
 def binaryDf(df,labelAdd=True):
     newdf = pd.DataFrame(columns=df.columns)
     #print('pd.shape=',df.shape)
     newIndex = []
     for i in range(df.shape[0]//2):
-        dd = df.loc[df.index[i*2], :]
+        #dd = df.loc[df.index[i*2], :]
+        dd = df.iloc[i*2, :]
         #print('dd=',df.index[i*2], dd.values)
         if labelAdd:
             newIndex.append(df.index[i*2] +',' + df.index[i*2+1]) #combine
@@ -111,7 +113,7 @@ def binaryDf(df,labelAdd=True):
             
         newdf = newdf.append(dd,ignore_index=True)
         
-    #print('newIndex=',len(newIndex),newIndex)
+    #print('newIndex=',len(newIndex))
     #print('newdf.shape=',newdf.shape)
     newdf.index = newIndex
     return newdf
@@ -349,6 +351,7 @@ def pathsFiles(dir,filter=''): #"cpp h txt jpg"
     fmts = filter.split()    
     if fmts:
         for dirpath, dirnames, filenames in os.walk(dir):
+            filenames.sort()
             for filename in filenames:
                 if getExtFile(getFmtFile(filename)) in fmts:
                     yield dirpath+'\\'+filename
@@ -504,7 +507,7 @@ def getNewCasesDf(pdDate,pdDateBefore):
     #print(pdNewCases.head())    
     return pdNewCases
 
-def plotNewCasesByCountry(csvpath):
+def plotNewCasesByCountry(csvpath=r'./data/'):
     daytime = datetime.datetime.now()
     today = datetime.date.today()
 
@@ -547,6 +550,7 @@ def plotNewCasesByCountry(csvpath):
     
 def plotNewCasesByCountryData(df,number = 25):    
     df.set_index(["Location"], inplace=True)
+    print(df.head())
     
     if number>df.shape[0]:
         number = df.shape[0]
@@ -568,8 +572,8 @@ def plotNewCasesByCountryData(df,number = 25):
     today = str(' Date:') + str(now.strftime("%Y-%m-%d %H:%M:%S"))
     topStr = 'Top '+str(number) + ' '
     
-    ncWorld = topStr + 'NewCases(World: ' + str(int(worldDf['NewCases'][0])) + today + ')'
-    ndWorld = topStr + 'NewDeaths(World: ' + str(int(worldDf['NewDeaths'][0]))+ today + ')'
+    ncWorld = topStr + 'Today NewCases(World: ' + str(int(worldDf['NewCases'][0])) + today + ')'
+    ndWorld = topStr + 'Today NewDeaths(World: ' + str(int(worldDf['NewDeaths'][0]))+ today + ')'
     
     dfs = [('nc', ncWorld, df1),('nd', ndWorld, df2)]  #(name title df)
     #print(ncWorld,ndWorld)
@@ -610,9 +614,71 @@ def plotNewCasesByCountryData(df,number = 25):
         plt.savefig(gSaveBasePath + name+str(i+1)+'.png')
     plt.show()
     
+def getAlldateRecord(csvpath):
+    allInfos = []
+    for i in pathsFiles(csvpath,'csv'):
+        #print(i,getDateFromFileName(i))
+        dateT = getDateFromFileName(i)
+        df = readCsv(i)
+        allInfos.append([dateT,df])
+    return allInfos
+
+def plotCountryInfo(csvpath=r'./data/'):
+    all = getAlldateRecord(csvpath)
+    dfs = []
+    #countries=['United States','Spain','Italy']
+    countries = all[-1][1]['Location'][1:15]
+    #print(countries)
+    
+    plt.figure(figsize=(8,5))
+    ax = plt.subplot(1,1,1)
+    for i in countries:
+        df = getCountryDayData(i,all)
+        #df = binaryDf(df,labelAdd=False)
+        df = df.iloc[-30:,:] #recent 30 days
+        plotCountryAx(ax,df['Date'],df['Confirmed'],label=i)
+        
+    plt.savefig(gSaveBasePath + 'countries.png')
+    plt.show()
+    
+def plotCountryAx(ax,x,y,label):
+    fontsize = 8
+    # plt.plot(x,y,label=label)
+    # plt.yscale("log")
+    # plt.legend()
+    # plt.show()
+    ax.plot(x,y,label=label)
+    ax.set_yscale('log')
+    #ax.set_title(title,fontsize=fontsize)
+    ax.legend(fontsize=fontsize)
+    plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
+    plt.setp(ax.get_yticklabels(),fontsize=fontsize)
+    #plt.show()
+    
+def plotCountry(ax,x,y,label):
+    plt.plot(x,y,label=label)
+    plt.yscale("log")
+    plt.legend()
+    plt.show()    
+    
+def getCountryDayData(country,allList):
+    pdNewCases = pd.DataFrame()
+    for i in allList:
+        date = i[0]
+        df = i[1]
+        
+        countryLine = df[df['Location'] == country]
+        #countryLine['Date'] = date
+        countryLine.insert(1, "Date", [date], True) 
+        #print('countryLine=',countryLine)
+        pdNewCases = pdNewCases.append(pd.DataFrame(data=countryLine))
+    #print(pdNewCases)
+    return pdNewCases
+    
 if __name__ == '__main__':
     csvpath=r'./data/'
     #readCsv(csvpath+'coronavirous_2020-05-05_193026.csv')
     #plotChangeBydata(csvpath)
     #plotWorldStatisticByTime()
-    plotNewCasesByCountry(csvpath)
+    #plotNewCasesByCountry(csvpath)
+    plotCountryInfo(csvpath)
