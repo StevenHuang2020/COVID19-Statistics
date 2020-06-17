@@ -623,11 +623,17 @@ def getAlldateRecord(csvpath):
         allInfos.append([dateT,df])
     return allInfos
 
-def plotCountryInfo(csvpath=r'./data/'):
+def plotCountriesInfo(csvpath=r'./data/'):
     all = getAlldateRecord(csvpath)
-    dfs = []
+    plotCountryInfo(all)
+    plotCountryInfo(all,column='Deaths')
+    
+def plotCountryInfo(all,column='Confirmed'):
+    days = 30
+    countriesNumbers = 15
+    
     #countries=['United States','Spain','Italy']
-    countries = all[-1][1]['Location'][1:15]
+    countries = all[-1][1]['Location'][1:countriesNumbers]
     #print(countries)
     
     plt.figure(figsize=(8,5))
@@ -635,13 +641,13 @@ def plotCountryInfo(csvpath=r'./data/'):
     for i in countries:
         df = getCountryDayData(i,all)
         #df = binaryDf(df,labelAdd=False)
-        df = df.iloc[-30:,:] #recent 30 days
-        plotCountryAx(ax,df['Date'],df['Confirmed'],label=i)
+        df = df.iloc[-1*days:,:] #recent 30 days
+        plotCountryAx(ax,df['Date'],df[column],label=i,title=column)
         
-    plt.savefig(gSaveBasePath + 'countries.png')
+    plt.savefig(gSaveBasePath + 'countries_' + column + '.png')
     plt.show()
     
-def plotCountryAx(ax,x,y,label):
+def plotCountryAx(ax,x,y,label,title):
     fontsize = 8
     # plt.plot(x,y,label=label)
     # plt.yscale("log")
@@ -649,8 +655,8 @@ def plotCountryAx(ax,x,y,label):
     # plt.show()
     ax.plot(x,y,label=label)
     ax.set_yscale('log')
-    #ax.set_title(title,fontsize=fontsize)
-    ax.legend(fontsize=fontsize)
+    ax.set_title(title,fontsize=fontsize)
+    ax.legend(fontsize=fontsize,loc='upper left')
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
     plt.setp(ax.get_yticklabels(),fontsize=fontsize)
     #plt.show()
@@ -681,4 +687,4 @@ if __name__ == '__main__':
     #plotChangeBydata(csvpath)
     #plotWorldStatisticByTime()
     #plotNewCasesByCountry(csvpath)
-    plotCountryInfo(csvpath)
+    plotCountriesInfo(csvpath)
