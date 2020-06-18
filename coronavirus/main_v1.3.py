@@ -41,13 +41,13 @@ def parseXpathTr(tr,columns):
         elif i == 3:
             deaths = td.text.strip()
 
-    if Case_Per_1M_people == '' or Case_Per_1M_people == '—':
+    if Case_Per_1M_people == '' or Case_Per_1M_people == 'No data':
         Case_Per_1M_people = '0'
-    if recovered == '' or recovered == '—':
+    if recovered == '' or recovered == 'No data':
         recovered = '0'
-    if deaths == '' or deaths == '—':
+    if deaths == '' or deaths == 'No data':
         deaths = '0'
-    if confirmed == '' or confirmed == '—':
+    if confirmed == '' or confirmed == 'No data':
         confirmed = '0'
 
     #print('Location:',location,'Confirmed:',confirmed,'Case_Per_1M_people:',Case_Per_1M_people,'Recovered:',recovered,'deaths:',deaths)

@@ -518,8 +518,8 @@ def plotNewCasesByCountry(csvpath=r'./data/'):
     dateBefore = d   #'2020-06-15'
     #print(date,dateBefore)
 
-    pdDate = getAlldateRecord(csvpath, date)
-    pdDateBefore = getAlldateRecord(csvpath, dateBefore)
+    pdDate = getDateRecord(date,csvpath)
+    pdDateBefore = getDateRecord(dateBefore, csvpath)
     if pdDate is None:
         print('Read date record error:',date)
         return
@@ -613,7 +613,16 @@ def plotNewCasesByCountryData(df,number = 25):
         
         plt.savefig(gSaveBasePath + name+str(i+1)+'.png')
     plt.show()
-    
+   
+def getDateRecord(date, csvpath=r'./data/'):
+    for i in pathsFiles(csvpath,'csv'):
+        #print(i,getDateFromFileName(i))
+        day = getDateFromFileName(i)
+        if day == date:
+            df = readCsv(i)
+            return df
+    return None
+
 def getAlldateRecord(csvpath):
     allInfos = []
     for i in pathsFiles(csvpath,'csv'):
