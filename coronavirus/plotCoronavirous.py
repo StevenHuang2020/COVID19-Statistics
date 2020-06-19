@@ -96,7 +96,7 @@ def plotData(df,number = 25):
     plotChangeBydata()
     plotWorldStatisticByTime()
     plotNewCasesByCountry()
-    plotCountryInfo()
+    plotCountriesInfo()
     
 def binaryDf(df,labelAdd=True):
     newdf = pd.DataFrame(columns=df.columns)
@@ -434,7 +434,49 @@ def plotPdColumn(index,data,title,label,color=None):
     #plt.yscale("log")
     plt.savefig(gSaveBasePath + 'World_' + label+'.png')
     plt.show()
+  
+def getWorldDf(csvpath):
+    all = getAlldateRecord(csvpath)
+    
+    df = pd.DataFrame() #all days world data
+    for i in all:
+        date = i[0]
+        dataDf = i[1]
         
+        #print(dataDf.head())
+        wolrdLine = dataDf[dataDf['Location'] == 'Worldwide']
+        #wolrdLine['Date'] = date
+        wolrdLine.insert(0, "Date", [date], True) 
+        df = df.append(wolrdLine)
+            
+    print(df.head())    
+    return df
+  
+def plotWorldStatisticByTime2(csvpath=r'./data/'):
+    dfWorld = getWorldDf(csvpath)
+    dfWorld.set_index(["Date"], inplace=True)
+    
+    dfNewCases = [0]
+    for i in range(dfWorld.shape[0] -1):
+        numberI = dfWorld.iloc[i,1]
+        numberINext = dfWorld.iloc[i+1,1]
+        newCases = numberINext-numberI
+        #print(numberI,numberINext,newCases)
+        dfNewCases.append(newCases)
+    
+    #print(dfWorld.shape,len(dfNewCases))
+    dfWorld.insert(2, "newCases", dfNewCases, True) 
+    #print(dfWorld.head())   
+    #print(dfWorld)
+    
+    newRecentDays = 30
+    dfWorldNew = dfWorld.iloc[-1-newRecentDays:-1, :]
+    dfWorld = dfWorld.iloc[::3] # even #dfWorld.iloc[1::2] #odd
+    
+    plotPdColumn(dfWorld.index,dfWorld['Confirmed'],title='World COVID-19 Confirmed',label='Confirmed')
+    plotPdColumn(dfWorldNew.index,dfWorldNew['newCases'],title='World COVID-19 Recent NewCases',label='recentNewCases',color='y')
+    plotPdColumn(dfWorld.index,dfWorld['newCases'],title='World COVID-19 NewCases',label='newCases',color='y')
+    
 def plotWorldStatisticByTime(csvpath=r'./'):
     csv = csvpath + 'total-cases-covid-19.csv'
     df = readCsv(csv)
@@ -473,7 +515,7 @@ def plotWorldStatisticByTime(csvpath=r'./'):
     plotPdColumn(dfWorld.index,dfWorld['Cases'],title='World COVID-19 Cases',label='Cases')
     plotPdColumn(dfWorld.index,dfWorld['newCases'],title='World COVID-19 NewCases',label='newCases',color='y')
     plotPdColumn(dfWorldNew.index,dfWorldNew['newCases'],title='World COVID-19 Recent NewCases',label='recentNewCases',color='y')
-    
+        
 def getAlldateRecord(csvpath, date='2020-06-16'):
     for i in pathsFiles(csvpath,'csv'):
         #print(i,getDateFromFileName(i))
@@ -557,6 +599,11 @@ def plotNewCasesByCountryData(df,number = 25):
     #df = df.iloc[1:number,:]
     worldDf = df.iloc[:1,:]
     
+    dfNewCases = df[df['NewCases']>0]
+    dfNewDeaths = df[df['NewDeaths']>0]
+    #print('dfNewCases.shape=',dfNewCases.shape)
+    #print('dfNewDeaths.shape=',dfNewDeaths.shape)
+   
     df = df.sort_values(by=['NewCases'],ascending=False)
     df1 = df.iloc[1:number,[0]]
     
@@ -572,8 +619,8 @@ def plotNewCasesByCountryData(df,number = 25):
     today = str(' Date:') + str(now.strftime("%Y-%m-%d %H:%M:%S"))
     topStr = 'Top '+str(number) + ' '
     
-    ncWorld = topStr + 'Today NewCases(World: ' + str(int(worldDf['NewCases'][0])) + today + ')'
-    ndWorld = topStr + 'Today NewDeaths(World: ' + str(int(worldDf['NewDeaths'][0]))+ today + ')'
+    ncWorld = topStr + 'Today NewCases(World: ' + str(int(worldDf['NewCases'][0])) + ' Countries:'+ str(dfNewCases.shape[0]) + today + ')'
+    ndWorld = topStr + 'Today NewDeaths(World: ' + str(int(worldDf['NewDeaths'][0])) + ' Countries:'+ str(dfNewDeaths.shape[0])+ today + ')'
     
     dfs = [('nc', ncWorld, df1),('nd', ndWorld, df2)]  #(name title df)
     #print(ncWorld,ndWorld)
@@ -695,5 +742,5 @@ if __name__ == '__main__':
     #readCsv(csvpath+'coronavirous_2020-05-05_193026.csv')
     #plotChangeBydata(csvpath)
     #plotWorldStatisticByTime()
-    #plotNewCasesByCountry(csvpath)
-    plotCountriesInfo(csvpath)
+    plotNewCasesByCountry(csvpath)
+    #plotCountriesInfo(csvpath)
