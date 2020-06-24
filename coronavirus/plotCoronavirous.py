@@ -741,6 +741,6 @@ if __name__ == '__main__':
     csvpath=r'./data/'
     #readCsv(csvpath+'coronavirous_2020-05-05_193026.csv')
     #plotChangeBydata(csvpath)
-    #plotWorldStatisticByTime()
-    plotNewCasesByCountry(csvpath)
+    plotWorldStatisticByTime()
+    #plotNewCasesByCountry(csvpath)
     #plotCountriesInfo(csvpath)
