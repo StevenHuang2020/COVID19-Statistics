@@ -11,6 +11,7 @@ from matplotlib import cm
 
 gSaveBasePath=r'.\images\\'
 gSaveChangeData=r'.\dataChange\\'
+gSaveCountryData=r'.\dataCountry\\'
 
 def plotData(df,number = 25):    
     if number>df.shape[0]:
@@ -668,15 +669,48 @@ def getAlldateRecord(csvpath):
         dateT = getDateFromFileName(i)
         df = readCsv(i)
         allInfos.append([dateT,df])
+    
     return allInfos
 
 def plotCountriesInfo(csvpath=r'./data/'):
     all = getAlldateRecord(csvpath)
+    saveCountriesInfo(all)
+    
     plotCountryInfo(all) #style1
     plotCountryInfo(all,column='Deaths')
-    
+    plotCountryInfo(all,column='NewConfirmed')
+    plotCountryInfo(all,column='NewDeaths')
+
     plotCountryInfo2(all) #style2
     plotCountryInfo2(all,column='Deaths')
+    plotCountryInfo2(all,column='NewConfirmed')
+    plotCountryInfo2(all,column='NewDeaths')
+    
+def getCountryNewCasesAndDeathsDf(pdDate):
+    pdDate['NewConfirmed'] = 0
+    pdDate['NewDeaths'] = 0
+    #print(pdDate.head(5))    
+    for i in range(pdDate.shape[0]-1):
+        newConfirmed = pdDate['Confirmed'].iloc[i+1] - pdDate['Confirmed'].iloc[i]
+        if newConfirmed<0:newConfirmed=0
+        pdDate.iloc[i+1, pdDate.columns.get_loc("NewConfirmed")] = newConfirmed
+        newDeaths = pdDate['Deaths'].iloc[i+1] - pdDate['Deaths'].iloc[i]
+        if newDeaths<0:newDeaths=0
+        pdDate.iloc[i+1, pdDate.columns.get_loc("NewDeaths")] = newDeaths
+        
+        #pdDate['NewConfirmed'].iloc[i+1] = pdDate['Confirmed'].iloc[i+1] - pdDate['Confirmed'].iloc[i]
+        #pdDate['NewDeaths'].iloc[i+1] = pdDate['Deaths'].iloc[i+1] - pdDate['Deaths'].iloc[i]
+
+    #print(pdDate.head(5))    
+    return pdDate
+    
+def saveCountriesInfo(all):
+    countries = all[-1][1]['Location']
+    for i in countries:
+        df = getCountryDayData(i,all)
+        #print(df.head(5))
+        df = getCountryNewCasesAndDeathsDf(df)
+        df.to_csv(gSaveCountryData+i+'.csv',index=True)
     
 def plotCountryInfo(all,column='Confirmed'):
     days = 30
@@ -691,10 +725,15 @@ def plotCountryInfo(all,column='Confirmed'):
    
     for i in countries:
         df = getCountryDayData(i,all)
-        df = binaryDf(df,labelAdd=False)
-        #df = df.iloc[-1*days:,:] #recent 30 days
+        df = getCountryNewCasesAndDeathsDf(df)
+        #print(df.head(5))
+        #df = binaryDf(df,labelAdd=False)
+        df = df.iloc[-1*days:,:] #recent 30 days
         plotCountryAx(ax,df['Date'],df[column],label=i,title=column)
-    ax.set_yscale('log')
+        
+    if column != 'NewConfirmed' and column != 'NewDeaths':
+        ax.set_yscale('log')
+        
     #plt.xlim('2020-05-01', '2020-06-20') 
     plt.savefig(gSaveBasePath + 'countries_' + column + '.png')
     plt.show()
@@ -713,6 +752,8 @@ def plotCountryInfo2(all,column='Confirmed'):
     
     for k,i in enumerate(countries):
         df = getCountryDayData(i,all)
+        df = getCountryNewCasesAndDeathsDf(df)
+        
         df = binaryDf(df,labelAdd=False)
         #df = df.iloc[-1*days:,:] #recent 30 days
         color = cm.jet(float(k) / countriesNumbers)
@@ -760,18 +801,25 @@ def plotCountry(ax,x,y,label):
     plt.show()    
     
 def getCountryDayData(country,allList):
-    pdNewCases = pd.DataFrame()
+    pdCountry = pd.DataFrame()
     for i in allList:
         date = i[0]
         df = i[1]
         
         countryLine = df[df['Location'] == country]
         #countryLine['Date'] = date
-        countryLine.insert(1, "Date", [date], True) 
-        #print('countryLine=',countryLine)
-        pdNewCases = pdNewCases.append(pd.DataFrame(data=countryLine))
-    #print(pdNewCases)
-    return pdNewCases
+        try:
+            countryLine.insert(1, "Date", [date], True) 
+            #print('countryLine=',countryLine)
+            pdCountry = pdCountry.append(pd.DataFrame(data=countryLine))
+        except:
+            #print('date,country=',date,country)
+            #print('countryLine=',countryLine)
+            pass
+        
+    pdCountry.set_index(["Location"], inplace=True)   
+    #print(pdCountry)
+    return pdCountry
     
 if __name__ == '__main__':
     csvpath=r'./data/'
