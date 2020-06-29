@@ -692,10 +692,13 @@ def getCountryNewCasesAndDeathsDf(pdDate):
     #print(pdDate.head(5))    
     for i in range(pdDate.shape[0]-1):
         newConfirmed = pdDate['Confirmed'].iloc[i+1] - pdDate['Confirmed'].iloc[i]
-        if newConfirmed<0:newConfirmed=0
+        if newConfirmed<0:
+            newConfirmed=0
         pdDate.iloc[i+1, pdDate.columns.get_loc("NewConfirmed")] = newConfirmed
+        
         newDeaths = pdDate['Deaths'].iloc[i+1] - pdDate['Deaths'].iloc[i]
-        if newDeaths<0:newDeaths=0
+        if newDeaths<0:
+            newDeaths=0
         pdDate.iloc[i+1, pdDate.columns.get_loc("NewDeaths")] = newDeaths
         
         #pdDate['NewConfirmed'].iloc[i+1] = pdDate['Confirmed'].iloc[i+1] - pdDate['Confirmed'].iloc[i]
