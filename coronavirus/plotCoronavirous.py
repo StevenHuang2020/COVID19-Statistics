@@ -7,6 +7,7 @@ import os
 import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib import cm
 
 gSaveBasePath=r'.\images\\'
 gSaveChangeData=r'.\dataChange\\'
@@ -575,22 +576,12 @@ def plotNewCasesByCountry(csvpath=r'./data/'):
     # print(pdDateBefore.index)
     # print(pdDate.index == pdDateBefore.index )
 
-    if 0:
-        newCases = pdDate['Confirmed']-pdDateBefore['Confirmed']
-        #print(newCases)
-        newDeaths = pdDate['Deaths']-pdDateBefore['Deaths']
-        #print(newDeaths)
-        
-        data = {'Location':pdDate['Location'], 'NewCases': newCases,'NewDeaths':newDeaths}
-        pdNewCases = pd.DataFrame(data=data)
-        print(pdNewCases.head())
-    else:
-        pdNewCases = getNewCasesDf(pdDate,pdDateBefore)
+    pdNewCases = getNewCasesDf(pdDate,pdDateBefore)
     
     pdNewCases.to_csv(gSaveChangeData+'NewCasesAndDeaths_'+date+'.csv',index=False)
     plotNewCasesByCountryData(pdNewCases)
     
-def plotNewCasesByCountryData(df,number = 25):    
+def plotNewCasesByCountryData(df,number = 40):    
     df.set_index(["Location"], inplace=True)
     print(df.head())
     
@@ -651,7 +642,7 @@ def plotNewCasesByCountryData(df,number = 25):
         if number>25:
             plt.subplots_adjust(left=0.30, bottom=None, right=0.98, top=None, wspace=None, hspace=None)
             
-        plt.subplots_adjust(left=None, bottom=0.18, right=None, top=None, wspace=None, hspace=None)
+        plt.subplots_adjust(left=None, bottom=0.12, right=None, top=None, wspace=None, hspace=None)
         #plt.axis('off')
         # ax1 = plt.axes()
         # x_axis = ax1.axes.get_xaxis()
@@ -681,8 +672,11 @@ def getAlldateRecord(csvpath):
 
 def plotCountriesInfo(csvpath=r'./data/'):
     all = getAlldateRecord(csvpath)
-    plotCountryInfo(all)
+    plotCountryInfo(all) #style1
     plotCountryInfo(all,column='Deaths')
+    
+    plotCountryInfo2(all) #style2
+    plotCountryInfo2(all,column='Deaths')
     
 def plotCountryInfo(all,column='Confirmed'):
     days = 30
@@ -694,23 +688,65 @@ def plotCountryInfo(all,column='Confirmed'):
     
     plt.figure(figsize=(8,5))
     ax = plt.subplot(1,1,1)
+   
     for i in countries:
         df = getCountryDayData(i,all)
-        #df = binaryDf(df,labelAdd=False)
-        df = df.iloc[-1*days:,:] #recent 30 days
+        df = binaryDf(df,labelAdd=False)
+        #df = df.iloc[-1*days:,:] #recent 30 days
         plotCountryAx(ax,df['Date'],df[column],label=i,title=column)
-        
+    ax.set_yscale('log')
+    #plt.xlim('2020-05-01', '2020-06-20') 
     plt.savefig(gSaveBasePath + 'countries_' + column + '.png')
     plt.show()
     
-def plotCountryAx(ax,x,y,label,title):
+def plotCountryInfo2(all,column='Confirmed'):
+    countriesNumbers = 8
+    countries = all[-1][1]['Location'][1:countriesNumbers]
+    #print(countries)
+    
+    plt.figure(figsize=(8,5))
+    ax = plt.subplot(1,1,1)
+    ax.spines["top"].set_visible(False)    
+    ax.spines["bottom"].set_visible(False)    
+    ax.spines["right"].set_visible(False)    
+    ax.spines["left"].set_visible(False) 
+    
+    for k,i in enumerate(countries):
+        df = getCountryDayData(i,all)
+        df = binaryDf(df,labelAdd=False)
+        #df = df.iloc[-1*days:,:] #recent 30 days
+        color = cm.jet(float(k) / countriesNumbers)
+        #print('color=',color)
+        plotCountryAx(ax,df['Date'],df[column],label=i,title=column,color=color)
+        
+        #ax.text(df['Date'][-1], df[column][-1], i)
+        #print(df.head(5))
+        #print(df[column])
+        ax.text(df['Date'].iloc[-1], df[column].iloc[-1], i,color=color)
+        #break
+        
+    bottom, top = plt.ylim()
+    #print('bottom, top =',bottom, top)
+    inter = 10000
+    if column=='Confirmed':
+        inter = 1000000
+    for y in range(int(bottom), int(top), inter):    
+        plt.plot(df['Date'], [y] * len(df['Date']), "--", lw=0.5, color="black", alpha=0.3) 
+          
+    #plt.xlim('2020-05-01', '2020-06-20') 
+    #plt.tick_params(axis="both", which="both", bottom="off", top="off", labelbottom="on", left="off", right="off", labelleft="on")  
+    #ax.set_yscale('log')
+    plt.tight_layout()
+    plt.savefig(gSaveBasePath + 'countries0_' + column + '.png')
+    plt.show()
+    
+def plotCountryAx(ax,x,y,label,title,color=None):
     fontsize = 8
     # plt.plot(x,y,label=label)
     # plt.yscale("log")
     # plt.legend()
     # plt.show()
-    ax.plot(x,y,label=label)
-    ax.set_yscale('log')
+    ax.plot(x,y,label=label,c=color)
     ax.set_title(title,fontsize=fontsize)
     ax.legend(fontsize=fontsize,loc='upper left')
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
@@ -741,6 +777,6 @@ if __name__ == '__main__':
     csvpath=r'./data/'
     #readCsv(csvpath+'coronavirous_2020-05-05_193026.csv')
     #plotChangeBydata(csvpath)
-    plotWorldStatisticByTime()
+    #plotWorldStatisticByTime()
     #plotNewCasesByCountry(csvpath)
-    #plotCountriesInfo(csvpath)
+    plotCountriesInfo(csvpath)
