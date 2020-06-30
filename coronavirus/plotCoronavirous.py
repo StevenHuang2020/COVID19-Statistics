@@ -687,6 +687,11 @@ def plotCountriesInfo(csvpath=r'./data/'):
     plotCountryInfo2(all,column='NewConfirmed')
     plotCountryInfo2(all,column='NewDeaths')
     
+    plotCountryInfo3(all)
+    plotCountryInfo3(all,column='Deaths')
+    plotCountryInfo3(all,column='NewConfirmed')
+    plotCountryInfo3(all,column='NewDeaths')
+    
 def getCountryNewCasesAndDeathsDf(pdDate):
     pdDate['NewConfirmed'] = 0
     pdDate['NewDeaths'] = 0
@@ -805,14 +810,8 @@ def plotCountryInfo3(all,column='Confirmed'):
         df = getCountryNewCasesAndDeathsDf(df)
         #df = binaryDf(df,labelAdd=False)
         color = cm.jet(float(k) / countriesNumbers)
-        #print('color=',color)
         plotCountryAxBar(ax,df['Date'],df[column],label=i,title=column,color=color)
-        
-        #ax.text(df['Date'][-1], df[column][-1], i)
-        #print(df.head(5))
-        #print(df[column])
         ax.text(df['Date'].iloc[-1], df[column].iloc[-1], i,color=color)
-        #break
         
     bottom, top = plt.ylim()
     #print('bottom, top =',bottom, top)
@@ -826,7 +825,7 @@ def plotCountryInfo3(all,column='Confirmed'):
     #plt.tick_params(axis="both", which="both", bottom="off", top="off", labelbottom="on", left="off", right="off", labelleft="on")  
     #ax.set_yscale('log')
     plt.tight_layout()
-    plt.savefig(gSaveBasePath + 'countries0_' + column + '.png')
+    plt.savefig(gSaveBasePath + 'countries1_' + column + '.png')
     plt.show()
     
 def plotCountryAx(ax,x,y,label,title,color=None):
@@ -840,7 +839,7 @@ def plotCountryAx(ax,x,y,label,title,color=None):
     
 def plotCountryAxBar(ax,x,y,label,title,color=None):
     fontsize = 8
-    ax.bar(x,y,label=label,c=color)
+    ax.bar(x,y,label=label,color=color)
     ax.set_title(title,fontsize=fontsize)
     ax.legend(fontsize=fontsize,loc='upper left')
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)

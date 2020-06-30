@@ -51,6 +51,10 @@ Updated to adapt to the new google page.<br/>
 <img src="images/countries0_Deaths.png" width="320" height="240">
 <img src="images/countries0_NewConfirmed.png" width="320" height="240">
 <img src="images/countries0_NewDeaths.png" width="320" height="240">
+<img src="images/countries1_Confirmed.png" width="320" height="240">
+<img src="images/countries1_Deaths.png" width="320" height="240">
+<img src="images/countries1_NewConfirmed.png" width="320" height="240">
+<img src="images/countries1_NewDeaths.png" width="320" height="240">
 <img src="images/World_Cases.png" width="320" height="240">
 <img src="images/World_newCases.png" width="320" height="240">
 <img src="images/World_recentNewCases.png" width="320" height="240">
