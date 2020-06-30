@@ -8,6 +8,7 @@ import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import cm
+from progressBar import SimpleProgressBar
 
 gSaveBasePath=r'.\images\\'
 gSaveChangeData=r'.\dataChange\\'
@@ -676,15 +677,15 @@ def plotCountriesInfo(csvpath=r'./data/'):
     all = getAlldateRecord(csvpath)
     saveCountriesInfo(all)
     
-    plotCountryInfo(all) #style1
-    plotCountryInfo(all,column='Deaths')
-    plotCountryInfo(all,column='NewConfirmed')
-    plotCountryInfo(all,column='NewDeaths')
+    # plotCountryInfo(all) #style1
+    # plotCountryInfo(all,column='Deaths')
+    # plotCountryInfo(all,column='NewConfirmed')
+    # plotCountryInfo(all,column='NewDeaths')
 
-    plotCountryInfo2(all) #style2
-    plotCountryInfo2(all,column='Deaths')
-    plotCountryInfo2(all,column='NewConfirmed')
-    plotCountryInfo2(all,column='NewDeaths')
+    # plotCountryInfo2(all) #style2
+    # plotCountryInfo2(all,column='Deaths')
+    # plotCountryInfo2(all,column='NewConfirmed')
+    # plotCountryInfo2(all,column='NewDeaths')
     
 def getCountryNewCasesAndDeathsDf(pdDate):
     pdDate['NewConfirmed'] = 0
@@ -709,12 +710,14 @@ def getCountryNewCasesAndDeathsDf(pdDate):
     
 def saveCountriesInfo(all):
     countries = all[-1][1]['Location']
-    for i in countries:
+    bar = SimpleProgressBar(total=len(countries),title='Save Country Files',width=30)
+    for k,i in enumerate(countries):
         df = getCountryDayData(i,all)
         #print(df.head(5))
         df = getCountryNewCasesAndDeathsDf(df)
         df.to_csv(gSaveCountryData+i+'.csv',index=True)
-    
+        bar.update(k+1)
+        
 def plotCountryInfo(all,column='Confirmed'):
     days = 30
     countriesNumbers = 15
@@ -743,6 +746,7 @@ def plotCountryInfo(all,column='Confirmed'):
     
 def plotCountryInfo2(all,column='Confirmed'):
     countriesNumbers = 8
+    days = 30
     countries = all[-1][1]['Location'][1:countriesNumbers]
     #print(countries)
     
@@ -757,8 +761,8 @@ def plotCountryInfo2(all,column='Confirmed'):
         df = getCountryDayData(i,all)
         df = getCountryNewCasesAndDeathsDf(df)
         
-        df = binaryDf(df,labelAdd=False)
-        #df = df.iloc[-1*days:,:] #recent 30 days
+        #df = binaryDf(df,labelAdd=False)
+        df = df.iloc[-1*days:,:] #recent 30 days
         color = cm.jet(float(k) / countriesNumbers)
         #print('color=',color)
         plotCountryAx(ax,df['Date'],df[column],label=i,title=column,color=color)
