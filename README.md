@@ -29,36 +29,62 @@ https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coron
 #### main_v1.3.py
 Updated to adapt to the new google page.<br/>
 <br/>
-<img src="images/nc1.png" width="320" height="240">
-<img src="images/nd2.png" width="320" height="240">
-<img src="images/1.png" width="320" height="240">
-<img src="images/2.png" width="320" height="240">
-<img src="images/3.png" width="320" height="240">
-<img src="images/4.png" width="320" height="240">
-<img src="images/5.png" width="320" height="240">
-<img src="images/6.png" width="320" height="240">
-<img src="images/7.png" width="320" height="240">
-<img src="images/8.png" width="320" height="240">
+
+<table>
+  <tr>
+    <td><img src="images/nc1.png" width="320" height="240" /></td>
+    <td><img src="images/nd2.png" width="320" height="240" /></td>
+    <td><img src="images/1.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="images/2.png" width="320" height="240" /></td>
+    <td><img src="images/3.png" width="320" height="240" /></td>
+    <td><img src="images/4.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="images/5.png" width="320" height="240" /></td>
+    <td><img src="images/6.png" width="320" height="240" /></td>
+    <td><img src="images/7.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="images/8.png" width="320" height="240" /></td>
+  </tr>
+ </table>
+ 
 <br/>
 
 #### Statistics cases by time.
 <br/>
-<img src="images/countries_Confirmed.png" width="320" height="240">
-<img src="images/countries_Deaths.png" width="320" height="240">
-<img src="images/countries_NewConfirmed.png" width="320" height="240">
-<img src="images/countries_NewDeaths.png" width="320" height="240">
-<img src="images/countries0_Confirmed.png" width="320" height="240">
-<img src="images/countries0_Deaths.png" width="320" height="240">
-<img src="images/countries0_NewConfirmed.png" width="320" height="240">
-<img src="images/countries0_NewDeaths.png" width="320" height="240">
-<img src="images/countries1_Confirmed.png" width="320" height="240">
-<img src="images/countries1_Deaths.png" width="320" height="240">
-<img src="images/countries1_NewConfirmed.png" width="320" height="240">
-<img src="images/countries1_NewDeaths.png" width="320" height="240">
-<img src="images/World_Cases.png" width="320" height="240">
-<img src="images/World_newCases.png" width="320" height="240">
-<img src="images/World_recentNewCases.png" width="320" height="240">
-<img src="images/WorldChange.png" width="320" height="240">
+<table>
+  <tr>
+    <td><img src="images/countries_Confirmed.png" width="320" height="240" /></td>
+    <td><img src="images/countries_Deaths.png" width="320" height="240" /></td>
+    <td><img src="images/countries_NewConfirmed.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="images/countries_NewDeaths.png" width="320" height="240" /></td>
+    <td><img src="images/countries0_Confirmed.png" width="320" height="240" /></td>
+    <td><img src="images/countries0_Deaths.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="images/countries0_NewConfirmed.png" width="320" height="240" /></td>
+    <td><img src="images/countries0_NewDeaths.png" width="320" height="240" /></td>
+    <td><img src="images/countries1_Confirmed.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="images/countries1_Deaths.png" width="320" height="240" /></td>
+    <td><img src="images/countries1_NewConfirmed.png" width="320" height="240" /></td>
+    <td><img src="images/countries1_NewDeaths.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="images/World_Cases.png" width="320" height="240" /></td>
+    <td><img src="images/World_newCases.png" width="320" height="240" /></td>
+    <td><img src="images/World_recentNewCases.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="images/WorldChange.png" width="320" height="240" /></td>
+  </tr>
+ </table>
 <br/>
 
 #### Prediction
@@ -66,5 +92,10 @@ Updated to adapt to the new google page.<br/>
 World predicted confirmed cases by using LSTM algorithm.<br/>
 Source reference: https://ourworldindata.org/covid-cases
 <br/>
-<img src="images/WorldPredictCompare.png" width="320" height="240">
-<img src="images/WorldFuturePredict.png" width="320" height="240">
+
+<table>
+  <tr>
+    <td><img src="images/WorldPredictCompare.png" width="320" height="240" /></td>
+    <td><img src="images/WorldFuturePredict.png" width="320" height="240" /></td>
+  </tr>
+</table>
