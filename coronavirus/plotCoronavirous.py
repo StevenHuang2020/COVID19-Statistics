@@ -677,15 +677,15 @@ def plotCountriesInfo(csvpath=r'./data/'):
     all = getAlldateRecord(csvpath)
     saveCountriesInfo(all)
     
-    # plotCountryInfo(all) #style1
-    # plotCountryInfo(all,column='Deaths')
-    # plotCountryInfo(all,column='NewConfirmed')
-    # plotCountryInfo(all,column='NewDeaths')
+    plotCountryInfo(all) #style1
+    plotCountryInfo(all,column='Deaths')
+    plotCountryInfo(all,column='NewConfirmed')
+    plotCountryInfo(all,column='NewDeaths')
 
-    # plotCountryInfo2(all) #style2
-    # plotCountryInfo2(all,column='Deaths')
-    # plotCountryInfo2(all,column='NewConfirmed')
-    # plotCountryInfo2(all,column='NewDeaths')
+    plotCountryInfo2(all) #style2
+    plotCountryInfo2(all,column='Deaths')
+    plotCountryInfo2(all,column='NewConfirmed')
+    plotCountryInfo2(all,column='NewDeaths')
     
 def getCountryNewCasesAndDeathsDf(pdDate):
     pdDate['NewConfirmed'] = 0
@@ -788,13 +788,59 @@ def plotCountryInfo2(all,column='Confirmed'):
     plt.savefig(gSaveBasePath + 'countries0_' + column + '.png')
     plt.show()
     
+def plotCountryInfo3(all,column='Confirmed'):
+    countriesNumbers = 8
+    countries = all[-1][1]['Location'][1:countriesNumbers]
+    #print(countries)
+    
+    plt.figure(figsize=(8,5))
+    ax = plt.subplot(1,1,1)
+    ax.spines["top"].set_visible(False)    
+    ax.spines["bottom"].set_visible(False)    
+    ax.spines["right"].set_visible(False)    
+    ax.spines["left"].set_visible(False) 
+    
+    for k,i in enumerate(countries):
+        df = getCountryDayData(i,all)
+        df = getCountryNewCasesAndDeathsDf(df)
+        #df = binaryDf(df,labelAdd=False)
+        color = cm.jet(float(k) / countriesNumbers)
+        #print('color=',color)
+        plotCountryAxBar(ax,df['Date'],df[column],label=i,title=column,color=color)
+        
+        #ax.text(df['Date'][-1], df[column][-1], i)
+        #print(df.head(5))
+        #print(df[column])
+        ax.text(df['Date'].iloc[-1], df[column].iloc[-1], i,color=color)
+        #break
+        
+    bottom, top = plt.ylim()
+    #print('bottom, top =',bottom, top)
+    inter = 10000
+    if column=='Confirmed':
+        inter = 1000000
+    for y in range(int(bottom), int(top), inter):    
+        plt.plot(df['Date'], [y] * len(df['Date']), "--", lw=0.5, color="black", alpha=0.3) 
+          
+    #plt.xlim('2020-05-01', '2020-06-20') 
+    #plt.tick_params(axis="both", which="both", bottom="off", top="off", labelbottom="on", left="off", right="off", labelleft="on")  
+    #ax.set_yscale('log')
+    plt.tight_layout()
+    plt.savefig(gSaveBasePath + 'countries0_' + column + '.png')
+    plt.show()
+    
 def plotCountryAx(ax,x,y,label,title,color=None):
     fontsize = 8
-    # plt.plot(x,y,label=label)
-    # plt.yscale("log")
-    # plt.legend()
-    # plt.show()
     ax.plot(x,y,label=label,c=color)
+    ax.set_title(title,fontsize=fontsize)
+    ax.legend(fontsize=fontsize,loc='upper left')
+    plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
+    plt.setp(ax.get_yticklabels(),fontsize=fontsize)
+    #plt.show()
+    
+def plotCountryAxBar(ax,x,y,label,title,color=None):
+    fontsize = 8
+    ax.bar(x,y,label=label,c=color)
     ax.set_title(title,fontsize=fontsize)
     ax.legend(fontsize=fontsize,loc='upper left')
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
