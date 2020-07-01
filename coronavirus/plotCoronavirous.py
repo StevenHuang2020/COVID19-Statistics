@@ -811,7 +811,7 @@ def plotCountryInfo3(all,column='Confirmed'):
         #df = binaryDf(df,labelAdd=False)
         color = cm.jet(float(k) / countriesNumbers)
         plotCountryAxBar(ax,df['Date'],df[column],label=i,title=column,color=color)
-        ax.text(df['Date'].iloc[-1], df[column].iloc[-1], i,color=color)
+        #ax.text(df['Date'].iloc[-1], df[column].iloc[-1], i,color=color)
         
     bottom, top = plt.ylim()
     #print('bottom, top =',bottom, top)

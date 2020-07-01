@@ -91,10 +91,12 @@ def parseXpathTr(tr, columns):
         if i == 0:
             confirmed = td.text.strip()
         elif i == 1:
-            Case_Per_1M_people = td.text.strip() 
+            pass
         elif i == 2:
-            recovered = td.text.strip()
+            Case_Per_1M_people = td.text.strip() 
         elif i == 3:
+            recovered = td.text.strip()
+        elif i == 4:
             deaths = td.text.strip()
 
     if Case_Per_1M_people == '' or Case_Per_1M_people == '—':
@@ -117,20 +119,11 @@ def getHeader(thead):
     #res = html.xpath('//div[@class="DdCLrb"]')
     res = html.xpath('//tr[@class="sgXwHf"]//div[@class="XmCM0b"]')
     print(len(res))
-    lc,cf,cp,re,de = '','','','',''
-    for i,div in enumerate(res):
-        if i == 0:
-            lc = div.text
-        elif i == 1:
-            cf = div.text
-        elif i == 2:
-            cp = div.text
-        elif i == 3:
-            re = div.text
-        elif i == 4:
-            de = div.text
-                 
-    return [lc,cf,cp,re,de]
+    
+    columns = []
+    for i,th in enumerate(res):
+        columns.append(th.text)
+    return columns
 
 def parseHtml(htmlContent):
     html = etree.HTML(htmlContent)
@@ -142,8 +135,11 @@ def parseHtml(htmlContent):
     resHead = html.xpath(X)
     #print(len(resHead))    
     columns = getHeader(resHead[0])
-    #print(columns)
-    columns[2]='Case_Per_1M_people'
+    print('columns = ', columns)
+    columns[3]='Case_Per_1M_people'
+    columns.pop(2) #remove 'New cases (last 60 days)'
+    print('columns = ', columns)
+    
     
     X = '//table[@class="pH8O4c"]//tbody/tr' #[@class="SAGQRD"]'
     result = html.xpath(X)

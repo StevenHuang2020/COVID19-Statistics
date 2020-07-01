@@ -11,7 +11,7 @@ from selenium import webdriver
 from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
-
+import argparse 
 from main import plotData,preprocessData
 #from predictStatistics import predict
 
@@ -35,10 +35,12 @@ def parseXpathTr(tr,columns):
         if i == 0:
             confirmed = td.text.strip()
         elif i == 1:
-            Case_Per_1M_people = td.text.strip()
+            pass
         elif i == 2:
-            recovered = td.text.strip()
+            Case_Per_1M_people = td.text.strip()
         elif i == 3:
+            recovered = td.text.strip()
+        elif i == 4:
             deaths = td.text.strip()
 
     if Case_Per_1M_people == '' or Case_Per_1M_people == 'No data':
@@ -57,20 +59,10 @@ def parseXpathTr(tr,columns):
 def getHeader(thead):
     ths = thead.find_elements_by_xpath('//tr[@class="sgXwHf"]//div[@class="XmCM0b"]')
     print('len=',len(ths))
-    lc,cf,cp,re,de = '','','','',''
+    columns = []
     for i,th in enumerate(ths):
-        if i==0:
-            lc = th.text
-        elif i ==1:
-            cf = th.text
-        elif i ==2:
-            cp = th.text
-        elif i ==3:
-            re = th.text
-        elif i ==4:
-            de = th.text
-        #print(th.text)
-    return [lc,cf,cp,re,de]
+        columns.append(th.text)
+    return columns
 
 def clickBtn(driver,btnXpath):
         btn = driver.find_element_by_xpath(btnXpath)
@@ -106,7 +98,9 @@ def Load(url):
     
     columns = getHeader(thead)
     print('columns = ', columns)
-    columns[2]='Case_Per_1M_people'
+    columns[3]='Case_Per_1M_people'
+    columns.pop(2) #remove 'New cases (last 60 days)'
+    print('columns = ', columns)
     
     df = pd.DataFrame()
     result = tbody.find_elements(By.TAG_NAME, "tr")
@@ -115,9 +109,22 @@ def Load(url):
         df = df.append(parseXpathTr(i, columns),ignore_index=True)
     
     print('df.shape=', df.shape)
-    df = preprocessData(df)
-    plotData(df,60)
+    return preprocessData(df)
     
+def argCmdParse():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-n', '--noplot', action="store_true", help = 'not plot data')
+    return parser.parse_args()
+
 if __name__ == '__main__':
-    Load(mainUrl)
+    arg = argCmdParse()
+    plot = True
+    if arg.noplot:
+        plot = False
+    print('plot=',plot)
+    
+    df = Load(mainUrl)
+    if plot:
+        plotData(df,60)
+        
     #predict()
