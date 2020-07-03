@@ -91,8 +91,7 @@ class layperOutClass:
                                             'padding-right' : '100px',
                                             'display': 'inline-block'
                                             })
-                    
-])
+        ])
 
 def setupApp(layer, app):
     @app.callback(Output('Country_NewCases', 'figure'),
