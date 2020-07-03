@@ -110,7 +110,9 @@ def binaryDf(df,labelAdd=True):
         dd = df.iloc[i*2, :]
         #print('dd=',df.index[i*2], dd.values)
         if labelAdd:
-            newIndex.append(df.index[i*2] +',' + df.index[i*2+1]) #combine
+            #print('index=',df.index[i*2])
+            #print('new=',df.index[i*2] +',' + df.index[i*2+1])
+            newIndex.append(str(df.index[i*2]) +',' + str(df.index[i*2+1])) #combine
         else:
             newIndex.append(df.index[i*2])#drop
             
@@ -168,7 +170,7 @@ def plotTest(df,number = 20):
         
     #print(df.head())
     #print(df.dtypes)
-    worldDf = df.loc['Worldwide']
+    worldDf = df.loc[0] #'Worldwide'
     #print(worldDf,worldMor)
     now = datetime.datetime.now()
     
@@ -214,7 +216,6 @@ def plotTest(df,number = 20):
             df.plot(kind=k, title=k, y='Confirmed',  x = 'Deaths', bins=10,xscale='log',yscale='log')
             #plt.scatter(x=df['Deaths'], y=df['Confirmed'])
             plt.show()
-        break
     
     plt.show()
     
@@ -243,7 +244,7 @@ def plotDataCompare(df,number = 50):
     dfDeathsThanZero = df[df['Deaths'] > 0]
     df9 = dfDeathsThanZero.sort_values(by=['Mortality'],ascending=True).iloc[:number,[4]]
     
-    worldDf = df.loc['Worldwide']
+    worldDf = df.loc[0] #Worldwide
     #print(worldDf,worldMor)
     now = datetime.datetime.now()
     
@@ -267,6 +268,8 @@ def plotDataCompare(df,number = 50):
     df = df.sort_values(by=['Confirmed'],ascending=False)
     if number>25:
         df = binaryDf(df)
+        
+    #df.set_index(["Location"], inplace=True)
     
     dfConfirmed = df.iloc[1:number,[0]]
     dfCase_Per_1M_people = df.iloc[1:number,[1]]
@@ -278,10 +281,10 @@ def plotDataCompare(df,number = 50):
     # print(dfRecovered.head())
     # print(dfDeaths.head())
     
-    width = 0.5
-    ax = plt.subplot(1,1,1)
-    
     colors=['b','g','r']
+    width = 0.5
+    
+    '''
     dd = []
     ddName=[]
     dd.append(dfConfirmed.iloc[:,0]),ddName.append('Confirmed')
@@ -294,7 +297,7 @@ def plotDataCompare(df,number = 50):
     # dd.append(dfDeaths.iloc[:,0]),ddName.append('Deaths')
     # dd.append(dfMortality.iloc[:,0]),ddName.append('Mortality')
     # dfCompareds.append((ddName, dd))
-    '''
+    
     for i in dfCompareds:
         newDf = pd.DataFrame()
         title = i[2]
@@ -329,9 +332,11 @@ def plotDataCompare(df,number = 50):
     dC = dfConfirmed.iloc[:,0]
     dM = dfMortality.iloc[:,0]
     dD = dfDeaths.iloc[:,0]
-    ax.bar(dC.index, dC , width, label='Confirmed',color=colors[0])
+    
+    ax = plt.subplot(1,1,1)
+    ax.clear()
+    #ax.bar(dC.index, dC , width, label='Confirmed',color=colors[0])
     #ax.plot(dC.index, dC)
-    #print(dC.index,dC.shape)
     ax.plot(dM.index, dM)
     ax.plot(dD.index, dD)
     #print(dM.index,dM.shape)
@@ -339,7 +344,7 @@ def plotDataCompare(df,number = 50):
     
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
     plt.setp(ax.get_yticklabels(),fontsize=fontsize)
-    plt.subplots_adjust(left=0.30, bottom=None, right=0.98, top=None, wspace=None, hspace=None)
+    #plt.subplots_adjust(left=0.30, bottom=None, right=0.98, top=None, wspace=None, hspace=None)
     plt.show()   
         
 def pathsFiles(dir,filter=''): #"cpp h txt jpg"
@@ -676,7 +681,7 @@ def getAlldateRecord(csvpath):
 def plotCountriesInfo(csvpath=r'./data/'):
     all = getAlldateRecord(csvpath)
     saveCountriesInfo(all)
-    
+
     plotCountryInfo(all) #style1
     plotCountryInfo(all,column='Deaths')
     plotCountryInfo(all,column='NewConfirmed')
@@ -722,7 +727,7 @@ def saveCountriesInfo(all):
         df = getCountryNewCasesAndDeathsDf(df)
         df.to_csv(gSaveCountryData+i+'.csv',index=True)
         bar.update(k+1)
-        
+    
 def plotCountryInfo(all,column='Confirmed'):
     days = 30
     countriesNumbers = 15
@@ -870,12 +875,12 @@ def getCountryDayData(country,allList):
             pass
         
     pdCountry.set_index(["Location"], inplace=True)   
-    #print(pdCountry)
+    #print(pdCountry)    
     return pdCountry
     
 if __name__ == '__main__':
     csvpath=r'./data/'
-    #readCsv(csvpath+'coronavirous_2020-05-05_193026.csv')
+    #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
     #plotChangeBydata(csvpath)
     #plotWorldStatisticByTime()
     #plotNewCasesByCountry(csvpath)

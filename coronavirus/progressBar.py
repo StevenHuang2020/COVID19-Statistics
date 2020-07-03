@@ -19,6 +19,7 @@ class SimpleProgressBar():
         #sys.stdout.write( '\r%d%% [%s]' % (int(x), '#' * pointer + '.' * (self.width - pointer)))
         #sys.stdout.write( '\r%d%% [%s]' % (int(x), '=' * pointer + '>' + '.' * (self.width - pointer)))
         #sys.stdout.write( '\r%d%% %d/%d [%s]' % (int(x), x, self.total, '=' * pointer + '>' + '.' * (self.width - pointer)))
+        
         sys.stdout.write( '\r%s:%d/%d %d%% [%s]' % (self.title, x, self.total, percent, '=' * pointer + '>' + '.' * (self.width - pointer)))
         sys.stdout.flush()
         if percent >= 100: 
@@ -42,10 +43,9 @@ class SimpleProgressBar():
 def main():
     # An example of usage...
     pb = SimpleProgressBar(total=200)
-    for _ in range(2):
-        for i in range(201):
-            pb.update(i)
-            time.sleep(0.05)
+    for i in range(201):
+        pb.update(i)
+        time.sleep(0.05)
     
 if __name__=='__main__':
     main()

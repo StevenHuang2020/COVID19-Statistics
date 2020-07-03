@@ -16,7 +16,8 @@ from plotCoronavirous import binaryDf
 
 gScaler = MinMaxScaler() #StandardScaler() #
 
-gSaveBasePath=r'.\images\\'
+gSaveBasePath = r'.\images\\'
+gSavePredict = r'.\dataPredict\\'
 
 def plotDataSet(data):
     plt.plot(data)
@@ -116,7 +117,8 @@ def plotPredictFuture(model,trainY,index,data):
     print('predict period:',newIndex)
     
     df = pd.DataFrame({'Date':newIndex,'Predicted cases':pred})
-    print('table:',df)
+    #print('table:',df)
+    df.to_csv(gSavePredict+startIndex+'_predict.csv',index=True)
     
     offset=70 #120
     plt.figure(figsize=(8,6))
@@ -169,7 +171,7 @@ def train(dataset):
     #print('trainX.shape = ',trainX.shape)
 
     model = createModel(look_back)
-    model.fit(trainX, trainY, epochs=100, batch_size=50, verbose=2) #500
+    model.fit(trainX, trainY, epochs=500, batch_size=50, verbose=2) #500
     
     # a = np.array([trainY[-1]]).reshape(-1,1,1)
     # #a = np.array([[0.88964097]]).reshape(-1,1,1)

@@ -29,7 +29,6 @@ def writeToCsv(df):
     file = base + 'coronavirous_' + t + '.csv'
     df.to_csv(file,index=True)
           
-#columns=['Location', 'Confirmed', 'Case_Per_1M_people', 'Recovered', 'Deaths']    
 def preprocessData(df):
     #print(df)
     print('\n\nBefore preprocess:\n',df.head())
