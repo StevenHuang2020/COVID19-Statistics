@@ -123,7 +123,7 @@ def plotPredictFuture(model,trainY,index,data):
     
     startIndex = datetime.datetime.strptime(startIndex, '%m/%d/%Y')
     predictTime=datetime.datetime.strftime(startIndex,'%Y-%m-%d')
-    df.to_csv(gSavePredict+predictTime+'_predict.csv',index=False)
+    df.to_csv(gSavePredict+predictTime+'_predict.csv',index=True)
     
     offset=70 #120
     plt.figure(figsize=(8,6))
@@ -176,7 +176,7 @@ def train(dataset):
     #print('trainX.shape = ',trainX.shape)
 
     model = createModel(look_back)
-    model.fit(trainX, trainY, epochs=500, batch_size=50, verbose=2) #500
+    model.fit(trainX, trainY, epochs=300, batch_size=50, verbose=2) #500
     
     # a = np.array([trainY[-1]]).reshape(-1,1,1)
     # #a = np.array([[0.88964097]]).reshape(-1,1,1)
@@ -224,7 +224,7 @@ def evaulatePredition(df,predict):
     
 def predict():
     dataset = getDataSet()
-    #train(dataset)
+    train(dataset)
     
     predicted = getPredictDf(file=r'.\dataPredict\2020-07-01_predict.csv')
     evaulatePredition(dataset,predicted)
