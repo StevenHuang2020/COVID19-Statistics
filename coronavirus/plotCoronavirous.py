@@ -678,10 +678,7 @@ def getAlldateRecord(csvpath):
     
     return allInfos
 
-def plotCountriesInfo(csvpath=r'./data/'):
-    all = getAlldateRecord(csvpath)
-    saveCountriesInfo(all)
-
+def plotCountry(all):
     plotCountryInfo(all) #style1
     plotCountryInfo(all,column='Deaths')
     plotCountryInfo(all,column='NewConfirmed')
@@ -696,6 +693,19 @@ def plotCountriesInfo(csvpath=r'./data/'):
     plotCountryInfo3(all,column='Deaths')
     plotCountryInfo3(all,column='NewConfirmed')
     plotCountryInfo3(all,column='NewDeaths')
+    
+def plotCountriesInfo(csvpath=r'./data/'):
+    import threading
+    all = getAlldateRecord(csvpath)
+    if 0:
+        saveCountriesInfo(all)
+        plotCountry(all)
+    else:
+        t = threading.Thread(target=saveCountriesInfo, name='Save country covid-19 data file', args=(all, ))
+        #t.setDaemon(True)
+        t.start()
+        plotCountry(all)
+        t.join()
     
 def getCountryNewCasesAndDeathsDf(pdDate):
     pdDate['NewConfirmed'] = 0
@@ -851,11 +861,11 @@ def plotCountryAxBar(ax,x,y,label,title,color=None):
     plt.setp(ax.get_yticklabels(),fontsize=fontsize)
     #plt.show()
     
-def plotCountry(ax,x,y,label):
-    plt.plot(x,y,label=label)
-    plt.yscale("log")
-    plt.legend()
-    plt.show()    
+# def plotCountry(ax,x,y,label):
+#     plt.plot(x,y,label=label)
+#     plt.yscale("log")
+#     plt.legend()
+#     plt.show()    
     
 def getCountryDayData(country,allList):
     pdCountry = pd.DataFrame()

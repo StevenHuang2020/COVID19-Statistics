@@ -108,17 +108,22 @@ def plotPredictFuture(model,trainY,index,data):
     startIndex = index[-1]
     sD=datetime.datetime.strptime(startIndex,'%b %d, %Y')
     newIndex=[]
+    
+    startIndex = datetime.datetime.strftime(sD,'%m/%d/%Y')
     newIndex.append(startIndex)
     for i in range(Number):
         d = sD + datetime.timedelta(days=i+1)
-        d = datetime.datetime.strftime(d,'%b %d, %Y')
+        d = datetime.datetime.strftime(d,'%m/%d/%Y')
         #print(d)
         newIndex.append(d)
     print('predict period:',newIndex)
     
     df = pd.DataFrame({'Date':newIndex,'Predicted cases':pred})
     #print('table:',df)
-    df.to_csv(gSavePredict+startIndex+'_predict.csv',index=True)
+    
+    startIndex = datetime.datetime.strptime(startIndex, '%m/%d/%Y')
+    predictTime=datetime.datetime.strftime(startIndex,'%Y-%m-%d')
+    df.to_csv(gSavePredict+predictTime+'_predict.csv',index=False)
     
     offset=70 #120
     plt.figure(figsize=(8,6))
@@ -183,12 +188,50 @@ def train(dataset):
     plotPredictCompare(model,trainX,index,rawdata)
     plotPredictFuture(model,trainY,index,rawdata)
        
+def getPredictDf(file):
+    df = pd.read_csv(file)
+    #df['Date'] = pd.to_datetime(df.Date, format='%m %d, %Y')
+    return df
+
+def evaulatePredition(df,predict):
+    def getTrueCases(day,df):
+        for i in range(df.shape[0]):
+            d = df.iloc[i, df.columns.get_loc('Date')]
+            cases = df.iloc[i, df.columns.get_loc('Cases')]
+            d = datetime.datetime.strptime(d,'%b %d, %Y')
+        
+            #print('day=',day)
+            date = datetime.datetime.strptime(day,'%m/%d/%Y')
+            #print(d,date,cases)
+            if date == d:
+                return cases
+        return 0
+    
+    print(predict)
+    allCases = []
+    for i in range(predict.shape[0]):
+        #date = predict.iloc[i,0]
+        #predictCase = predict.iloc[i,1]
+        date = predict.loc[i]['Date']
+        predictCase = predict.loc[i]['Predicted cases']
+        cases = getTrueCases(date,df)
+        #print(date,predictCase)
+        #print(date,predictCase,cases)
+        allCases.append(cases)
+        #break
+    predict['Cases'] = allCases
+    print(predict)
+    
 def predict():
     dataset = getDataSet()
-    train(dataset)
+    #train(dataset)
+    
+    predicted = getPredictDf(file=r'.\dataPredict\2020-07-01_predict.csv')
+    evaulatePredition(dataset,predicted)
     
 def main():
     predict()
+    pass
     
 if __name__=='__main__':
     main()

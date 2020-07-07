@@ -1,0 +1,249 @@
+Location,NewCases,NewDeaths
+Worldwide,212094,3471
+United States,60303,392
+Brazil,21486,656
+India,46500,892
+Russia,6611,135
+Peru,2985,183
+Chile,3025,76
+United Kingdom,352,16
+Mexico,4902,480
+Spain,1244,3
+Iran,5173,323
+Italy,208,8
+Pakistan,3344,50
+Saudi Arabia,4207,52
+Turkey,1086,16
+South Africa,8971,111
+Germany,506,6
+France,1375,27
+Bangladesh,3201,44
+Colombia,3171,146
+Canada,399,9
+Qatar,546,5
+Mainland China,14,0
+Argentina,2632,75
+Egypt,969,79
+Sweden,1642,13
+Indonesia,1209,70
+Belarus,250,6
+Ecuador,422,40
+Iraq,1796,94
+Belgium,107,0
+United Arab Emirates,528,1
+Netherlands,36,1
+Kuwait,703,5
+Kazakhstan,2512,76
+Ukraine,543,13
+Oman,1557,5
+Philippines,2079,6
+Singapore,183,0
+Portugal,232,6
+Bolivia,2438,98
+Panama,2351,50
+Dominican Republic,703,10
+Poland,205,4
+Afghanistan,239,34
+Switzerland,47,0
+Israel,791,3
+Bahrain,964,2
+Nigeria,575,9
+Romania,250,18
+Armenia,330,7
+Ireland,4,0
+Honduras,1744,27
+Guatemala,724,34
+Ghana,992,7
+Azerbaijan,513,8
+Japan,253,0
+Austria,85,0
+Moldova,92,10
+Serbia,289,6
+Algeria,463,7
+Nepal,180,1
+Morocco,164,2
+Cameroon,326,0
+South Korea,90,2
+Denmark,47,1
+Czechia,51,2
+Côte d'Ivoire,194,1
+Uzbekistan,342,3
+Sudan,127,8
+Norway,6,0
+Malaysia,5,0
+Australia,137,2
+Kyrgyzstan,764,21
+Kenya,181,4
+El Salvador,250,6
+Senegal,78,0
+Democratic Republic of the Congo,21,0
+Venezuela,661,6
+Finland,4,0
+North Macedonia,78,5
+Ethiopia,0,0
+Haiti,77,0
+Tajikistan,103,1
+Gabon,123,2
+Bulgaria,63,5
+Guinea,0,0
+Bosnia and Herzegovina,209,9
+Costa Rica,245,4
+French Guiana,141,4
+Mauritania,69,3
+Djibouti,30,0
+Palestine,445,4
+Luxembourg,20,0
+Hungary,6,0
+Central African Republic,64,4
+Kosovo,195,4
+Greece,43,0
+Madagascar,309,1
+Croatia,69,0
+Thailand,5,0
+Equatorial Guinea,0,0
+Somalia,9,0
+Albania,71,3
+Mayotte,11,34
+Maldives,22,2
+Paraguay,29,0
+Cuba,8,0
+Mali,1,0
+Nicaragua,0,0
+South Sudan,35,0
+Sri Lanka,1,0
+Estonia,1,0
+Lebanon,12,0
+Iceland,3,0
+Lithuania,5,0
+Guinea-Bissau,25,0
+Slovakia,1,0
+Malawi,129,2
+Slovenia,16,0
+Zambia,0,0
+Republic of the Congo,0,0
+Sierra Leone,5,0
+New Zealand,3,0
+Cape Verde,12,0
+Yemen,25,7
+Hong Kong,17,0
+Benin,0,0
+Tunisia,11,0
+Jordan,3,0
+Latvia,3,0
+Libya,71,2
+Rwanda,21,0
+Niger,5,0
+Mozambique,25,0
+Eswatini,23,0
+Cyprus,1,0
+Burkina Faso,13,0
+Uruguay,4,1
+Uganda,14,0
+Georgia,2,0
+Liberia,17,2
+Chad,0,0
+Andorra,0,0
+Montenegro,60,0
+Zimbabwe,18,1
+Jamaica,4,0
+São Tomé and Príncipe,1,0
+San Marino,0,0
+Togo,0,0
+Malta,0,0
+Suriname,10,0
+Réunion,11,0
+Western Sahara,0,0
+Tanzania,0,0
+Namibia,73,0
+Taiwan,0,0
+Syria,14,1
+Vietnam,14,0
+Angola,0,0
+Mauritius,1,0
+Isle of Man,0,0
+Jersey,5,-16
+Myanmar (Burma),3,0
+Botswana,39,0
+Comoros,0,0
+Guyana,1,1
+Guernsey,0,0
+Guernsey,0,0
+Martinique,0,0
+Mongolia,0,0
+Eritrea,0,0
+Cayman Islands,0,0
+Burundi,0,0
+Faroe Islands,1,0
+Guadeloupe,0,0
+Gibraltar,0,0
+Bermuda,0,0
+Brunei,0,0
+Cambodia,0,0
+Trinidad and Tobago,0,0
+Northern Cyprus,0,0
+Monaco,0,0
+Aruba,0,0
+The Bahamas,0,0
+Barbados,0,0
+Lesotho,12,0
+Liechtenstein,0,0
+Seychelles,0,0
+Bhutan,2,0
+Sint Maarten,0,0
+Antigua and Barbuda,1,0
+French Polynesia,0,0
+The Gambia,4,1
+Turks and Caicos Islands,1,0
+Macao,0,0
+Saint Martin,0,0
+Belize,0,0
+Saint Vincent and the Grenadines,0,0
+Curaçao,0,0
+Timor-Leste,0,0
+Grenada,0,0
+Saint Lucia,0,0
+Fiji,3,0
+New Caledonia,0,0
+Åland Islands,0,0
+Laos,0,0
+Dominica,0,0
+Saint Kitts and Nevis,0,0
+Falkland Islands (Islas Malvinas),0,0
+Greenland,0,0
+Vatican City,0,0
+Montserrat,0,0
+Papua New Guinea,0,0
+British Virgin Islands,0,0
+Caribbean Netherlands,0,0
+Saint Barthélemy,0,0
+Anguilla,0,0
+Saint Pierre and Miquelon,0,0
+Bouvet Island,0,0
+British Indian Ocean Territory,0,0
+Turkmenistan,0,0
+Svalbard and Jan Mayen,0,0
+Solomon Islands,0,0
+Christmas Island,0,0
+Cocos (Keeling) Islands,0,0
+Cook Islands,0,0
+French Southern and Antarctic Lands,0,0
+Federated States of Micronesia,0,0
+Heard Island and McDonald Islands,0,0
+Kiribati,0,0
+Marshall Islands,0,0
+Niue,0,0
+North Korea,0,0
+Nauru,0,0
+Norfolk Island,0,0
+Palau,0,0
+Pitcairn Islands,0,0
+Samoa,0,0
+South Georgia and the South Sandwich Islands,0,0
+Antarctica,0,0
+Tokelau,0,0
+Tonga,0,0
+Tuvalu,0,0
+United States Minor Outlying Islands,0,0
+Vanuatu,0,0
+"Saint Helena, Ascension and Tristan da Cunha",0,0
+Wallis and Futuna,0,0

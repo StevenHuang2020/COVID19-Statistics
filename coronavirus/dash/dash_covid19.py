@@ -17,7 +17,7 @@ from plotCoronavirous import pathsFiles
 
 class layperOutClass:
     def __init__(self,app):
-        print("-------------------init--------")
+        print("-------------------init-----------------")
         self.app = app
         #self.color_lock = [ "#cce6ff", "#857aad", "#690a3d"]
         self.wroldData = self.getWorldData()
@@ -123,26 +123,3 @@ if __name__ == '__main__':
     layer = layperOutClass(app)
     setupApp(layer,app)
     app.run_server(debug=True)
-    
-    
-    '''
-    html.P([html.Label("Time"),
-            dcc.Slider(id = 'world_lockdown_slider',
-                            marks = {0:{'label':'Jan 23'}, 1:{'label':''}, 2:{'label':''}, 3:{'label':'Feb 25'}, 
-                            4:{'label':''}, 5:{'label':''}, 6:{'label':'Mar 5'}, 7:{'label':''}, 
-                            8:{'label':''}, 9:{'label':''}, 10:{'label':'Mar 10'}},
-                            min = 0,
-                            max = 10,
-                            value = 5,
-                            included = False,
-                            updatemode='drag'                                    
-                            )           
-                ],  style = {
-                            'width' : '87%',
-                            'fontSize' : '20px',
-                            'padding-left' : '60px',
-                            'padding-right' : '100px',
-                            'display': 'inline-block'
-                            })
-                                            
-    '''
