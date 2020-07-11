@@ -104,4 +104,7 @@ Source reference: https://ourworldindata.org/covid-cases
     <td><img src="images/WorldPredictCompare.png" width="320" height="240" /></td>
     <td><img src="images/WorldFuturePredict.png" width="320" height="240" /></td>
   </tr>
+  <tr>
+    <td><img src="images/WorldFuturePredictPrecise.png" width="320" height="240" /></td>
+  </tr>
 </table>

@@ -100,6 +100,14 @@ def plotPredictCompare(model,trainX,index,data):
     plt.savefig(gSaveBasePath + 'WorldPredictCompare.png')
     plt.show()
  
+def changeNewIndexFmt(newIndex):
+    new = []
+    for i in newIndex:
+        i=datetime.datetime.strptime(i,'%m/%d/%Y')
+        i = datetime.datetime.strftime(i,'%b %d, %Y')
+        new.append(i)
+    return new
+
 def plotPredictFuture(model,trainY,index,data):
     Number = 10 #predict future Number days
     pred = predictFutuer(model,trainY[-1],Number)
@@ -125,12 +133,16 @@ def plotPredictFuture(model,trainY,index,data):
     predictTime=datetime.datetime.strftime(startIndex,'%Y-%m-%d')
     df.to_csv(gSavePredict+predictTime+'_predict.csv',index=True)
     
-    offset=70 #120
+    offset=150#70 #120
     plt.figure(figsize=(8,6))
     plt.title('Future Covid19 ' + str(Number) + ' days prediction')
     ax = plt.subplot(1,1,1)
     plotData(ax,index[offset:],data[offset:],'now cases')
+    
+    newIndex = changeNewIndexFmt(newIndex)
     plotData(ax,newIndex,pred,'predict cases')
+    #print('oldIndex=',index[offset:])
+    #print('newIndex=',newIndex)
     ax.table(cellText=df.values, colLabels=df.columns, loc='center') #,clip_box=[[0,5],[0+100,5+100]]
     plt.savefig(gSaveBasePath + 'WorldFuturePredict.png')
     plt.show()
@@ -207,20 +219,34 @@ def evaulatePredition(df,predict):
                 return cases
         return 0
     
-    print(predict)
-    allCases = []
+    #print(predict)
+    allCases = np.zeros((predict.shape[0],))
+    accs = np.zeros((predict.shape[0],))
     for i in range(predict.shape[0]):
         #date = predict.iloc[i,0]
         #predictCase = predict.iloc[i,1]
         date = predict.loc[i]['Date']
         predictCase = predict.loc[i]['Predicted cases']
         cases = getTrueCases(date,df)
+        acc = 0
+        if cases != 0:
+            acc = (cases-predictCase)*100/cases
+        
         #print(date,predictCase)
         #print(date,predictCase,cases)
-        allCases.append(cases)
+        accs[i] = acc
+        allCases[i] = cases
         #break
     predict['Cases'] = allCases
+    predict['Precise'] = accs
     print(predict)
+    
+    plt.figure(figsize=(8,6))
+    plt.title('Prediction precise')
+    ax = plt.subplot(1,1,1)
+    ax.table(cellText=predict.values, colLabels=predict.columns, loc='center')
+    plt.savefig(gSaveBasePath + 'WorldFuturePredictPrecise.png')
+    plt.show()
     
 def predict():
     dataset = getDataSet()
