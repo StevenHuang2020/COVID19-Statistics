@@ -88,8 +88,16 @@ Updated to adapt to the new google page.<br/>
   </tr>
   <tr>
     <td><img src="images/World_recentNewCases.png" width="320" height="240" /></td>
+    <td><img src="images/World_Deaths.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="images/World_NewDeaths.png" width="320" height="240" /></td>
+    <td><img src="images/World_RecentNewDeaths.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
     <td><img src="images/WorldChange.png" width="320" height="240" /></td>
   </tr>
+  
  </table>
 <br/>
 

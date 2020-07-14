@@ -242,7 +242,7 @@ def evaulatePredition(df,predict):
     print(predict)
     
     plt.figure(figsize=(8,6))
-    plt.title('Prediction precise')
+    plt.title('Prediction precision')
     ax = plt.subplot(1,1,1)
     ax.table(cellText=predict.values, colLabels=predict.columns, loc='center')
     plt.savefig(gSaveBasePath + 'WorldFuturePredictPrecise.png')
