@@ -9,9 +9,8 @@
 
 The added mortality column calculated by  this: df['Deaths'] / df['Confirmed'].<br/>
 Please note that this is not necessarily the correct definition.<br/>
-Reference:
-https://google.com/covid19-map/ <br/>
-
+Reference: https://google.com/covid19-map/ <br/>
+https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv
 
 #### main.py
 Using lxml to get data from website.
@@ -105,8 +104,6 @@ Updated to adapt to the new google page.<br/>
 <br/>
 World predicted confirmed cases by using LSTM algorithm.<br/>
 Source reference: https://ourworldindata.org/covid-cases<br/>
-https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv
-
 <br/>
 
 <table>
