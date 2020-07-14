@@ -104,7 +104,9 @@ Updated to adapt to the new google page.<br/>
 #### Prediction
 <br/>
 World predicted confirmed cases by using LSTM algorithm.<br/>
-Source reference: https://ourworldindata.org/covid-cases
+Source reference: https://ourworldindata.org/covid-cases<br/>
+https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv
+
 <br/>
 
 <table>
