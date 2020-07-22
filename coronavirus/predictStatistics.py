@@ -40,12 +40,21 @@ def create_dataset(dataset, look_back=1):
     return np.array(dataX), np.array(dataY)
 
 def getDataSet():
-    dataset = pd.read_csv('total-cases-covid-19.csv')
-    dataset = dataset[dataset['Entity'] == 'World' ]
-    dataset = dataset.rename(columns={"Total confirmed cases of COVID-19 (cases)": "Cases"})
-    print(dataset.head())
-    dataset = dataset.iloc[:, [2,3]]
-    #dataset = dataset['Date', 'Cases']
+    if 0:
+        dataset = pd.read_csv('total-cases-covid-19.csv')
+        dataset = dataset[dataset['Entity'] == 'World' ]
+        dataset = dataset.rename(columns={"Total confirmed cases of COVID-19 (cases)": "Cases"})
+        print(dataset.head())
+        dataset = dataset.iloc[:, [2,3]]
+        #dataset = dataset['Date', 'Cases']
+    else:
+        dataset = pd.read_csv('owid-covid-data.csv')
+        dataset = dataset[dataset['location'] == 'World' ]
+        #dataset = dataset.rename(columns={"Total confirmed cases of COVID-19 (cases)": "Cases"})
+        print(dataset.head())
+        dataset = dataset.loc[:, ['date','total_cases']]
+        dataset = dataset.rename(columns={'date':'Date', "total_cases": "Cases"})
+        #dataset = dataset['Date', 'Cases']
     
     #print(dataset.describe().T)
     print(dataset.head())
@@ -104,7 +113,7 @@ def changeNewIndexFmt(newIndex):
     new = []
     for i in newIndex:
         i=datetime.datetime.strptime(i,'%m/%d/%Y')
-        i = datetime.datetime.strftime(i,'%b %d, %Y')
+        i = datetime.datetime.strftime(i,'%Y-%m-%d') #'%b %d, %Y'
         new.append(i)
     return new
 
@@ -114,7 +123,8 @@ def plotPredictFuture(model,trainY,index,data):
     print('predict start date:',index[-1])
 
     startIndex = index[-1]
-    sD=datetime.datetime.strptime(startIndex,'%b %d, %Y')
+    #sD=datetime.datetime.strptime(startIndex,'%b %d, %Y')
+    sD=datetime.datetime.strptime(startIndex,'%Y-%m-%d')
     newIndex=[]
     
     startIndex = datetime.datetime.strftime(sD,'%m/%d/%Y')
@@ -210,8 +220,8 @@ def evaulatePredition(df,predict):
         for i in range(df.shape[0]):
             d = df.iloc[i, df.columns.get_loc('Date')]
             cases = df.iloc[i, df.columns.get_loc('Cases')]
-            d = datetime.datetime.strptime(d,'%b %d, %Y')
-        
+            #d = datetime.datetime.strptime(d,'%b %d, %Y')
+            d = datetime.datetime.strptime(d,'%Y-%m-%d')
             #print('day=',day)
             date = datetime.datetime.strptime(day,'%m/%d/%Y')
             #print(d,date,cases)
@@ -238,7 +248,7 @@ def evaulatePredition(df,predict):
         allCases[i] = cases
         #break
     predict['Cases'] = allCases
-    predict['Precise'] = accs
+    predict['Precision error'] = accs
     print(predict)
     
     plt.figure(figsize=(8,6))
@@ -251,8 +261,8 @@ def evaulatePredition(df,predict):
 def predict():
     dataset = getDataSet()
     train(dataset)
-    
-    predicted = getPredictDf(file=r'.\dataPredict\2020-07-01_predict.csv')
+
+    predicted = getPredictDf(file=r'.\dataPredict\2020-07-10_predict.csv')
     evaulatePredition(dataset,predicted)
     
 def main():

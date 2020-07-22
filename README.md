@@ -83,10 +83,10 @@ Updated to adapt to the new google page.<br/>
   </tr>
   <tr>
     <td><img src="images/World_Cases.png" width="320" height="240" /></td>
-    <td><img src="images/World_newCases.png" width="320" height="240" /></td>
+    <td><img src="images/World_NewCases.png" width="320" height="240" /></td>
   </tr>
   <tr>
-    <td><img src="images/World_recentNewCases.png" width="320" height="240" /></td>
+    <td><img src="images/World_RecentNewCases.png" width="320" height="240" /></td>
     <td><img src="images/World_Deaths.png" width="320" height="240" /></td>
   </tr>
   <tr>
