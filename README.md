@@ -100,7 +100,7 @@ Updated to adapt to the new google page.<br/>
  </table>
 <br/>
 
-#### Prediction
+#### World Prediction
 <br/>
 World predicted confirmed cases by using LSTM algorithm.<br/>
 Source reference: https://ourworldindata.org/covid-cases<br/>
@@ -113,5 +113,24 @@ Source reference: https://ourworldindata.org/covid-cases<br/>
   </tr>
   <tr>
     <td><img src="images/WorldFuturePredictPrecise.png" width="320" height="240" /></td>
+  </tr>
+</table>
+
+### NZ Statistic
+<br/>
+Source reference: https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-current-cases-details#download<br/>
+<br/>
+
+<table>
+  <tr>
+    <td><img src="images/NZ_LastTravelCountry.png" width="320" height="240" /></td>
+    <td><img src="images/NZ_IsOVerseas.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="images/NZ_Gender.png" width="320" height="240" /></td>
+    <td><img src="images/NZ_DHB.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="images/NZ_AgeGroup.png" width="320" height="240" /></td>
   </tr>
 </table>

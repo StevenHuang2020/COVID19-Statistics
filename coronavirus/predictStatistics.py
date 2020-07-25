@@ -213,6 +213,7 @@ def train(dataset):
 def getPredictDf(file):
     df = pd.read_csv(file)
     #df['Date'] = pd.to_datetime(df.Date, format='%m %d, %Y')
+    #df.set_index(["Date"], inplace=True)
     return df
 
 def evaulatePredition(df,predict):
@@ -249,6 +250,7 @@ def evaulatePredition(df,predict):
         #break
     predict['Cases'] = allCases
     predict['Precision error'] = accs
+    predict = predict.iloc[:,1:-1] #remove index number column
     print(predict)
     
     plt.figure(figsize=(8,6))
