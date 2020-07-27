@@ -132,5 +132,10 @@ Source reference: https://www.health.govt.nz/our-work/diseases-and-conditions/co
   </tr>
   <tr>
     <td><img src="images/NZ_AgeGroup.png" width="320" height="240" /></td>
+    <td><img src="images/NZ_NZ_COVID-19_RecentCases.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="images/NZ_NZ_COVID-19_EveryDayCases.png" width="320" height="240" /></td>
+    <td><img src="images/NZ_NZ_COVID-19_CumlativeCases.png" width="320" height="240" /></td>
   </tr>
 </table>

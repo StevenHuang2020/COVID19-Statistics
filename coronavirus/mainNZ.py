@@ -5,15 +5,32 @@
 #usgae:
 #python .\mainNZ.py
 #"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+import sys
+sys.path.append("..")
+from lxml import etree
 import datetime
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from plotCoronavirous import gSaveBasePath
+from common.getHtml import openUrl, openUrlUrlLib
 
-#reference: https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases
+#reference: https://www.health.govt.nz/our-work/diseases-and-conditions/covid-getDataFileFromWeb19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases
 #https://www.health.govt.nz/system/files/documents/pages/covid-cases-24july20.xlsx
+
+mainUrl='https://www.health.govt.nz/'
+url=mainUrl + 'our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-current-cases-details#download'
+
+def getDataFileFromWeb(url=url):
+    html = openUrlUrlLib(url)
+    #print(html)
+    html = etree.HTML(html)
+    X = '//*[@id="node-10866"]/div/div/div/ul[2]/li[1]/a'
+    #X = '//table'
+    res = html.xpath(X)
+    print(len(res), res)
+    print(res[0].get('href'))
+    return mainUrl+res[0].get('href')
 
 def readExcel(file,sheetname=0,header=3,verbose=False):
     df = pd.read_excel(file,sheet_name=sheetname,header=header)
@@ -55,6 +72,20 @@ def plotStatistcs(df,title):
     plt.savefig(gSaveBasePath + 'NZ_'+title+'.png')
     plt.show()
     
+def plotTotal(df,title):
+    fontsize = 8
+    kind='bar'    
+    ax = df.plot(kind=kind,legend=False) 
+    
+    ax.set_title(title,fontsize=fontsize)
+    #ax.legend(fontsize=fontsize)
+    plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
+    plt.setp(ax.get_yticklabels(),rotation=30, fontsize=fontsize)
+    plt.xlabel('')
+    plt.ylabel('')
+    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None) 
+    plt.savefig(gSaveBasePath + 'NZ_'+title+'.png')
+    plt.show()
     
 def parseConfirmed(df):
     Sex = list(set(df['Sex']))
@@ -128,11 +159,60 @@ def parseConfirmed(df):
     plotStatistcs(dfbOverseas,title='IsOVerseas')
     plotStatistcs(dfLastTravelCountry,title='LastTravelCountry')
     
-def main():
-    file=r'.\NZ\covid-cases-24july20.xlsx'
+def plotNZDataChange(df):
+    def getDataRecordNum(df,date):
+        records = df[df['Date notified of potential case'] == date]
+        return records.shape[0]
+    
+    def totalDays(start,stop):
+        delta = stop-start
+        #print(delta.days) #type(days)
+        return delta.days
+    
+    print(df.head())
+    dfDate = df['Date notified of potential case']
+    print(dfDate.shape)
+    
+    dfDate = list(set(dfDate))
+    dfDate.sort()
+    print(len(dfDate))
+    #print(dfDate)
+    
+    startDate = dfDate[0]
+    stopDate = dfDate[-1]
+    days = totalDays(startDate,stopDate)
+    print('startDate,stopDate=',startDate,stopDate,days)
+
+    columns=['Date','Number','Cumlative']
+    dfStat  = pd.DataFrame()
+    s = 0
+    for i in range(days+1):
+        d = startDate + datetime.timedelta(days=i)
+        d = datetime.datetime.strftime(d,'%Y-%m-%d')
+        number = getDataRecordNum(df,d)
+        #print(d,number)
+        s += number
+        line = pd.DataFrame([[d, number, s]],columns=columns)
+        dfStat = dfStat.append(line, ignore_index=True)
+        
+    dfStat.set_index(["Date"], inplace=True)
+    #print(dfStat)
+    plotTotal(dfStat['Number'][::4],title='NZ_COVID-19_EveryDayCases')
+    plotTotal(dfStat['Cumlative'][::4],title='NZ_COVID-19_CumlativeCases')
+    #print(dfStat['Number'][-30:])
+    recentDays=30
+    plotTotal(dfStat['Number'][-1*recentDays:],title='NZ_COVID-19_RecentCases')
+    
+def getNZCovid19():
+    #file=r'.\NZ\covid-cases-24july20.xlsx'
+    file = getDataFileFromWeb()
     dfConfirmed = readExcel(file,'Confirmed') #'Probable'
     #dfConfirmed = readExcel(file, ['Confirmed','Probable'])
     parseConfirmed(dfConfirmed)
+    plotNZDataChange(dfConfirmed)
+    
+def main():
+    getNZCovid19()
     
 if __name__ == '__main__':
     main()

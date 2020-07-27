@@ -10,6 +10,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from progressBar import SimpleProgressBar
+#from mainNZ import getNZCovid19
 
 gSaveBasePath=r'.\images\\'
 gSaveChangeData=r'.\dataChange\\'
@@ -103,6 +104,7 @@ def plotData(df,number = 25):
     plotWorldStatisticByTime()
     plotNewCasesByCountry()
     plotCountriesInfo()
+    #getNZCovid19()
     
 def binaryDf(df,labelAdd=True):
     newdf = pd.DataFrame(columns=df.columns)

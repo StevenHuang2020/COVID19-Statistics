@@ -241,7 +241,7 @@ def evaulatePredition(df,predict):
         cases = getTrueCases(date,df)
         acc = 0
         if cases != 0:
-            acc = (cases-predictCase)*100/cases
+            acc = round((cases-predictCase)*100/cases,5)
         
         #print(date,predictCase)
         #print(date,predictCase,cases)
@@ -250,7 +250,7 @@ def evaulatePredition(df,predict):
         #break
     predict['Cases'] = allCases
     predict['Precision error'] = accs
-    predict = predict.iloc[:,1:-1] #remove index number column
+    predict = predict.iloc[:,1:] #remove index number column
     print(predict)
     
     plt.figure(figsize=(8,6))
