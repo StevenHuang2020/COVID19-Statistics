@@ -46,7 +46,7 @@ def readExcel(file,sheetname=0,header=3,verbose=False):
         #print('df.dtypes = ',df.dtypes)
     return df
 
-def plotStatistcs(df,title):
+def plotStatistcs(df,title,label):
     fontsize = 8
     
     kind='bar'
@@ -69,10 +69,10 @@ def plotStatistcs(df,title):
     plt.xlabel('')
     plt.ylabel('')
     plt.subplots_adjust(left=0.2, bottom=0.22, right=0.98, top=0.94, wspace=None, hspace=None) 
-    plt.savefig(gSaveBasePath + 'NZ_'+title+'.png')
+    plt.savefig(gSaveBasePath + 'NZ_'+label+'.png')
     plt.show()
     
-def plotTotal(df,title):
+def plotTotal(df,title,label):
     fontsize = 8
     kind='bar'    
     ax = df.plot(kind=kind,legend=False) 
@@ -84,7 +84,7 @@ def plotTotal(df,title):
     plt.xlabel('')
     plt.ylabel('')
     plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None) 
-    plt.savefig(gSaveBasePath + 'NZ_'+title+'.png')
+    plt.savefig(gSaveBasePath + 'NZ_'+label+'.png')
     plt.show()
     
 def parseConfirmed(df):
@@ -153,11 +153,18 @@ def parseConfirmed(df):
     # print(dfbOverseas)
     # print(dfLastTravelCountry)
     
-    plotStatistcs(dfSex,title='Gender')
-    plotStatistcs(dfAgeGroup,title='AgeGroup')
-    plotStatistcs(dfDHB,title='DHB')
-    plotStatistcs(dfbOverseas,title='IsOVerseas')
-    plotStatistcs(dfLastTravelCountry,title='LastTravelCountry')
+    now = datetime.datetime.now()
+    today = str(' Date:') + str(now.strftime("%Y-%m-%d %H:%M:%S"))
+    label='Gender'
+    plotStatistcs(dfSex,label=label,title=label + ' ' + today)
+    label='AgeGroup'
+    plotStatistcs(dfAgeGroup,label=label,title=label + ' ' + today)
+    label='DHB'
+    plotStatistcs(dfDHB,label=label,title=label + ' ' + today)
+    label='IsOVerseas'
+    plotStatistcs(dfbOverseas,label=label,title=label + ' ' + today)
+    label='LastTravelCountry'
+    plotStatistcs(dfLastTravelCountry,label=label,title=label + ' ' + today)
     
 def plotNZDataChange(df):
     def getDataRecordNum(df,date):
@@ -195,13 +202,19 @@ def plotNZDataChange(df):
         line = pd.DataFrame([[d, number, s]],columns=columns)
         dfStat = dfStat.append(line, ignore_index=True)
         
+    now = datetime.datetime.now()
+    today = str(' Date:') + str(now.strftime("%Y-%m-%d %H:%M:%S"))
+    
     dfStat.set_index(["Date"], inplace=True)
     #print(dfStat)
-    plotTotal(dfStat['Number'][::4],title='NZ_COVID-19_EveryDayCases')
-    plotTotal(dfStat['Cumlative'][::4],title='NZ_COVID-19_CumlativeCases')
+    label='NZ_COVID-19_EveryDayCases'
+    plotTotal(dfStat['Number'][::4],label=label, title=label + ' ' + today)
+    label='NZ_COVID-19_CumlativeCases'
+    plotTotal(dfStat['Cumlative'][::4],label=label, title=label + ' ' + today)
     #print(dfStat['Number'][-30:])
     recentDays=30
-    plotTotal(dfStat['Number'][-1*recentDays:],title='NZ_COVID-19_RecentCases')
+    label='NZ_COVID-19_RecentCases'
+    plotTotal(dfStat['Number'][-1*recentDays:],label=label, title=label + ' ' + today)
     
 def getNZCovid19():
     #file=r'.\NZ\covid-cases-24july20.xlsx'

@@ -2,7 +2,7 @@
 #author:Steven Huang 25/04/20
 #function: Query cases of COVID-19 from website
 #World case statistics by time reference: https://ourworldindata.org/covid-cases
-#https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv
+#
 
 import os
 import datetime
@@ -15,6 +15,7 @@ from progressBar import SimpleProgressBar
 gSaveBasePath=r'.\images\\'
 gSaveChangeData=r'.\dataChange\\'
 gSaveCountryData=r'.\dataCountry\\'
+gCovidCsv = 'https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv'
 
 def plotData(df,number = 25):    
     if number>df.shape[0]:
@@ -144,7 +145,7 @@ def plotTable(df):
 def readCsv(file):
     df = pd.read_csv(file)
     #print(df.describe().transpose())
-    #print(df.head())
+    print(df.head())
     #df.set_index(["Location"], inplace=True)
     #print('df.columns=',df.columns)
     #print('df.dtypes = ',df.dtypes)
@@ -492,6 +493,8 @@ def plotWorldStatisticByTime2(csvpath=r'./data/'):
  
 def plotWorldStatisticByTime(csvpath=r'./'):
     csv = csvpath + 'owid-covid-data.csv'
+    #csv = gCovidCsv
+    
     df = readCsv(csv)
     df = df[df['location'] == 'World' ]
     
