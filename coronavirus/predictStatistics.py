@@ -48,7 +48,9 @@ def getDataSet():
         dataset = dataset.iloc[:, [2,3]]
         #dataset = dataset['Date', 'Cases']
     else:
+        file = 'https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv'
         dataset = pd.read_csv('owid-covid-data.csv')
+        #dataset = pd.read_csv(file,sep=',', encoding='utf-8')
         dataset = dataset[dataset['location'] == 'World' ]
         #dataset = dataset.rename(columns={"Total confirmed cases of COVID-19 (cases)": "Cases"})
         print(dataset.head())
@@ -264,7 +266,7 @@ def predict():
     dataset = getDataSet()
     train(dataset)
 
-    predicted = getPredictDf(file=r'.\dataPredict\2020-07-21_predict.csv')
+    predicted = getPredictDf(file=r'.\dataPredict\2020-07-30_predict.csv')
     evaulatePredition(dataset,predicted)
     
 def main():

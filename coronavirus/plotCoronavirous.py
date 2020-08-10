@@ -463,7 +463,7 @@ def getWorldDf(csvpath):
         wolrdLine.insert(0, "Date", [date], True) 
         df = df.append(wolrdLine)
             
-    print(df.head())    
+    #print(df.head())    
     return df
   
 def plotWorldStatisticByTime2(csvpath=r'./data/'):
