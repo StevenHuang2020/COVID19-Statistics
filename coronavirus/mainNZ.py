@@ -96,7 +96,7 @@ def parseConfirmed(df):
     DHB = list(set(df['DHB']))
     bOverseas = list(set(df['Overseas travel']))
     bOverseas.remove(' ')
-    LastTravelCountry = list(set(df['Last country before return']))
+    LastTravelCountry = list(set(df['Last location before return']))
     LastTravelCountry.remove(np.nan)
     
     print('Sex=',Sex)
@@ -137,7 +137,7 @@ def parseConfirmed(df):
     columns=['RecturnCountry','Number']
     dfLastTravelCountry  = pd.DataFrame()
     for i in LastTravelCountry:
-        line = pd.DataFrame([[i, df[df['Last country before return']==i].shape[0]]],columns=columns)
+        line = pd.DataFrame([[i, df[df['Last location before return']==i].shape[0]]],columns=columns)
         dfLastTravelCountry = dfLastTravelCountry.append(line, ignore_index=True) 
     dfLastTravelCountry.set_index(["RecturnCountry"], inplace=True)
     
@@ -219,6 +219,7 @@ def plotNZDataChange(df):
 def getNZCovid19():
     #file=r'.\NZ\covid-cases-24july20.xlsx'
     file = getDataFileFromWeb()
+    print(file)
     dfConfirmed = readExcel(file,'Confirmed') #'Probable'
     #dfConfirmed = readExcel(file, ['Confirmed','Probable'])
     parseConfirmed(dfConfirmed)
