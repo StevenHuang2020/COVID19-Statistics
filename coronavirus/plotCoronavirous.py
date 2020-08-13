@@ -145,7 +145,7 @@ def plotTable(df):
 def readCsv(file):
     df = pd.read_csv(file)
     #print(df.describe().transpose())
-    print(df.head())
+    #print(df.head())
     #df.set_index(["Location"], inplace=True)
     #print('df.columns=',df.columns)
     #print('df.dtypes = ',df.dtypes)
@@ -755,12 +755,13 @@ def plotCountry(all):
     plotCountryInfo3(all,column='Deaths')
     plotCountryInfo3(all,column='NewConfirmed')
     plotCountryInfo3(all,column='NewDeaths')
-    
+
+
 def plotCountriesInfo(csvpath=r'./data/'):
     import threading
     all = getAlldateRecord(csvpath)
     if 0:
-        saveCountriesInfo(all)
+        #saveCountriesInfo(all)
         plotCountry(all)
     else:
         t = threading.Thread(target=saveCountriesInfo, name='Save country covid-19 data file', args=(all, ))
@@ -817,7 +818,8 @@ def plotCountryInfo(all,column='Confirmed'):
         #print(df.head(5))
         #df = binaryDf(df,labelAdd=False)
         df = df.iloc[-1*days:,:] #recent 30 days
-        plotCountryAx(ax,df['Date'],df[column],label=i,title=column)
+        title = column + ' Cases, Top ' + str(countriesNumbers) + ' countries, ' + 'Recent ' + str(days) + ' days'
+        plotCountryAx(ax,df['Date'],df[column],label=i,title=title)
         
     if column != 'NewConfirmed' and column != 'NewDeaths':
         ax.set_yscale('log')
@@ -847,7 +849,8 @@ def plotCountryInfo2(all,column='Confirmed'):
         df = df.iloc[-1*days:,:] #recent 30 days
         color = cm.jet(float(k) / countriesNumbers)
         #print('color=',color)
-        plotCountryAx(ax,df['Date'],df[column],label=i,title=column,color=color)
+        title = column + ' Cases, Top ' + str(countriesNumbers) + ' countries, ' + 'Recent ' + str(days) + ' days'
+        plotCountryAx(ax,df['Date'],df[column],label=i,title=title,color=color)
         
         #ax.text(df['Date'][-1], df[column][-1], i)
         #print(df.head(5))
@@ -887,7 +890,10 @@ def plotCountryInfo3(all,column='Confirmed'):
         df = getCountryNewCasesAndDeathsDf(df)
         #df = binaryDf(df,labelAdd=False)
         color = cm.jet(float(k) / countriesNumbers)
-        plotCountryAxBar(ax,df['Date'],df[column],label=i,title=column,color=color)
+        
+        title = column + ' Cases, Top ' + str(countriesNumbers) + ' countries'
+        
+        plotCountryAxBar(ax,df['Date'],df[column],label=i,title=title,color=color)
         #ax.text(df['Date'].iloc[-1], df[column].iloc[-1], i,color=color)
         
     bottom, top = plt.ylim()
@@ -956,6 +962,6 @@ if __name__ == '__main__':
     #plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
     #plotWorldStatDeathsByTime()
-    plotWorldStatisticByTime()
+    #plotWorldStatisticByTime()
     #plotNewCasesByCountry(csvpath)
-    #plotCountriesInfo(csvpath)
+    plotCountriesInfo(csvpath)
