@@ -5,6 +5,7 @@
 #
 
 import os
+import wget      #pip instal wget
 import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -15,7 +16,8 @@ from progressBar import SimpleProgressBar
 gSaveBasePath=r'.\images\\'
 gSaveChangeData=r'.\dataChange\\'
 gSaveCountryData=r'.\dataCountry\\'
-gCovidCsv = 'https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv'
+gCovidCsv = 'https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv' 
+
 
 def plotData(df,number = 25):    
     if number>df.shape[0]:
@@ -491,11 +493,27 @@ def plotWorldStatisticByTime2(csvpath=r'./data/'):
     plotPdColumn(dfWorldNew.index,dfWorldNew['newCases'],title='World COVID-19 Recent NewCases',label='recentNewCases',color='y')
     plotPdColumn(dfWorld.index,dfWorld['newCases'],title='World COVID-19 NewCases',label='newCases',color='y')
  
-def plotWorldStatisticByTime(csvpath=r'./'):
-    csv = csvpath + 'owid-covid-data.csv'
-    #csv = gCovidCsv
+def downloadFile(url,dstPath):
+    fileName = url[url.rfind("/")+1:]
+    print('Start file download:', url,'file:',fileName,'dst=',dstPath)
     
-    df = readCsv(csv)
+    if dstPath[-1] == '/':
+        dst = dstPath + fileName
+    else:
+        dst = dstPath + "/" + fileName
+
+    print('url=',url)
+    print('filename=',fileName)
+    print('dst=',dst)
+    wget.download(url, out=dst)
+    
+def plotWorldStatisticByTime(csvpath=r'./'):   
+    fileName = 'owid-covid-data.csv'
+    if os._exists(fileName):
+        os.remove(fileName) 
+    downloadFile(gCovidCsv,r'.')
+    
+    df = readCsv(gCovidCsv)
     df = df[df['location'] == 'World' ]
     
     dfWorld = df.loc[:,['date','total_cases','new_cases','total_deaths','new_deaths']]
@@ -962,6 +980,6 @@ if __name__ == '__main__':
     #plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
     #plotWorldStatDeathsByTime()
-    #plotWorldStatisticByTime()
+    plotWorldStatisticByTime()
     #plotNewCasesByCountry(csvpath)
-    plotCountriesInfo(csvpath)
+    #plotCountriesInfo(csvpath)

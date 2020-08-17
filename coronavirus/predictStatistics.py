@@ -5,6 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import math
+
 from tensorflow.keras import optimizers
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense,LSTM,BatchNormalization,TimeDistributed,Dropout
@@ -12,7 +13,7 @@ from sklearn.preprocessing import MinMaxScaler,StandardScaler
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split, cross_val_score
 
-from plotCoronavirous import binaryDf
+from plotCoronavirous import binaryDf,gCovidCsv
 
 gScaler = MinMaxScaler() #StandardScaler() #
 
@@ -38,7 +39,7 @@ def create_dataset(dataset, look_back=1):
         dataX.append(a)
         dataY.append(dataset[i + look_back])
     return np.array(dataX), np.array(dataY)
-
+    
 def getDataSet():
     if 0:
         dataset = pd.read_csv('total-cases-covid-19.csv')
@@ -48,7 +49,6 @@ def getDataSet():
         dataset = dataset.iloc[:, [2,3]]
         #dataset = dataset['Date', 'Cases']
     else:
-        file = 'https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv'
         dataset = pd.read_csv('owid-covid-data.csv')
         #dataset = pd.read_csv(file,sep=',', encoding='utf-8')
         dataset = dataset[dataset['location'] == 'World' ]
