@@ -98,6 +98,7 @@ def Load(url):
     
     columns = getHeader(thead)
     print('columns = ', columns)
+    columns[1] = 'Confirmed'
     columns[3]='Case_Per_1M_people'
     columns.pop(2) #remove 'New cases (last 60 days)'
     print('columns = ', columns)

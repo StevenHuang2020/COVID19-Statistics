@@ -12,7 +12,7 @@ import datetime
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from plotCoronavirous import gSaveBasePath
+from plotCoronavirous import gSaveBasePath,downloadFile
 from common.getHtml import openUrl, openUrlUrlLib
 
 #reference: https://www.health.govt.nz/our-work/diseases-and-conditions/covid-getDataFileFromWeb19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases
@@ -32,7 +32,7 @@ def getDataFileFromWeb(url=url):
     print(res[0].get('href'))
     return mainUrl+res[0].get('href')
 
-def readExcel(file,sheetname=0,header=3,verbose=False):
+def readExcel(file,sheetname=0,header=2,verbose=False):
     df = pd.read_excel(file,sheet_name=sheetname,header=header)
     print(type(df),'df.shape=',df.shape)
     
@@ -47,7 +47,7 @@ def readExcel(file,sheetname=0,header=3,verbose=False):
     return df
 
 def plotStatistcs(df,title,label):
-    fontsize = 8
+    fontsize = 7
     
     kind='bar'
     # if df.shape[0]>25:
@@ -88,6 +88,7 @@ def plotTotal(df,title,label):
     plt.show()
     
 def parseConfirmed(df):
+    print('Confirmed dataset:\n',df.head())
     Sex = list(set(df['Sex']))
     #AgeGroup = list(set(df['Age group']))
     #AgeGroup.sort()
@@ -96,7 +97,7 @@ def parseConfirmed(df):
     DHB = list(set(df['DHB']))
     bOverseas = list(set(df['Overseas travel']))
     bOverseas.remove(' ')
-    LastTravelCountry = list(set(df['Last location before return']))
+    LastTravelCountry = list(set(df['Last country before return']))
     LastTravelCountry.remove(np.nan)
     
     print('Sex=',Sex)
@@ -137,7 +138,7 @@ def parseConfirmed(df):
     columns=['RecturnCountry','Number']
     dfLastTravelCountry  = pd.DataFrame()
     for i in LastTravelCountry:
-        line = pd.DataFrame([[i, df[df['Last location before return']==i].shape[0]]],columns=columns)
+        line = pd.DataFrame([[i, df[df['Last country before return']==i].shape[0]]],columns=columns)
         dfLastTravelCountry = dfLastTravelCountry.append(line, ignore_index=True) 
     dfLastTravelCountry.set_index(["RecturnCountry"], inplace=True)
     
@@ -219,8 +220,11 @@ def plotNZDataChange(df):
 def getNZCovid19():
     #file=r'.\NZ\covid-cases-24july20.xlsx'
     file = getDataFileFromWeb()
-    print(file)
-    dfConfirmed = readExcel(file,'Confirmed') #'Probable'
+    name = file[file.rfind('/')+1:]
+    print(file,'name=',name)
+    downloadFile(file,r'./NZ')
+ 
+    dfConfirmed = readExcel(r'./NZ'+'/'+name,'Confirmed') #'Probable'
     #dfConfirmed = readExcel(file, ['Confirmed','Probable'])
     parseConfirmed(dfConfirmed)
     plotNZDataChange(dfConfirmed)
