@@ -266,7 +266,7 @@ def predict():
     dataset = getDataSet()
     train(dataset)
 
-    predicted = getPredictDf(file=r'.\dataPredict\2020-08-10_predict.csv')
+    predicted = getPredictDf(file=r'.\dataPredict\2020-08-12_predict.csv')
     evaulatePredition(dataset,predicted)
     
 def main():

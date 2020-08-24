@@ -509,7 +509,7 @@ def downloadFile(url,dstPath):
     
 def plotWorldStatisticByTime(csvpath=r'./'):   
     fileName = 'owid-covid-data.csv'
-    if os._exists(fileName):
+    if os.path.exists(fileName):
         os.remove(fileName) 
     downloadFile(gCovidCsv,r'.')
     
