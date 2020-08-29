@@ -123,10 +123,6 @@ Source reference: https://www.health.govt.nz/our-work/diseases-and-conditions/co
 
 <table>
   <tr>
-    <td><img src="images/NZ_LastTravelCountry.png" width="320" height="240" /></td>
-    <td><img src="images/NZ_IsOVerseas.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
     <td><img src="images/NZ_Gender.png" width="320" height="240" /></td>
     <td><img src="images/NZ_DHB.png" width="320" height="240" /></td>
   </tr>
@@ -137,5 +133,8 @@ Source reference: https://www.health.govt.nz/our-work/diseases-and-conditions/co
   <tr>
     <td><img src="images/NZ_NZ_COVID-19_EveryDayCases.png" width="320" height="240" /></td>
     <td><img src="images/NZ_NZ_COVID-19_CumlativeCases.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="images/NZ_IsOVerseas.png" width="320" height="240" /></td>
   </tr>
 </table>
