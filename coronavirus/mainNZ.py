@@ -98,14 +98,14 @@ def parseConfirmed(df):
     DHB = list(set(df['DHB']))
     bOverseas = list(set(df['Overseas travel']))
     bOverseas.remove(' ')
-    LastTravelCountry = list(set(df[locationColumns]))
-    LastTravelCountry.remove(np.nan)
+    #LastTravelCountry = list(set(df[locationColumns]))
+    #LastTravelCountry.remove(np.nan)
     
     print('Sex=',Sex)
     print('AgeGroup=',AgeGroup)
     print('DHB=',DHB)
     print('bOverseas=',bOverseas)
-    print('LastTravelCountry=',LastTravelCountry)
+    #print('LastTravelCountry=',LastTravelCountry)
     
     columns=['Gender','Number']
     dfSex  = pd.DataFrame()
@@ -136,18 +136,18 @@ def parseConfirmed(df):
         dfbOverseas = dfbOverseas.append(line, ignore_index=True) 
     dfbOverseas.set_index(["Overseas"], inplace=True)
     
-    columns=['RecturnCountry','Number']
-    dfLastTravelCountry  = pd.DataFrame()
-    for i in LastTravelCountry:
-        line = pd.DataFrame([[i, df[df[locationColumns]==i].shape[0]]],columns=columns)
-        dfLastTravelCountry = dfLastTravelCountry.append(line, ignore_index=True) 
-    dfLastTravelCountry.set_index(["RecturnCountry"], inplace=True)
+    # columns=['RecturnCountry','Number']
+    # dfLastTravelCountry  = pd.DataFrame()
+    # for i in LastTravelCountry:
+    #     line = pd.DataFrame([[i, df[df[locationColumns]==i].shape[0]]],columns=columns)
+    #     dfLastTravelCountry = dfLastTravelCountry.append(line, ignore_index=True) 
+    # dfLastTravelCountry.set_index(["RecturnCountry"], inplace=True)
     
     #dfSex = dfSex.sort_values(by = 0, axis=1) #dfSex.sort_values(by=['Female'],ascending=False)
     # dfAgeGroup = dfAgeGroup.sort_values(by=['Case_Per_1M_people'],ascending=False)
     dfDHB = dfDHB.sort_values(by=['Number'],ascending=False)
     # dfbOverseas = dfbOverseas.sort_values(by=['Case_Per_1M_people'],ascending=False)
-    dfLastTravelCountry = dfLastTravelCountry.sort_values(by=['Number'],ascending=False)
+    #dfLastTravelCountry = dfLastTravelCountry.sort_values(by=['Number'],ascending=False)
     
     # print(dfSex)
     # print(dfAgeGroup)
@@ -165,8 +165,8 @@ def parseConfirmed(df):
     plotStatistcs(dfDHB,label=label,title=label + ' ' + today)
     label='IsOVerseas'
     plotStatistcs(dfbOverseas,label=label,title=label + ' ' + today)
-    label='LastTravelCountry'
-    plotStatistcs(dfLastTravelCountry,label=label,title=label + ' ' + today)
+    #label='LastTravelCountry'
+    #plotStatistcs(dfLastTravelCountry,label=label,title=label + ' ' + today)
     
 def plotNZDataChange(df):
     def getDataRecordNum(df,date):
