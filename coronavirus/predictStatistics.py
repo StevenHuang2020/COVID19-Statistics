@@ -200,7 +200,7 @@ def train(dataset):
     #print('trainX.shape = ',trainX.shape)
 
     model = createModel(look_back)
-    model.fit(trainX, trainY, epochs=300, batch_size=50, verbose=2) #500
+    model.fit(trainX, trainY, epochs=400, batch_size=50, verbose=2) #500
     
     # a = np.array([trainY[-1]]).reshape(-1,1,1)
     # #a = np.array([[0.88964097]]).reshape(-1,1,1)
@@ -266,7 +266,7 @@ def predict():
     dataset = getDataSet()
     train(dataset)
 
-    predicted = getPredictDf(file=r'.\dataPredict\2020-08-12_predict.csv')
+    predicted = getPredictDf(file=r'.\dataPredict\2020-08-24_predict.csv')
     evaulatePredition(dataset,predicted)
     
 def main():
