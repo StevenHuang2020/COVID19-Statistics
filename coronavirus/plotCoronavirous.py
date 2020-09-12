@@ -3,15 +3,16 @@
 #function: Query cases of COVID-19 from website
 #World case statistics by time reference: https://ourworldindata.org/covid-cases
 #
-
+import sys
+sys.path.append("..")
 import os
-import wget      #pip instal wget
 import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from progressBar import SimpleProgressBar
 #from mainNZ import getNZCovid19
+from common.getHtml import downWebFile
 
 gSaveBasePath=r'.\images\\'
 gSaveChangeData=r'.\dataChange\\'
@@ -505,7 +506,8 @@ def downloadFile(url,dstPath):
     print('url=',url)
     print('filename=',fileName)
     print('dst=',dst)
-    wget.download(url, out=dst)
+    #wget.download(url, out=dst)
+    downWebFile(url,dst)
     
 def plotWorldStatisticByTime(csvpath=r'./'):   
     fileName = 'owid-covid-data.csv'

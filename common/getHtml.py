@@ -6,13 +6,13 @@ import requests
 import urllib.request
 from .headersRandom import userAgentHeaders
 from .userAgent import GetUA
-
+import wget      #pip instal wget
 
 def getUrlByUrllib(url):
     try:
         with urllib.request.urlopen(url) as response:
             charset = response.info().get_content_charset()
-            #print('charset = ', charset)
+            print('charset = ', charset)
             if charset == None:
                 charset = "utf-8"
             html = response.read().decode(charset, 'ignore')
@@ -52,21 +52,35 @@ def getUrlByRequest(url):
         r.encoding = r.apparent_encoding
         return r.text
     except:
-        return "Something Wrong!"
-        
-
-def getHtmlText(url):
-    return getUrlByRequest(url)
+        return "Something Wrong by requests!"
+    
     
 def openUrl(url, save=False, file=r'./a.html'):
-    html = getHtmlText(url)
+    html = getUrlByRequest(url)
     if save:
         saveToFile(html,file)
     return html
 
 def saveToFile(html, file):
-    with open(file, "w") as text_file:
+    with open(file, "w", encoding='utf-8') as text_file:
         text_file.write(html)
 
-def openUrlUrlLib(url):
-    return getUrlByUrllib(url)   
+def openUrlUrlLib(url,save=False, file=r'./a.html'):
+    html = getUrlByUrllib(url)   
+    if save:
+        saveToFile(html,file)
+    return html
+
+
+def downWebFile(url,dst):
+    if 0:
+        wget.download(url, out=dst)
+    else:
+        print('Beginning file download with requests')
+        r = requests.get(url)
+        # # Retrieve HTTP meta-data
+        # print(r.status_code)
+        # print(r.headers['content-type'])
+        # print(r.encoding)
+        with open(dst, 'wb') as f:
+            f.write(r.content)

@@ -22,15 +22,17 @@ mainUrl='https://www.health.govt.nz/'
 url=mainUrl + 'our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-current-cases-details#download'
 
 def getDataFileFromWeb(url=url):
-    html = openUrlUrlLib(url)
+    html = openUrl(url) #openUrlUrlLib(url)
     #print(html)
     html = etree.HTML(html)
     X = '//*[@id="node-10866"]/div/div/div/ul[2]/li[1]/a'
     #X = '//table'
     res = html.xpath(X)
-    print(len(res), res)
-    print(res[0].get('href'))
-    return mainUrl+res[0].get('href')
+    #print(len(res), res)
+    if len(res) > 0:
+        print(res[0].get('href'))
+        return mainUrl+res[0].get('href')
+    return None
 
 def readExcel(file,sheetname=0,header=2,verbose=False):
     df = pd.read_excel(file,sheet_name=sheetname,header=header)
@@ -221,6 +223,10 @@ def plotNZDataChange(df):
 def getNZCovid19():
     #file=r'.\NZ\covid-cases-24july20.xlsx'
     file = getDataFileFromWeb()
+    if file is None:
+        print(r"Can't find the file, something wrong!")
+        return
+    
     name = file[file.rfind('/')+1:]
     print(file,'name=',name)
     downloadFile(file,r'./NZ')

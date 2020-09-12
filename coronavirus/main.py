@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 from  plotCoronavirous import plotData
 from jsonUpdate import updateJson
 
-mainUrl = "https://google.com/covid19-map/" #"https://google.org/crisisresponse/covid19-map"
+mainUrl = "https://google.com/covid19-map/"
 
 def writeToCsv(df):
     base=r'./data/'
@@ -72,12 +72,7 @@ def parseXpathTr(tr, columns):
     html = etree.HTML(etree.tostring(tr))
     #print(len(result),result)
     location,confirmed,Case_Per_1M_people,recovered,deaths = '','','','',''
-    # span = html.xpath('//span')
-    # if len(span) > 1:
-    #     location = span[1].text
-    # elif len(span) == 1:
-    #     location = span[0].text
-    
+    # span = html.xpath('//span')    
     path='//th//div' #'//div[@class="pcAJd"]' #'//th[@class="l3HOY"]//div[@class="pcAJd"]' #
     div = html.xpath(path)  
     #print('div=',len(div))
@@ -119,9 +114,7 @@ def getHeader(thead):
     res = html.xpath('//tr[@class="sgXwHf"]//div[@class="XmCM0b"]')
     print(len(res))
     
-    columns = []
-    for i,th in enumerate(res):
-        columns.append(th.text)
+    columns = [th.text for th in res]
     return columns
 
 def parseHtml(htmlContent):
@@ -139,7 +132,6 @@ def parseHtml(htmlContent):
     columns.pop(2) #remove 'New cases (last 60 days)'
     print('columns = ', columns)
     
-    
     X = '//table[@class="pH8O4c"]//tbody/tr' #[@class="SAGQRD"]'
     result = html.xpath(X)
     print(len(result))
@@ -155,9 +147,7 @@ def Load(url):
     print("Open:",url)
     #html = openUrl(url)
     html = openUrlUrlLib(url)
-    #print(html)
     return parseHtml(html)
     
 if __name__ == '__main__':
-    #mainUrl=r'file:///E:/python/spider/coronavirus/a.html'
     Load(mainUrl)

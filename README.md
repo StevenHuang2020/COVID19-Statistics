@@ -11,7 +11,8 @@ The added mortality column calculated by  this: df['Deaths'] / df['Confirmed'].<
 Please note that this is not necessarily the correct definition.<br/>
 Reference: https://google.com/covid19-map/ <br/>
 https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv
-
+<br/>
+Please report any bugs at [here.](https://github.com/StevenHuang2020/COVID-19-Statistics/issues)
 #### main.py
 Using lxml to get data from website.
 <br/>

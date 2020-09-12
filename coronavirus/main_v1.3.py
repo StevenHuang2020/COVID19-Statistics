@@ -55,13 +55,13 @@ def parseXpathTr(tr,columns):
     #print('Location:',location,'Confirmed:',confirmed,'Case_Per_1M_people:',Case_Per_1M_people,'Recovered:',recovered,'deaths:',deaths)
     return pd.DataFrame([[location, confirmed, Case_Per_1M_people, recovered, deaths]], columns=columns)
 
-
 def getHeader(thead):
     ths = thead.find_elements_by_xpath('//tr[@class="sgXwHf"]//div[@class="XmCM0b"]')
     print('len=',len(ths))
-    columns = []
-    for i,th in enumerate(ths):
-        columns.append(th.text)
+    # columns = []
+    # for th in ths:
+    #     columns.append(th.text)
+    columns = [th.text for th in ths]
     return columns
 
 def clickBtn(driver,btnXpath):
