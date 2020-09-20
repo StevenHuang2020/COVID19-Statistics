@@ -5,6 +5,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import math
+import os 
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' #not print tf debug info
 
 from tensorflow.keras import optimizers
 from tensorflow.keras.models import Sequential
@@ -13,7 +16,7 @@ from sklearn.preprocessing import MinMaxScaler,StandardScaler
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split, cross_val_score
 
-from plotCoronavirous import binaryDf,gCovidCsv
+from plotCoronavirous import binaryDf,gCovidCsv,pathsFiles
 
 gScaler = MinMaxScaler() #StandardScaler() #
 
@@ -262,16 +265,31 @@ def evaulatePredition(df,predict):
     plt.savefig(gSaveBasePath + 'WorldFuturePredictPrecise.png')
     plt.show()
     
+def getNewestFile(path,fmt='csv',index=-1):
+    file_dict = {}
+    for i in pathsFiles(path,fmt):
+        ctime = os.stat(os.path.join(i)).st_ctime
+        file_dict[ctime] = i 
+        
+    #file_dict = sorted(file_dict)
+    #print('file_dict=',file_dict)
+    #file = file_dict[max(file_dict.keys())]
+    #print('file=',file)
+    sort = sorted(file_dict.keys())
+    #print('sort=',sort)
+    return file_dict[sort[index]]
+
 def predict():
     dataset = getDataSet()
     train(dataset)
 
-    predicted = getPredictDf(file=r'.\dataPredict\2020-08-24_predict.csv')
+    file = getNewestFile(r'.\dataPredict',index=-2) #compare last time predict 
+    print('Last predicted file:',file)
+    predicted = getPredictDf(file) #r'.\dataPredict\2020-08-24_predict.csv'
     evaulatePredition(dataset,predicted)
     
 def main():
     predict()
-    pass
     
 if __name__=='__main__':
     main()

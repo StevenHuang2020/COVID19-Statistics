@@ -292,50 +292,6 @@ def plotDataCompare(df,number = 50):
     
     colors=['b','g','r']
     width = 0.5
-    
-    '''
-    dd = []
-    ddName=[]
-    dd.append(dfConfirmed.iloc[:,0]),ddName.append('Confirmed')
-    dd.append(dfRecovered.iloc[:,0]),ddName.append('Recovered')
-    dd.append(dfDeaths.iloc[:,0]),ddName.append('Deaths')
-    dfCompareds = [(ddName, dd, 'covid-19 statistics')]
-    
-    # dd = []
-    # ddName=[]
-    # dd.append(dfDeaths.iloc[:,0]),ddName.append('Deaths')
-    # dd.append(dfMortality.iloc[:,0]),ddName.append('Mortality')
-    # dfCompareds.append((ddName, dd))
-    
-    for i in dfCompareds:
-        newDf = pd.DataFrame()
-        title = i[2]
-        for id,(name,data) in enumerate(zip(i[0],i[1])):
-            print(id,name,title)
-            color = colors[id%len(colors)]
-            if 1: #style1 cumulate
-                if id==0:
-                    ax.barh(data.index, data , width, label=name,color=color)
-                    lf = i[1][id]
-                else:
-                    ax.barh(data.index, data , width, label=name,color=color,left=lf)
-                    lf +=i[1][id]
-            else:
-                newDf[name] = data
-                #newDf = newDf.append(pd.DataFrame({name: data}, index=data.index))
-                ax.barh(data.index, data , width, label=name,color=color)
-            
-        #print(newDf.head())
-        #ax = newDf.plot.barh(rot=0,width=0.8)  
-        ax.legend()
-        ax.set_title(title)
-        
-        plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
-        plt.setp(ax.get_yticklabels(),fontsize=fontsize)
-        plt.subplots_adjust(left=0.30, bottom=None, right=0.98, top=None, wspace=None, hspace=None)
-        #plt.savefig(str(i+1)+'new.png')
-        plt.show()   
-    '''
        
     #-------------------------#
     dC = dfConfirmed.iloc[:,0]

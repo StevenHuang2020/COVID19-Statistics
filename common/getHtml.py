@@ -56,6 +56,7 @@ def getUrlByRequest(url):
     
     
 def openUrl(url, save=False, file=r'./a.html'):
+    print('start to open url:',url)
     html = getUrlByRequest(url)
     if save:
         saveToFile(html,file)
