@@ -26,7 +26,7 @@ def getDataFileFromWeb(url=url):
     #print(html)
     html = etree.HTML(html)
     #X = '//*[@id="node-10866"]/div/div/div/ul[2]/li[1]/a'
-    X = '//*[@id="node-10866"]/div/div/div/ul[2]/li[1]/strong/a'
+    X = '//*[@id="node-10866"]/div/div/div/ul[2]/li[1]/a'
     
     #X = '//table'
     res = html.xpath(X)

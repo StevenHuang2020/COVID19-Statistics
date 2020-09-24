@@ -80,7 +80,7 @@ def scroll_down_element(driver, element):
 def Load(url):
     print("Open:",url)
     driver = webdriver.Chrome()
-    driver.get(mainUrl)
+    driver.get(url)
     sleep(2)
     
     #btn_More='//*[@id="yDmH0d"]/c-wiz/div/div[2]/div[2]/div[4]/div'

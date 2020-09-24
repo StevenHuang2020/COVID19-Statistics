@@ -164,18 +164,15 @@ def plotPredictFuture(model,trainY,index,data):
     
 def createModel(look_back = 1):
     model = Sequential()
-    #model.add(BatchNormalization(input_shape=(1, look_back)))
-    #model.add(LSTM(100, input_shape=(1, look_back)))
     model.add(LSTM(100,input_shape=(1, look_back), activation='relu', return_sequences=True))
-    #model.add(LSTM(80, activation='relu', return_sequences=True))
+    #model.add(LSTM(100, activation='relu', return_sequences=True))
     #model.add(LSTM(50, activation='relu', return_sequences=True))
-    #model.add(BatchNormalization())
-    model.add(TimeDistributed(Dense(30, activation='relu')))
+    model.add(Dense(30,activation='relu'))
     model.add(Dense(20,activation='relu'))
     model.add(Dense(10,activation='relu'))
     model.add(Dense(1))
     
-    lr = 0.001
+    lr = 1e-3
     #opt = optimizers.SGD(learning_rate=lr) #optimizers.SGD(learning_rate=lr, momentum=0.8, nesterov=False)
     opt = optimizers.Adam(learning_rate=lr)
     #opt = optimizers.RMSprop(learning_rate=lr, rho=0.9, epsilon=1e-08)
@@ -183,37 +180,36 @@ def createModel(look_back = 1):
     model.summary()
     return model
 
-def train(dataset):
+def prepareDataset(dataset,look_back):  
     index = dataset.iloc[:,0].values
-    rawdata = dataset.iloc[:,1].values    
+    rawdata = dataset.iloc[:,1].values 
     rawdata = rawdata.reshape((rawdata.shape[0],1))
     #print('raw=',rawdata[-5:])
     data = preprocessDb(rawdata) #scaler features
     #print('raw=',rawdata[-5:])
     #print('index=',index[-5:])
+    X, Y = create_dataset(data, look_back) 
+    X = np.reshape(X, (X.shape[0], 1, X.shape[1]))
+    
+    #x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=12)
+    return X,Y, index,rawdata
 
+def train(dataset):
     look_back = 1
-    trainX, trainY = create_dataset(data, look_back) 
-   
-    print('x=\n',trainX[-5:])
-    print('y=\n',trainY[-5:])
-    print('trainX.shape = ',trainX.shape)
-    print('trainY.shape = ',trainY.shape)
-    trainX = np.reshape(trainX, (trainX.shape[0], 1, trainX.shape[1]))
-    #print('trainX.shape = ',trainX.shape)
-
+    x_train, y_train, index,rawdata = prepareDataset(dataset,look_back)
+    
     model = createModel(look_back)
-    model.fit(trainX, trainY, epochs=400, batch_size=50, verbose=2) #500
+    model.fit(x_train, y_train, epochs=400, batch_size=150, verbose=2) #500
     
     # a = np.array([trainY[-1]]).reshape(-1,1,1)
     # #a = np.array([[0.88964097]]).reshape(-1,1,1)
     # #a = np.array([0.6]).reshape(1,1,1)
     # print(a)
     # print('predict=', model.predict(a))
-
+    
     #-----------------start plot---------------#
-    plotPredictCompare(model,trainX,index,rawdata)
-    plotPredictFuture(model,trainY,index,rawdata)
+    plotPredictCompare(model,x_train,index,rawdata)
+    plotPredictFuture(model,y_train,index,rawdata)
        
 def getPredictDf(file):
     df = pd.read_csv(file)
@@ -246,7 +242,7 @@ def evaulatePredition(df,predict):
         cases = getTrueCases(date,df)
         acc = 0
         if cases != 0:
-            acc = round((cases-predictCase)*100/cases,5)
+            acc = round((1 - (np.abs(cases-predictCase)/cases))*100,3)
         
         #print(date,predictCase)
         #print(date,predictCase,cases)
@@ -254,7 +250,7 @@ def evaulatePredition(df,predict):
         allCases[i] = cases
         #break
     predict['Cases'] = allCases
-    predict['Precision error'] = accs
+    predict['Precision'] = accs
     predict = predict.iloc[:,1:] #remove index number column
     print(predict)
     

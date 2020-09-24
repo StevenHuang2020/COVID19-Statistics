@@ -46,8 +46,8 @@ def preprocessData(df):
     df['Case_Per_1M_people'] = pd.to_numeric(df['Case_Per_1M_people'])
     #df['Case_Per_1M_people'] = df['Case_Per_1M_people'].astype(float)
 
-    df['Recovered'] = pd.to_numeric(df['Recovered'])
-    df['Recovered'] = df['Recovered'].astype('int64')
+    #df['Recovered'] = pd.to_numeric(df['Recovered'])
+    #df['Recovered'] = df['Recovered'].astype('int64')
 
     df['Deaths'] = pd.to_numeric(df['Deaths'])
     df['Deaths'] = df['Deaths'].astype('int64')
