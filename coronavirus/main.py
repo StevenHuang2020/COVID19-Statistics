@@ -125,6 +125,7 @@ def parseHtml(htmlContent):
     X = '//table[@class="pH8O4c"]/thead'
     #X = '//table'
     resHead = html.xpath(X)
+    print('type(html)=',type(html))
     #print(len(resHead))    
     columns = getHeader(resHead[0])
     print('columns = ', columns)
