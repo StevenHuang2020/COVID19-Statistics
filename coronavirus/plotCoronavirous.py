@@ -71,7 +71,7 @@ def plotData(df,number = 25):
     dfs = [(ccWorld, df1),(cpWorld, df2),(deWorld, df4),(moWorld, df5),\
         (moCountries,df6),(coCountries,df7),(dzCountries,df8),(dnzCountries,df9)]  #(reWorld, df3),
 
-    fontsize = 8
+    fontsize = 7
     for i,data in enumerate(dfs): 
         dataFrame = data[1]
         #print('dataFrame.shape=',i,dataFrame.shape)
@@ -102,7 +102,7 @@ def plotData(df,number = 25):
     plt.show()
     
     #plotTable(worldDf)
-    plotChangeBydata()
+    plotChangeBydata(fontsize = fontsize)
     #plotWorldStatConfirmCaseByTime()
     #plotWorldStatDeathsByTime()
     plotWorldStatisticByTime()
@@ -202,7 +202,7 @@ def plotTest(df,number = 20):
     df = binaryDf(binaryDf(df))
     
     dfs = [('test', df)]
-    fontsize = 8
+    fontsize = 7
     for i,data in enumerate(dfs): 
         df = data[1]
         title = data[0]
@@ -272,7 +272,7 @@ def plotDataCompare(df,number = 50):
     dfs = [(ccWorld, df1),(cpWorld, df2),(reWorld, df3),(deWorld, df4),(moWorld, df5),\
         (moCountries,df6),(coCountries,df7),(dzCountries,df8),(dnzCountries,df9)]
     
-    fontsize = 8
+    fontsize = 7
     #------------------------#
     df = df.sort_values(by=['Confirmed'],ascending=False)
     if number>25:
@@ -366,7 +366,7 @@ def getAlldateWorldRecord(csvpath):
         
     return pdDate
 
-def plotChangeBydata(csvpath=r'./data/'):
+def plotChangeBydata(csvpath=r'./data/', fontsize = 7):
     pdDate = getAlldateWorldRecord(csvpath)
     
     #print(pdDate.shape)
@@ -379,7 +379,7 @@ def plotChangeBydata(csvpath=r'./data/'):
     
     df1 = pdDate.iloc[:,[0]]
     
-    fontsize = 8
+    
     ax = pdDate.plot(kind='line')
     ax.set_title('World COVID19 Change')
     
@@ -661,7 +661,7 @@ def plotNewCasesByCountryData(df,number = 40):
     dfs = [('nc', ncWorld, df1),('nd', ndWorld, df2)]  #(name title df)
     #print(ncWorld,ndWorld)
     
-    fontsize = 8
+    fontsize = 7
     for i,data in enumerate(dfs): 
         dataFrame = data[2]
         if dataFrame.shape[0] == 0:
@@ -888,7 +888,7 @@ def plotCountryInfo3(all,column='Confirmed'):
     plt.show()
     
 def plotCountryAx(ax,x,y,label,title,color=None):
-    fontsize = 8
+    fontsize = 7
     ax.plot(x,y,label=label,c=color)
     ax.set_title(title,fontsize=fontsize)
     ax.legend(fontsize=fontsize,loc='upper left')
@@ -897,7 +897,7 @@ def plotCountryAx(ax,x,y,label,title,color=None):
     #plt.show()
     
 def plotCountryAxBar(ax,x,y,label,title,color=None):
-    fontsize = 8
+    fontsize = 7
     ax.bar(x,y,label=label,color=color)
     ax.set_title(title,fontsize=fontsize)
     ax.legend(fontsize=fontsize,loc='upper left')
