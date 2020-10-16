@@ -103,7 +103,7 @@ Updated to adapt to the new google page.<br/>
 
 #### World Prediction
 <br/>
-World predicted confirmed cases by using LSTM algorithm.<br/>
+The world predicted confirmed cases by using LSTM algorithm.<br/>
 Source reference: https://ourworldindata.org/covid-cases<br/>
 <br/>
 
