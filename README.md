@@ -12,16 +12,16 @@ Please note that this is not necessarily the correct definition.<br/>
 Reference: https://google.com/covid19-map/ <br/>
 https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv
 <br/>
-Please report any bugs at [here.](https://github.com/StevenHuang2020/COVID-19-Statistics/issues)
+Please report any bugs [here.](https://github.com/StevenHuang2020/COVID-19-Statistics/issues)
 #### main.py
-Using lxml to get data from website.
+Using lxml to get data from the website.
 <br/>
 
 #### main_v1.2.py
 Using selenium to crawl data.
-Requirment: pip install selenium. <br/>
-Download proper verison of [chromdriver.exe](https://chromedriver.chromium.org/downloads)
-then put it in to your python install path(.\python36\Scripts\).
+Requirements: pip install selenium. <br/>
+Download the proper version of [chromdriver.exe](https://chromedriver.chromium.org/downloads)
+then put it into your python install path(.\python36\Scripts\).
 <br/>
 For detailed statistics of covid-19 in NZ, please refer to 
 [here](https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases).
