@@ -8,6 +8,7 @@ import math
 import os 
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' #not print tf debug info
+plt.rcParams['savefig.dpi'] = 300 #matplot figure quality when save
 
 from tensorflow.keras import optimizers
 from tensorflow.keras.models import Sequential
@@ -17,6 +18,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split, cross_val_score
 
 from plotCoronavirous import binaryDf,gCovidCsv,pathsFiles
+from jsonUpdate import getDataTime
 
 gScaler = MinMaxScaler() #StandardScaler() #
 
@@ -109,8 +111,9 @@ def plotPredictCompare(model,trainX,index,data):
     offset=70 #120
     plt.figure(figsize=(12,10))
     ax = plt.subplot(1,1,1)
-    plotData(ax,index[offset+2:-1],data[offset+2:-1],'rawData')
-    plotData(ax,index[offset+2:-1],trainPredict[offset+1:-1],'predict')
+    plt.title('PredictTime: ' + getDataTime())
+    plotData(ax,index[offset+2:-1],data[offset+2:-1],'True Data')
+    plotData(ax,index[offset+2:-1],trainPredict[offset+1:-1],'Prediction')
     plt.savefig(gSaveBasePath + 'WorldPredictCompare.png')
     plt.show()
  
@@ -150,7 +153,8 @@ def plotPredictFuture(model,trainY,index,data):
     
     offset=150#70 #120
     plt.figure(figsize=(8,6))
-    plt.title('Future Covid19 ' + str(Number) + ' days prediction')
+    plt.title('Future ' + str(Number) + ' days Covid-19,' + ' Prediction time: '+ getDataTime())
+       
     ax = plt.subplot(1,1,1)
     plotData(ax,index[offset:],data[offset:],'now cases')
     
@@ -217,7 +221,7 @@ def getPredictDf(file):
     #df.set_index(["Date"], inplace=True)
     return df
 
-def evaulatePredition(df,predict):
+def evaulatePredition(df,file):
     def getTrueCases(day,df):
         for i in range(df.shape[0]):
             d = df.iloc[i, df.columns.get_loc('Date')]
@@ -231,7 +235,11 @@ def evaulatePredition(df,predict):
                 return cases
         return 0
     
+    predict = getPredictDf(file) #r'.\dataPredict\2020-08-24_predict.csv'
+    predictTime = file[file.rfind('\\')+1 : file.rfind('_')]
+    
     #print(predict)
+    print('predictTime=',predictTime)
     allCases = np.zeros((predict.shape[0],))
     accs = np.zeros((predict.shape[0],))
     for i in range(predict.shape[0]):
@@ -252,10 +260,10 @@ def evaulatePredition(df,predict):
     predict['Cases'] = allCases
     predict['Precision'] = accs
     predict = predict.iloc[:,1:] #remove index number column
-    print(predict)
+    #print(predict)
     
     plt.figure(figsize=(8,6))
-    plt.title('Prediction precision')
+    plt.title('Prediction Precision,\n' + 'PredictTime: ' + predictTime + ' CheckTime: '+ getDataTime())
     ax = plt.subplot(1,1,1)
     ax.table(cellText=predict.values, colLabels=predict.columns, loc='center')
     plt.savefig(gSaveBasePath + 'WorldFuturePredictPrecise.png')
@@ -276,13 +284,12 @@ def getNewestFile(path,fmt='csv',index=-1):
     return file_dict[sort[index]]
 
 def predict():
-    dataset = getDataSet()
-    train(dataset)
+    datasetToday = getDataSet()
+    train(datasetToday)
 
     file = getNewestFile(r'.\dataPredict',index=-2) #compare last time predict 
     print('Last predicted file:',file)
-    predicted = getPredictDf(file) #r'.\dataPredict\2020-08-24_predict.csv'
-    evaulatePredition(dataset,predicted)
+    evaulatePredition(datasetToday, file)
     
 def main():
     predict()
