@@ -8,7 +8,7 @@ import math
 import os 
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' #not print tf debug info
-plt.rcParams['savefig.dpi'] = 300 #matplot figure quality when save
+#plt.rcParams['savefig.dpi'] = 300 #matplot figure quality when save
 
 from tensorflow.keras import optimizers
 from tensorflow.keras.models import Sequential
