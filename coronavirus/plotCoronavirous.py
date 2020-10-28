@@ -653,7 +653,8 @@ def plotNewCasesByCountry(csvpath=r'./data/'):
     
 def plotNewCasesByCountryData(df,number = 40):    
     df.set_index(["Location"], inplace=True)
-    print(df.head())
+    #print('newDf=\n',df.head()) #df.head()
+    #print(df.shape)
     
     if number>df.shape[0]:
         number = df.shape[0]
@@ -665,11 +666,13 @@ def plotNewCasesByCountryData(df,number = 40):
     #print('dfNewCases.shape=',dfNewCases.shape)
     #print('dfNewDeaths.shape=',dfNewDeaths.shape)
    
-    df = df.sort_values(by=['NewCases'],ascending=False)
+    df = df.sort_values(by=['NewCases'], ascending=False)
     df1 = df.iloc[1:number,[0]]
     
-    df = df.sort_values(by=['NewDeaths'],ascending=False)
+    df = df.sort_values(by=['NewDeaths'], ascending=False)
     df2 = df.iloc[1:number,[1]]
+    
+    #print('df2=\n',df2)
     
     #print(df.head())
     #print(df.dtypes)
@@ -959,15 +962,15 @@ def getCountryDayData(country,allList):
     
 if __name__ == '__main__':
     csvpath=r'./data/'
-    df = readCsv(csvpath+'coronavirous_2020-10-28_213546.csv')
-    df = df[1:]
-    df.set_index(["Location"], inplace=True)
-    plotData(df, number=60)
+    # df = readCsv(csvpath+'coronavirous_2020-10-28_213546.csv')
+    # df = df[1:]
+    # df.set_index(["Location"], inplace=True)
+    # plotData(df, number=60)
     
     #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
     #plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
     #plotWorldStatDeathsByTime()
     #plotWorldStatisticByTime()
-    #plotNewCasesByCountry(csvpath)
+    plotNewCasesByCountry(csvpath)
     #plotCountriesInfo(csvpath)

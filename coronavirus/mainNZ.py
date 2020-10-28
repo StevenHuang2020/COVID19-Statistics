@@ -213,9 +213,12 @@ def plotNZDataChange(df):
     dfStat.set_index(["Date"], inplace=True)
     #print(dfStat)
     label='NZ_COVID-19_EveryDayCases'
-    plotTotal(dfStat['Number'][::4],label=label, title=label + ' ' + today)
+    #plotTotal(dfStat['Number'][::4],label=label, title=label + ' ' + today)
+    plotTotal(dfStat['Number'],label=label, title=label + ' ' + today)
+    
     label='NZ_COVID-19_CumlativeCases'
-    plotTotal(dfStat['Cumlative'][::4],label=label, title=label + ' ' + today)
+    #plotTotal(dfStat['Cumlative'][::4],label=label, title=label + ' ' + today)
+    plotTotal(dfStat['Cumlative'],label=label, title=label + ' ' + today)
     #print(dfStat['Number'][-30:])
     recentDays=30
     label='NZ_COVID-19_RecentCases'
