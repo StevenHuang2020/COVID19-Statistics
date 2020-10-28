@@ -367,28 +367,38 @@ def getAlldateWorldRecord(csvpath):
     return pdDate
 
 def plotChangeBydata(csvpath=r'./data/', fontsize = 7):
+    def plotItem(df, str='all', title='World COVID19 Change'):
+        ax = df.plot(kind='line')
+        ax.set_title(title + ' ' + str)
+        
+        plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
+        plt.setp(ax.get_yticklabels(),fontsize=fontsize)
+        plt.subplots_adjust(left=0.07, bottom=0.16, right=0.96, top=0.94, wspace=None, hspace=None)
+        #plt.yscale("log")
+        plt.savefig(gSaveBasePath + 'WorldChange_' + str + '.png')
+        plt.show()
+        
     pdDate = getAlldateWorldRecord(csvpath)
-    
+    #print(pdDate.head())
     #print(pdDate.shape)
     pdDate = pdDate.loc[:,['DataTime','Confirmed','Case_Per_1M_people','Deaths','Mortality']]
-    print(pdDate.head())
-    
-    pdDate.set_index(["DataTime"], inplace=True)
-    df = pdDate.sort_values(by=['DataTime'],ascending=False)
     #print(pdDate.head())
     
-    df1 = pdDate.iloc[:,[0]]
+    pdDate.set_index(["DataTime"], inplace=True)
+    #df = pdDate.sort_values(by=['DataTime'],ascending=False)
+    #print(pdDate)
     
+    dfConfirmed = pdDate.loc[:,['Confirmed']]
+    dfDeaths = pdDate.loc[:,['Deaths']]
+    dfCasePer1MPeople = pdDate.loc[:,['Case_Per_1M_people']]
+    dfMortality = pdDate.loc[:,['Mortality']]
+    #print('dfConfirmed=\n', dfConfirmed)
     
-    ax = pdDate.plot(kind='line')
-    ax.set_title('World COVID19 Change')
+    plotItem(pdDate)
+    plotItem(dfDeaths,str='deaths')
+    plotItem(dfCasePer1MPeople,str='case_per1M_people')
+    plotItem(dfMortality,str='mortality')
     
-    plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
-    plt.setp(ax.get_yticklabels(),fontsize=fontsize)
-    plt.subplots_adjust(left=0.07, bottom=0.16, right=0.96, top=0.94, wspace=None, hspace=None)
-    #plt.yscale("log")
-    plt.savefig(gSaveBasePath + 'WorldChange.png')
-    plt.show()
     
 def plotPdColumn(index,data,title,label,color=None):
     fontsize = 7
@@ -935,9 +945,9 @@ def getCountryDayData(country,allList):
 if __name__ == '__main__':
     csvpath=r'./data/'
     #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
-    #plotChangeBydata(csvpath)
+    plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
     #plotWorldStatDeathsByTime()
-    plotWorldStatisticByTime()
+    #plotWorldStatisticByTime()
     #plotNewCasesByCountry(csvpath)
     #plotCountriesInfo(csvpath)

@@ -95,9 +95,12 @@ Updated to adapt to the new google page.<br/>
     <td><img src="images/World_RecentNewDeaths.png" width="320" height="240" /></td>
   </tr>
   <tr>
-    <td><img src="images/WorldChange.png" width="320" height="240" /></td>
+    <td><img src="images/WorldChange_all.png" width="320" height="240" /></td>
+    <td><img src="images/WorldChange_deaths.png" width="320" height="240" /></td>
   </tr>
-  
+  <tr>
+    <td><img src="images/WorldChange_mortality.png" width="320" height="240" /></td>
+  </tr>  
  </table>
 <br/>
 
