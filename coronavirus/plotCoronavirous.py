@@ -20,35 +20,49 @@ gSaveCountryData=r'.\dataCountry\\'
 gCovidCsv = 'https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv' 
 
 
-def plotData(df,number = 25):    
+def plotData(df, number=25):    
     if number>df.shape[0]:
         number = df.shape[0]
     #df = df.iloc[1:number,:]
     worldDf = df.iloc[:1,:]
+    df = df[1:]
+    print(df.head())
     
-    df = df.sort_values(by=['Confirmed'],ascending=False)
-    df1 = df.iloc[1:number,[0]]
-    df = df.sort_values(by=['Case_Per_1M_people'],ascending=False)
-    df2 = df.iloc[1:number,[1]]
+    df = df.sort_values(by=['Confirmed'], ascending=False)
+    # df1 = df.iloc[1:number,['Confirmed']]
+    # print(df1)
+    dfConfirmed = df.loc[:,['Confirmed']][:number]
+    #print(dfConfirmed)
+    
+    df = df.sort_values(by=['NewCases'], ascending=False)
+    dfNewCases = df.loc[:,['NewCases']][:number]
+
+    df = df.sort_values(by=['Case_Per_1M_people'], ascending=False)
+    dfCasePer1MPeople = df.loc[:,['Case_Per_1M_people']][:number]
+    
     #df = df.sort_values(by=['Recovered'],ascending=False)
     #df3 = df.iloc[1:number,[2]]
-    df = df.sort_values(by=['Deaths'],ascending=False)
-    df4 = df.iloc[1:number,[3]]
-    df = df.sort_values(by=['Mortality'],ascending=False)
-    df5 = df.iloc[1:number,[4]]
-
-    dfDeaths = df[df['Deaths'] > 200]
-    df6 = dfDeaths.sort_values(by=['Mortality'],ascending=True).iloc[:number,[4]]
     
-    dfConfirmed = df[df['Confirmed'] > 5000]
-    df7 = dfConfirmed.sort_values(by=['Mortality'],ascending=True).iloc[:number,[4]]
+    df = df.sort_values(by=['Deaths'], ascending=False)
+    dfDeathes = df.loc[:,['Deaths']][:number]
+    
+    df = df.sort_values(by=['Mortality'], ascending=False)
+    dfMortality = df.loc[:,['Mortality']][:number]
+
+    dfDeaths200 = df[df['Deaths'] > 200]
+    df6 = dfDeaths200.sort_values(by=['Mortality'], ascending=True).loc[:,['Mortality']][:number]
+
+    dfConfirmed5K = df[df['Confirmed'] > 5000]
+    df7 = dfConfirmed5K.sort_values(by=['Mortality'], ascending=True).loc[:,['Mortality']][:number]
         
     dfDeathsZero = df[df['Deaths'] == 0]
-    df8 = dfDeathsZero.sort_values(by=['Confirmed'],ascending=False).iloc[:number,[0]]
+    df8 = dfDeathsZero.sort_values(by=['Confirmed'], ascending=False).loc[:,['Confirmed']][:number]
     
     dfDeathsThanZero = df[df['Deaths'] > 0]
-    df9 = dfDeathsThanZero.sort_values(by=['Mortality'],ascending=True).iloc[:number,[4]]
+    df9 = dfDeathsThanZero.sort_values(by=['Mortality'], ascending=True).loc[:,['Mortality']][:number]
     
+    # print('df9.shape=',df8.shape)
+    # print(df9)
     #print(df.head())
     #print(df.dtypes)
     #worldDf = df.loc['Worldwide']
@@ -60,21 +74,22 @@ def plotData(df,number = 25):
     
     ccWorld = topStr + 'Confirmed(World: ' + str(int(worldDf['Confirmed'][0])) + today + ')'
     cpWorld = topStr + 'Case_Per_1M_people(World: ' + str(int(worldDf['Case_Per_1M_people'][0])) + today + ')'
+    ncWorld = topStr + 'NewCases(World: ' + str(int(worldDf['NewCases'][0])) + today + ')'
     #reWorld = topStr + 'Recovered(World: ' + str(int(worldDf['Recovered'][0])) + today + ')'
     deWorld = topStr + 'Deaths(World: ' + str(int(worldDf['Deaths'][0]))+ today + ')'
     moWorld = topStr + 'Mortality(World: ' + str(round(worldDf['Mortality'][0],3)) + today + ')'
-    moCountries = 'Mortality(Countries: ' + str(dfDeaths.shape[0]) + ' Deaths>200' + today + ')'
-    coCountries = 'Mortality(Countries: ' + str(dfConfirmed.shape[0]) + ' Confirmed>5k' + today + ')'
+    moCountries = 'Mortality(Countries: ' + str(dfDeaths200.shape[0]) + ' Deaths>200' + today + ')'
+    coCountries = 'Mortality(Countries: ' + str(dfConfirmed5K.shape[0]) + ' Confirmed>5k' + today + ')'
     dzCountries = 'Confirmed(Countries: ' + str(dfDeathsZero.shape[0]) + ' Deaths==0' + today + ')'
     dnzCountries = 'Mortality(Countries: ' + str(dfDeathsThanZero.shape[0]) + ' Deaths>0' + today + ')'
     
-    dfs = [(ccWorld, df1),(cpWorld, df2),(deWorld, df4),(moWorld, df5),\
-        (moCountries,df6),(coCountries,df7),(dzCountries,df8),(dnzCountries,df9)]  #(reWorld, df3),
+    dfs = [(ccWorld, dfConfirmed),(ncWorld, dfNewCases),(cpWorld, dfCasePer1MPeople),(deWorld, dfDeathes),\
+        (moWorld, dfMortality),(moCountries,df6),(coCountries,df7),(dzCountries,df8),(dnzCountries,df9)]  #(reWorld, df3),
 
     fontsize = 7
     for i,data in enumerate(dfs): 
         dataFrame = data[1]
-        #print('dataFrame.shape=',i,dataFrame.shape)
+        print(i, data[0], 'Datashape:',dataFrame.shape)
         if dataFrame.shape[0] == 0:
             continue
             
@@ -85,7 +100,7 @@ def plotData(df,number = 25):
              
         title = data[0]
 
-        if i==3 or i==4 or i==5 or i==6: #deaths mortality
+        if i in [1,3,4,5,6,8]: #deaths mortality
             ax = dataFrame.plot(kind=kind,color='r')
         else:
             ax = dataFrame.plot(kind=kind)
@@ -367,7 +382,7 @@ def getAlldateWorldRecord(csvpath):
     return pdDate
 
 def plotChangeBydata(csvpath=r'./data/', fontsize = 7):
-    def plotItem(df, str='all', title='World COVID19 Change'):
+    def plotItem(df, str='all', title='World COVID19'):
         ax = df.plot(kind='line')
         ax.set_title(title + ' ' + str)
         
@@ -944,8 +959,13 @@ def getCountryDayData(country,allList):
     
 if __name__ == '__main__':
     csvpath=r'./data/'
+    df = readCsv(csvpath+'coronavirous_2020-10-28_213546.csv')
+    df = df[1:]
+    df.set_index(["Location"], inplace=True)
+    plotData(df, number=60)
+    
     #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
-    plotChangeBydata(csvpath)
+    #plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
     #plotWorldStatDeathsByTime()
     #plotWorldStatisticByTime()

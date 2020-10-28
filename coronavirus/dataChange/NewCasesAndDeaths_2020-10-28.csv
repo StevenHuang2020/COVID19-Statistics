@@ -1,206 +1,206 @@
 Location,NewCases,NewDeaths
-Worldwide,653950,9102
-United States,72504,834
+Worldwide,780500,11270
+United States,107265,1295
 India,36470,488
-Brazil,29219,494
-Russia,17148,217
-France,78515,373
-Argentina,11712,405
-Spain,52188,279
-Colombia,9167,348
-Mexico,4166,247
-United Kingdom,20890,102
-Peru,0,0
-South Africa,891,40
-Iran,5960,337
-Italy,17007,141
-Chile,1535,59
-Iraq,3691,48
-Germany,12560,29
-Bangladesh,1436,15
-Indonesia,3222,112
-Philippines,1602,62
-Turkey,2198,75
-Ukraine,5625,75
-Saudi Arabia,357,17
-Pakistan,773,6
-Belgium,0,0
-Israel,905,56
-Netherlands,10343,26
-Czechia,10273,164
-Poland,10241,45
+Brazil,59006,1043
+Russia,33490,534
+France,111775,895
+Spain,70606,546
+Argentina,26020,834
+Colombia,17333,565
+United Kingdom,43775,469
+Mexico,10108,890
+Peru,1859,48
+South Africa,1983,85
+Iran,12928,683
+Italy,38996,362
+Chile,2462,82
+Germany,25721,59
+Iraq,8201,101
+Bangladesh,2771,35
+Indonesia,6742,213
+Philippines,3116,76
+Ukraine,12510,204
+Turkey,4407,151
+Saudi Arabia,756,33
+Belgium,12687,89
+Pakistan,1598,20
+Netherlands,20635,96
+Israel,1778,86
+Czechia,25936,346
+Poland,26541,177
 Canada,2676,28
-Romania,2844,79
-Morocco,2264,72
-Ecuador,543,20
-Nepal,1741,15
-Bolivia,99,13
-Qatar,262,0
-Panama,551,5
-United Arab Emirates,1111,3
-Dominican Republic,316,2
-Kuwait,682,3
-Portugal,2447,27
-Switzerland,17440,28
-Oman,422,16
-Kazakhstan,142,0
-Sweden,0,0
-Egypt,167,12
-Guatemala,107,7
-Costa Rica,1372,30
-Japan,408,5
-Honduras,752,10
-Belarus,884,4
-Ethiopia,364,11
-Venezuela,482,4
-Mainland China,-5795,4634
-Austria,2456,13
-Bahrain,278,4
-Armenia,973,16
-Lebanon,796,14
-Moldova,308,15
-Uzbekistan,360,3
-Nigeria,119,2
-Hungary,2316,47
-Palestine,0,0
-Paraguay,515,24
-Ireland,939,3
-Singapore,3,0
-Libya,1210,6
-Algeria,276,8
-Kyrgyzstan,420,0
-Jordan,1968,45
+Romania,7568,183
+Morocco,6252,144
+Ecuador,1557,35
+Nepal,2311,29
+Bolivia,271,27
+Qatar,519,0
+Panama,1222,17
+United Arab Emirates,2501,5
+Switzerland,23389,64
+Dominican Republic,481,3
+Portugal,5746,55
+Kuwait,1457,10
+Sweden,5191,-15
+Oman,888,29
+Kazakhstan,290,29
+Egypt,337,23
+Guatemala,784,21
+Costa Rica,2234,47
+Japan,1051,10
+Honduras,1409,16
+Belarus,1786,8
+Ethiopia,875,19
+Venezuela,835,7
+Austria,5291,26
+Mainland China,-5753,4634
+Bahrain,510,4
+Armenia,2573,42
+Lebanon,2605,25
+Moldova,957,25
+Uzbekistan,574,7
+Hungary,4395,110
+Palestine,1918,0
+Nigeria,232,5
+Paraguay,963,38
+Jordan,5768,89
+Ireland,1639,8
+Singapore,10,0
+Libya,1962,17
+Kyrgyzstan,988,2
+Algeria,563,17
 Tunisia,3600,164
-Azerbaijan,527,8
-Kenya,276,18
+Azerbaijan,1190,17
+Kenya,1112,32
 Ghana,85,0
-Myanmar (Burma),1426,27
-Slovakia,1312,6
-Bosnia and Herzegovina,703,18
-Denmark,1056,6
-Afghanistan,104,4
-Bulgaria,2243,42
-Serbia,341,1
-Croatia,828,15
-El Salvador,340,4
-Greece,714,7
-Georgia,1872,14
-Malaysia,1240,7
+Myanmar (Burma),2892,52
+Slovakia,2213,17
+Bosnia and Herzegovina,2258,39
+Bulgaria,4812,67
+Denmark,1801,7
+Afghanistan,199,9
+Serbia,1394,6
+Croatia,2241,33
+El Salvador,340,8
+Greece,1970,19
+Georgia,3696,37
+Malaysia,2075,9
+North Macedonia,873,30
 Australia,14,0
-North Macedonia,245,15
-South Korea,88,3
-Slovenia,1130,11
+South Korea,191,4
+Slovenia,2653,24
 Cameroon,223,1
-Côte d'Ivoire,16,0
-Albania,288,3
-Norway,433,0
+Côte d'Ivoire,18,0
+Albania,572,10
+Norway,757,1
 Kosovo,0,0
+Montenegro,294,9
 Madagascar,0,0
-Montenegro,112,4
-Zambia,83,0
-Senegal,14,1
-Finland,122,1
-Luxembourg,1548,6
+Zambia,126,0
+Senegal,20,1
+Finland,315,1
+Luxembourg,2033,6
 Sudan,5,0
-Namibia,15,0
-Mozambique,175,2
-Guinea,0,0
-Uganda,114,0
-Maldives,27,0
+Namibia,69,0
+Mozambique,287,3
+Guinea,184,0
+Uganda,178,2
+Maldives,62,0
+Lithuania,1178,7
 Democratic Republic of the Congo,17,0
-Lithuania,765,2
-Tajikistan,43,0
-French Guiana,9,0
-Angola,263,2
-Haiti,0,0
+Tajikistan,84,0
+French Guiana,21,1
+Angola,490,3
+Haiti,14,0
 Gabon,18,0
-Jamaica,35,4
-Cape Verde,27,0
-Sri Lanka,541,0
-Zimbabwe,27,5
-Mauritania,13,0
+Sri Lanka,998,3
+Jamaica,73,8
+Cape Verde,76,0
+Zimbabwe,39,5
+Mauritania,16,0
 Guadeloupe,145,0
-Cuba,29,0
+Cuba,112,0
+The Bahamas,92,4
 French Polynesia,572,6
-The Bahamas,0,0
 Botswana,360,0
-Malawi,4,0
-Eswatini,9,0
-Malta,80,2
-Djibouti,5,0
-Trinidad and Tobago,24,1
-Syria,53,3
-Nicaragua,0,0
+Malawi,7,0
+Eswatini,21,0
+Malta,187,4
+Trinidad and Tobago,57,1
+Djibouti,8,0
+Syria,120,6
+Nicaragua,80,1
 Réunion,212,0
-Hong Kong,8,0
+Hong Kong,13,0
 Republic of the Congo,0,0
-Suriname,10,1
-Equatorial Guinea,0,0
-Rwanda,7,0
+Suriname,17,2
+Rwanda,18,1
+Equatorial Guinea,4,0
+Latvia,215,7
 Central African Republic,1,0
-Latvia,79,4
-Iceland,56,0
-Estonia,17,0
-Aruba,2,0
-Andorra,287,3
+Iceland,126,0
+Estonia,54,0
+Aruba,17,0
+Andorra,372,3
 Mayotte,45,0
-Guyana,3,0
+Guyana,38,0
 Somalia,0,0
-Thailand,10,0
-The Gambia,5,0
-Cyprus,91,0
-Mali,9,1
-Belize,0,0
-South Sudan,0,0
-Uruguay,21,1
+Cyprus,272,0
+Thailand,23,0
+The Gambia,6,0
+Martinique,1295,6
+Mali,25,4
+Belize,55,1
+Uruguay,65,1
+South Sudan,7,0
 Benin,0,0
-Burkina Faso,8,2
+Burkina Faso,15,2
 Guinea-Bissau,0,0
-Sierra Leone,0,0
-Martinique,0,0
-Togo,4,1
+Sierra Leone,4,0
+Togo,29,2
 Yemen,0,0
-Lesotho,3,0
-New Zealand,1,0
-Chad,4,0
-Liberia,23,0
-Niger,0,0
-Vietnam,1,0
+Lesotho,7,0
+New Zealand,3,0
+Chad,23,0
+Liberia,26,0
+Niger,3,0
+Vietnam,4,0
 São Tomé and Príncipe,1,0
 Northern Cyprus,21,0
-Curaçao,15,0
+Curaçao,26,0
 San Marino,33,0
-Sint Maarten,5,0
-Turks and Caicos Islands,0,0
-Gibraltar,3,0
+Sint Maarten,8,0
+Turks and Caicos Islands,2,0
+Gibraltar,12,0
 Papua New Guinea,5,0
+Saint Martin,28,1
 Jersey,4,16
-Burundi,0,0
+Burundi,1,0
 Taiwan,0,0
-Saint Martin,4,0
 Comoros,0,0
 Tanzania,0,0
-Faroe Islands,0,0
+Faroe Islands,4,0
 Eritrea,0,0
 Mauritius,4,0
-Liechtenstein,37,0
-Isle of Man,3,0
-Bhutan,0,0
+Liechtenstein,63,0
+Isle of Man,4,0
+Bhutan,3,0
 Mongolia,1,0
-Monaco,4,0
-Cambodia,1,0
+Monaco,14,0
+Cambodia,3,0
 Guernsey,0,0
 Cayman Islands,0,0
 Barbados,6,0
-Bermuda,3,0
+Bermuda,4,0
 Seychelles,0,0
 Caribbean Netherlands,0,0
 Brunei,0,0
 Antigua and Barbuda,0,0
 Saint Barthélemy,6,0
-Saint Vincent and the Grenadines,0,0
+Saint Vincent and the Grenadines,1,0
 British Virgin Islands,0,0
-Saint Lucia,9,0
+Saint Lucia,11,0
 Macao,0,0
 Dominica,0,0
 Åland Islands,1,0

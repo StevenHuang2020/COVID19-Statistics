@@ -51,6 +51,9 @@ Updated to adapt to the new google page.<br/>
     <td><img src="images/7.png" width="320" height="240" /></td>
     <td><img src="images/8.png" width="320" height="240" /></td>
   </tr>
+   <tr>
+    <td><img src="images/9.png" width="320" height="240" /></td>
+  </tr>
  </table>
  
 <br/>
@@ -120,7 +123,7 @@ Source reference: https://ourworldindata.org/covid-cases<br/>
   </tr>
 </table>
 
-### NZ Statistic
+### NZ Covid-19 Statistic
 <br/>
 Source reference: https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-current-cases-details#download<br/>
 <br/>

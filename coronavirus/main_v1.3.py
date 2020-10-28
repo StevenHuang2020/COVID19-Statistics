@@ -18,7 +18,7 @@ from main import plotData,preprocessData
 mainUrl = 'https://google.com/covid19-map/'
 
 def parseXpathTr(tr,columns):
-    location,confirmed,Case_Per_1M_people,recovered,deaths = '','','','',''
+    location,confirmed,NewCases,Case_Per_1M_people,deaths = '','','','',''
     
     #path='//th[@class="l3HOY"]/div/div[@class="pcAJd"]'
     #path='//th/div[@class="pcAJd"]'
@@ -35,25 +35,25 @@ def parseXpathTr(tr,columns):
         if i == 0:
             confirmed = td.text.strip()
         elif i == 1:
-            pass
+            NewCases = td.text.strip()
         elif i == 2:
-            Case_Per_1M_people = td.text.strip()
+            pass
         elif i == 3:
-            recovered = td.text.strip()
+            Case_Per_1M_people = td.text.strip()
         elif i == 4:
             deaths = td.text.strip()
 
     if Case_Per_1M_people == '' or Case_Per_1M_people == 'No data':
         Case_Per_1M_people = '0'
-    if recovered == '' or recovered == 'No data':
-        recovered = '0'
     if deaths == '' or deaths == 'No data':
         deaths = '0'
     if confirmed == '' or confirmed == 'No data':
         confirmed = '0'
-
-    #print('Location:',location,'Confirmed:',confirmed,'Case_Per_1M_people:',Case_Per_1M_people,'Recovered:',recovered,'deaths:',deaths)
-    return pd.DataFrame([[location, confirmed, Case_Per_1M_people, recovered, deaths]], columns=columns)
+    if NewCases == '' or NewCases == 'No data':
+        NewCases = '0'
+        
+    #print('Location:',location,'Confirmed:',confirmed,'NewCases:',NewCases,'Case_Per_1M_people:',Case_Per_1M_people,'deaths:',deaths)
+    return pd.DataFrame([[location, confirmed, NewCases, Case_Per_1M_people, deaths]], columns=columns)
 
 def getHeader(thead):
     ths = thead.find_elements_by_xpath('//tr[@class="sgXwHf"]//div[@class="XmCM0b"]')
@@ -96,19 +96,22 @@ def Load(url):
     thead = table_id.find_element_by_tag_name('thead')
     tbody = table_id.find_element_by_tag_name('tbody')
     
-    columns = getHeader(thead)
-    print('columns = ', columns)
-    columns[1] = 'Confirmed'
-    columns[3]='Case_Per_1M_people'
-    columns.pop(2) #remove 'New cases (last 60 days)'
+    originalColumns = getHeader(thead)
+    print('originalColumns = ', originalColumns)
+    columns = []
+    columns.append('Location')
+    columns.append('Confirmed')
+    columns.append('NewCases')
+    columns.append('Case_Per_1M_people')
+    columns.append('Deaths')
     print('columns = ', columns)
     
     df = pd.DataFrame()
     result = tbody.find_elements(By.TAG_NAME, "tr")
     print('result=',len(result))
     for i in result:
-        df = df.append(parseXpathTr(i, columns),ignore_index=True)
-    
+        df = df.append(parseXpathTr(i, columns), ignore_index=True)
+  
     print('df.shape=', df.shape)
     return preprocessData(df)
     
@@ -127,5 +130,3 @@ if __name__ == '__main__':
     df = Load(mainUrl)
     if plot:
         plotData(df,60)
-        
-    #predict()

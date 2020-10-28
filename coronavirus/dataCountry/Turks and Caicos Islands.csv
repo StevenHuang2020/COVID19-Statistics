@@ -1,191 +1,190 @@
-Location,Date,Confirmed,Case_Per_1M_people,Recovered,Deaths,Mortality,Cases per 1 million people,NewConfirmed,NewDeaths
-Turks and Caicos Islands,2020-03-31,5.0,96.19,0.0,0.0,0.0,,0.0,0.0
-Turks and Caicos Islands,2020-04-01,5.0,96.19,0.0,0.0,0.0,,0.0,0.0
-Turks and Caicos Islands,2020-04-02,5.0,96.19,0.0,0.0,0.0,,0.0,0.0
-Turks and Caicos Islands,2020-04-03,5.0,96.19,0.0,0.0,0.0,,0.0,0.0
-Turks and Caicos Islands,2020-04-07,8.0,193.38,0.0,1.0,0.125,,3.0,1.0
-Turks and Caicos Islands,2020-04-10,8.0,193.38,0.0,1.0,0.125,,0.0,0.0
-Turks and Caicos Islands,2020-04-11,8.0,193.38,0.0,1.0,0.125,,0.0,0.0
-Turks and Caicos Islands,2020-04-12,8.0,193.38,0.0,1.0,0.125,,0.0,0.0
-Turks and Caicos Islands,2020-04-14,8.0,193.38,0.0,1.0,0.125,,0.0,0.0
-,2020-04-17,,,,,,,,
-,2020-04-18,,,,,,,,
-,2020-04-20,,,,,,,,
-,2020-04-22,,,,,,,,
-,2020-04-23,,,,,,,,
-,2020-04-24,,,,,,,,
-,2020-04-25,,,,,,,,
-,2020-04-26,,,,,,,,
-,2020-04-27,,,,,,,,
-,2020-04-28,,,,,,,,
-,2020-04-29,,,,,,,,
-,2020-04-30,,,,,,,,
-,2020-05-01,,,,,,,,
-,2020-05-02,,,,,,,,
-,2020-05-03,,,,,,,,
-,2020-05-04,,,,,,,,
-,2020-05-05,,,,,,,,
-,2020-05-06,,,,,,,,
-,2020-05-07,,,,,,,,
-,2020-05-08,,,,,,,,
-,2020-05-09,,,,,,,,
-,2020-05-10,,,,,,,,
-Turks and Caicos Islands,2020-05-11,0.0,0.0,0.0,0.0,,,,
-Turks and Caicos Islands,2020-05-12,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-13,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-15,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-16,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-17,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-18,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-19,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-20,0.0,0.0,0.0,0.0,,,0.0,0.0
-,2020-05-21,,,,,,,,
-Turks and Caicos Islands,2020-05-22,0.0,0.0,0.0,0.0,,,,
-Turks and Caicos Islands,2020-05-23,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-24,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-25,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-26,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-27,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-28,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-29,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-30,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-05-31,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-01,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-02,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-03,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-04,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-05,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-06,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-07,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-08,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-09,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-10,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-12,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-13,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-14,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-15,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-16,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-17,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-18,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-19,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-20,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-21,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-22,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-23,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-24,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-25,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-26,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-27,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-28,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-29,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-06-30,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-07-01,0.0,0.0,0.0,0.0,,,0.0,0.0
-Turks and Caicos Islands,2020-07-02,41.0,991.0,11.0,2.0,0.0488,,41.0,2.0
-Turks and Caicos Islands,2020-07-03,44.0,1064.0,11.0,2.0,0.0455,,3.0,0.0
-Turks and Caicos Islands,2020-07-04,44.0,1064.0,11.0,2.0,0.0455,,0.0,0.0
-Turks and Caicos Islands,2020-07-05,45.0,1088.0,11.0,2.0,0.0444,,1.0,0.0
-Turks and Caicos Islands,2020-07-06,47.0,1136.0,11.0,2.0,0.0426,,2.0,0.0
-Turks and Caicos Islands,2020-07-07,48.0,1160.0,11.0,2.0,0.0417,,1.0,0.0
-Turks and Caicos Islands,2020-07-09,55.0,1329.0,11.0,2.0,0.0364,,7.0,0.0
-Turks and Caicos Islands,2020-07-10,55.0,1329.0,11.0,2.0,0.0364,,0.0,0.0
-Turks and Caicos Islands,2020-07-11,66.0,1595.0,11.0,2.0,0.0303,,11.0,0.0
-Turks and Caicos Islands,2020-07-12,69.0,1668.0,11.0,2.0,0.028999999999999998,,3.0,0.0
-Turks and Caicos Islands,2020-07-13,71.0,1716.0,12.0,2.0,0.0282,,2.0,0.0
-Turks and Caicos Islands,2020-07-14,72.0,1740.0,12.0,2.0,0.0278,,1.0,0.0
-Turks and Caicos Islands,2020-07-15,72.0,1740.0,12.0,2.0,0.0278,,0.0,0.0
-Turks and Caicos Islands,2020-07-16,72.0,1740.0,12.0,2.0,0.0278,,0.0,0.0
-Turks and Caicos Islands,2020-07-18,74.0,1789.0,12.0,2.0,0.027000000000000003,,2.0,0.0
-Turks and Caicos Islands,2020-07-19,75.0,1813.0,12.0,2.0,0.0267,,1.0,0.0
-Turks and Caicos Islands,2020-07-19,75.0,1813.0,22.0,2.0,0.0267,,0.0,0.0
-Turks and Caicos Islands,2020-07-21,81.0,1958.0,22.0,2.0,0.0247,,6.0,0.0
-Turks and Caicos Islands,2020-07-22,81.0,1958.0,22.0,2.0,0.0247,,0.0,0.0
-Turks and Caicos Islands,2020-07-23,82.0,1982.0,22.0,2.0,0.0244,,1.0,0.0
-Turks and Caicos Islands,2020-07-24,86.0,2079.0,22.0,2.0,0.0233,,4.0,0.0
-Turks and Caicos Islands,2020-07-25,90.0,2176.0,27.0,2.0,0.0222,,4.0,0.0
-Turks and Caicos Islands,2020-07-26,97.0,2345.0,36.0,2.0,0.0206,,7.0,0.0
-Turks and Caicos Islands,2020-07-27,97.0,2345.0,36.0,2.0,0.0206,,0.0,0.0
-Turks and Caicos Islands,2020-07-28,99.0,2393.0,36.0,2.0,0.0202,,2.0,0.0
-Turks and Caicos Islands,2020-07-29,99.0,2393.0,36.0,2.0,0.0202,,0.0,0.0
-Turks and Caicos Islands,2020-07-30,99.0,2393.0,38.0,2.0,0.0202,,0.0,0.0
-Turks and Caicos Islands,2020-07-31,104.0,2514.0,38.0,2.0,0.0192,,5.0,0.0
-Turks and Caicos Islands,2020-08-01,107.0,2586.0,38.0,2.0,0.0187,,3.0,0.0
-Turks and Caicos Islands,2020-08-02,114.0,2756.0,39.0,2.0,0.0175,,7.0,0.0
-Turks and Caicos Islands,2020-08-03,114.0,2756.0,39.0,2.0,0.0175,,0.0,0.0
-Turks and Caicos Islands,2020-08-04,116.0,2804.0,39.0,2.0,0.0172,,2.0,0.0
-Turks and Caicos Islands,2020-08-05,116.0,2804.0,39.0,2.0,0.0172,,0.0,0.0
-Turks and Caicos Islands,2020-08-06,116.0,2804.0,39.0,2.0,0.0172,,0.0,0.0
-Turks and Caicos Islands,2020-08-07,129.0,3118.0,39.0,2.0,0.0155,,13.0,0.0
-Turks and Caicos Islands,2020-08-08,141.0,3408.0,39.0,2.0,0.0142,,12.0,0.0
-Turks and Caicos Islands,2020-08-09,170.0,4109.0,40.0,2.0,0.0118,,29.0,0.0
-Turks and Caicos Islands,2020-08-10,197.0,4762.0,40.0,2.0,0.0102,,27.0,0.0
-Turks and Caicos Islands,2020-08-11,216.0,5221.0,40.0,2.0,0.0093,,19.0,0.0
-Turks and Caicos Islands,2020-08-12,216.0,5221.0,40.0,2.0,0.0093,,0.0,0.0
-Turks and Caicos Islands,2020-08-13,224.0,5415.0,40.0,2.0,0.0089,,8.0,0.0
-Turks and Caicos Islands,2020-08-14,241.0,5826.0,46.0,2.0,0.0083,,17.0,0.0
-Turks and Caicos Islands,2020-08-15,258.0,6237.0,53.0,2.0,0.0078,,17.0,0.0
-Turks and Caicos Islands,2020-08-16,274.0,6623.0,55.0,2.0,0.0073,,16.0,0.0
-Turks and Caicos Islands,2020-08-17,298.0,7203.0,55.0,2.0,0.0067,,24.0,0.0
-Turks and Caicos Islands,2020-08-18,298.0,7203.0,55.0,2.0,0.0067,,0.0,0.0
-Turks and Caicos Islands,2020-08-19,298.0,7203.0,55.0,2.0,0.0067,,0.0,0.0
-Turks and Caicos Islands,2020-08-20,315.0,7614.0,57.0,2.0,0.0063,,17.0,0.0
-Turks and Caicos Islands,2020-08-22,334.0,8074.0,103.0,2.0,0.006,,19.0,0.0
-Turks and Caicos Islands,2020-08-23,347.0,8388.0,103.0,2.0,0.0058,,13.0,0.0
-Turks and Caicos Islands,2020-08-24,383.0,9258.0,103.0,2.0,0.0052,,36.0,0.0
-Turks and Caicos Islands,2020-08-25,383.0,9258.0,103.0,2.0,0.0052,,0.0,0.0
-Turks and Caicos Islands,2020-08-26,383.0,9258.0,103.0,2.0,0.0052,,0.0,0.0
-Turks and Caicos Islands,2020-08-27,431.0,10418.0,103.0,2.0,0.0046,,48.0,0.0
-Turks and Caicos Islands,2020-08-28,464.0,11216.0,103.0,3.0,0.0065,,33.0,1.0
-Turks and Caicos Islands,2020-08-29,482.0,11651.0,103.0,3.0,0.0062,,18.0,0.0
-Turks and Caicos Islands,2020-08-30,490.0,11845.0,148.0,3.0,0.0061,,8.0,0.0
-Turks and Caicos Islands,2020-08-31,490.0,11845.0,148.0,3.0,0.0061,,0.0,0.0
-Turks and Caicos Islands,2020-09-01,507.0,12256.0,201.0,3.0,0.0059,,17.0,0.0
-Turks and Caicos Islands,2020-09-02,508.0,12280.0,201.0,4.0,0.0079,,1.0,1.0
-Turks and Caicos Islands,2020-09-03,538.0,13005.0,219.0,4.0,0.0074,,30.0,0.0
-Turks and Caicos Islands,2020-09-04,555.0,13416.0,221.0,4.0,0.0072,,17.0,0.0
-Turks and Caicos Islands,2020-09-05,577.0,13948.0,221.0,5.0,0.0087,,22.0,1.0
-Turks and Caicos Islands,2020-09-07,599.0,14479.0,265.0,5.0,0.0083,,22.0,0.0
-Turks and Caicos Islands,2020-09-08,599.0,14479.0,265.0,5.0,0.0083,,0.0,0.0
-Turks and Caicos Islands,2020-09-09,599.0,14479.0,265.0,5.0,0.0083,,0.0,0.0
-Turks and Caicos Islands,2020-09-10,614.0,14842.0,265.0,5.0,0.0081,,15.0,0.0
-Turks and Caicos Islands,2020-09-11,628.0,15180.0,267.0,5.0,0.008,,14.0,0.0
-Turks and Caicos Islands,2020-09-12,638.0,15422.0,271.0,5.0,0.0078,,10.0,0.0
-Turks and Caicos Islands,2020-09-13,641.0,15495.0,271.0,5.0,0.0078,,3.0,0.0
-Turks and Caicos Islands,2020-09-14,644.0,15567.0,277.0,5.0,0.0078,,3.0,0.0
-Turks and Caicos Islands,2020-09-15,646.0,15616.0,533.0,5.0,0.0077,,2.0,0.0
-Turks and Caicos Islands,2020-09-16,648.0,15664.0,533.0,5.0,0.0077,,2.0,0.0
-Turks and Caicos Islands,2020-09-17,650.0,15712.0,558.0,5.0,0.0077,,2.0,0.0
-Turks and Caicos Islands,2020-09-18,659.0,15930.0,562.0,5.0,0.0076,,9.0,0.0
-Turks and Caicos Islands,2020-09-20,667.0,16123.0,568.0,5.0,0.0075,,8.0,0.0
-Turks and Caicos Islands,2020-09-21,668.0,16147.0,573.0,5.0,0.0075,,1.0,0.0
-Turks and Caicos Islands,2020-09-22,668.0,16147.0,573.0,5.0,0.0075,,0.0,0.0
-Turks and Caicos Islands,2020-09-23,668.0,16147.0,573.0,5.0,0.0075,,0.0,0.0
-Turks and Caicos Islands,2020-09-24,672.0,0.0,,5.0,0.0074,16244.0,4.0,0.0
-Turks and Caicos Islands,2020-09-25,676.0,0.0,,5.0,0.0074,16341.0,4.0,0.0
-Turks and Caicos Islands,2020-09-26,679.0,0.0,,5.0,0.0074,16413.0,3.0,0.0
-Turks and Caicos Islands,2020-09-27,680.0,0.0,,5.0,0.0074,16437.0,1.0,0.0
-Turks and Caicos Islands,2020-09-28,681.0,0.0,,5.0,0.0073,16462.0,1.0,0.0
-Turks and Caicos Islands,2020-09-29,682.0,0.0,,5.0,0.0073,16486.0,1.0,0.0
-Turks and Caicos Islands,2020-09-30,682.0,0.0,,5.0,0.0073,16486.0,0.0,0.0
-Turks and Caicos Islands,2020-10-02,689.0,0.0,,5.0,0.0073,16655.0,7.0,0.0
-Turks and Caicos Islands,2020-10-03,690.0,0.0,,6.0,0.0087,16679.0,1.0,1.0
-Turks and Caicos Islands,2020-10-04,695.0,0.0,,6.0,0.0086,16800.0,5.0,0.0
-Turks and Caicos Islands,2020-10-05,695.0,0.0,,6.0,0.0086,16800.0,0.0,0.0
-Turks and Caicos Islands,2020-10-06,695.0,0.0,,6.0,0.0086,16800.0,0.0,0.0
-Turks and Caicos Islands,2020-10-08,695.0,0.0,,6.0,0.0086,16800.0,0.0,0.0
-Turks and Caicos Islands,2020-10-09,695.0,0.0,,6.0,0.0086,16800.0,0.0,0.0
-Turks and Caicos Islands,2020-10-10,695.0,0.0,,6.0,0.0086,16800.0,0.0,0.0
-Turks and Caicos Islands,2020-10-11,695.0,0.0,,6.0,0.0086,16800.0,0.0,0.0
-Turks and Caicos Islands,2020-10-12,696.0,0.0,,6.0,0.0086,16824.0,1.0,0.0
-Turks and Caicos Islands,2020-10-13,696.0,0.0,,6.0,0.0086,16824.0,0.0,0.0
-Turks and Caicos Islands,2020-10-14,696.0,0.0,,6.0,0.0086,16824.0,0.0,0.0
-Turks and Caicos Islands,2020-10-15,696.0,0.0,,6.0,0.0086,16824.0,0.0,0.0
-Turks and Caicos Islands,2020-10-18,697.0,0.0,,6.0,0.0086,16848.0,1.0,0.0
-Turks and Caicos Islands,2020-10-19,698.0,0.0,,6.0,0.0086,16873.0,1.0,0.0
-Turks and Caicos Islands,2020-10-20,698.0,0.0,,6.0,0.0086,16873.0,0.0,0.0
-Turks and Caicos Islands,2020-10-22,698.0,0.0,,6.0,0.0086,16873.0,0.0,0.0
-Turks and Caicos Islands,2020-10-23,698.0,0.0,,6.0,0.0086,16873.0,0.0,0.0
-Turks and Caicos Islands,2020-10-24,698.0,0.0,,6.0,0.0086,16873.0,0.0,0.0
-Turks and Caicos Islands,2020-10-25,699.0,0.0,,6.0,0.0086,16897.0,1.0,0.0
-Turks and Caicos Islands,2020-10-26,701.0,0.0,,6.0,0.0086,16945.0,2.0,0.0
-Turks and Caicos Islands,2020-10-27,701.0,0.0,,6.0,0.0086,16945.0,0.0,0.0
-Turks and Caicos Islands,2020-10-28,701.0,0.0,,6.0,0.0086,16945.0,0.0,0.0
+Location,Date,Confirmed,Case_Per_1M_people,Recovered,Deaths,Mortality,Cases per 1 million people,NewCases,NewConfirmed,NewDeaths
+Turks and Caicos Islands,2020-03-31,5.0,96.19,0.0,0.0,0.0,,,0.0,0.0
+Turks and Caicos Islands,2020-04-01,5.0,96.19,0.0,0.0,0.0,,,0.0,0.0
+Turks and Caicos Islands,2020-04-02,5.0,96.19,0.0,0.0,0.0,,,0.0,0.0
+Turks and Caicos Islands,2020-04-03,5.0,96.19,0.0,0.0,0.0,,,0.0,0.0
+Turks and Caicos Islands,2020-04-07,8.0,193.38,0.0,1.0,0.125,,,3.0,1.0
+Turks and Caicos Islands,2020-04-10,8.0,193.38,0.0,1.0,0.125,,,0.0,0.0
+Turks and Caicos Islands,2020-04-11,8.0,193.38,0.0,1.0,0.125,,,0.0,0.0
+Turks and Caicos Islands,2020-04-12,8.0,193.38,0.0,1.0,0.125,,,0.0,0.0
+Turks and Caicos Islands,2020-04-14,8.0,193.38,0.0,1.0,0.125,,,0.0,0.0
+,2020-04-17,,,,,,,,,
+,2020-04-18,,,,,,,,,
+,2020-04-20,,,,,,,,,
+,2020-04-22,,,,,,,,,
+,2020-04-23,,,,,,,,,
+,2020-04-24,,,,,,,,,
+,2020-04-25,,,,,,,,,
+,2020-04-26,,,,,,,,,
+,2020-04-27,,,,,,,,,
+,2020-04-28,,,,,,,,,
+,2020-04-29,,,,,,,,,
+,2020-04-30,,,,,,,,,
+,2020-05-01,,,,,,,,,
+,2020-05-02,,,,,,,,,
+,2020-05-03,,,,,,,,,
+,2020-05-04,,,,,,,,,
+,2020-05-05,,,,,,,,,
+,2020-05-06,,,,,,,,,
+,2020-05-07,,,,,,,,,
+,2020-05-08,,,,,,,,,
+,2020-05-09,,,,,,,,,
+,2020-05-10,,,,,,,,,
+Turks and Caicos Islands,2020-05-11,0.0,0.0,0.0,0.0,,,,,
+Turks and Caicos Islands,2020-05-12,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-13,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-15,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-16,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-17,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-18,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-19,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-20,0.0,0.0,0.0,0.0,,,,0.0,0.0
+,2020-05-21,,,,,,,,,
+Turks and Caicos Islands,2020-05-22,0.0,0.0,0.0,0.0,,,,,
+Turks and Caicos Islands,2020-05-23,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-24,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-25,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-26,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-27,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-28,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-29,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-30,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-05-31,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-01,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-02,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-03,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-04,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-05,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-06,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-07,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-08,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-09,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-10,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-12,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-13,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-14,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-15,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-16,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-17,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-18,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-19,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-20,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-21,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-22,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-23,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-24,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-25,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-26,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-27,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-28,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-29,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-06-30,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-07-01,0.0,0.0,0.0,0.0,,,,0.0,0.0
+Turks and Caicos Islands,2020-07-02,41.0,991.0,11.0,2.0,0.0488,,,41.0,2.0
+Turks and Caicos Islands,2020-07-03,44.0,1064.0,11.0,2.0,0.0455,,,3.0,0.0
+Turks and Caicos Islands,2020-07-04,44.0,1064.0,11.0,2.0,0.0455,,,0.0,0.0
+Turks and Caicos Islands,2020-07-05,45.0,1088.0,11.0,2.0,0.0444,,,1.0,0.0
+Turks and Caicos Islands,2020-07-06,47.0,1136.0,11.0,2.0,0.0426,,,2.0,0.0
+Turks and Caicos Islands,2020-07-07,48.0,1160.0,11.0,2.0,0.0417,,,1.0,0.0
+Turks and Caicos Islands,2020-07-09,55.0,1329.0,11.0,2.0,0.0364,,,7.0,0.0
+Turks and Caicos Islands,2020-07-10,55.0,1329.0,11.0,2.0,0.0364,,,0.0,0.0
+Turks and Caicos Islands,2020-07-11,66.0,1595.0,11.0,2.0,0.0303,,,11.0,0.0
+Turks and Caicos Islands,2020-07-12,69.0,1668.0,11.0,2.0,0.028999999999999998,,,3.0,0.0
+Turks and Caicos Islands,2020-07-14,72.0,1740.0,12.0,2.0,0.0278,,,3.0,0.0
+Turks and Caicos Islands,2020-07-15,72.0,1740.0,12.0,2.0,0.0278,,,0.0,0.0
+Turks and Caicos Islands,2020-07-16,72.0,1740.0,12.0,2.0,0.0278,,,0.0,0.0
+Turks and Caicos Islands,2020-07-18,74.0,1789.0,12.0,2.0,0.027000000000000003,,,2.0,0.0
+Turks and Caicos Islands,2020-07-19,75.0,1813.0,12.0,2.0,0.0267,,,1.0,0.0
+Turks and Caicos Islands,2020-07-19,75.0,1813.0,22.0,2.0,0.0267,,,0.0,0.0
+Turks and Caicos Islands,2020-07-21,81.0,1958.0,22.0,2.0,0.0247,,,6.0,0.0
+Turks and Caicos Islands,2020-07-22,81.0,1958.0,22.0,2.0,0.0247,,,0.0,0.0
+Turks and Caicos Islands,2020-07-23,82.0,1982.0,22.0,2.0,0.0244,,,1.0,0.0
+Turks and Caicos Islands,2020-07-24,86.0,2079.0,22.0,2.0,0.0233,,,4.0,0.0
+Turks and Caicos Islands,2020-07-25,90.0,2176.0,27.0,2.0,0.0222,,,4.0,0.0
+Turks and Caicos Islands,2020-07-26,97.0,2345.0,36.0,2.0,0.0206,,,7.0,0.0
+Turks and Caicos Islands,2020-07-27,97.0,2345.0,36.0,2.0,0.0206,,,0.0,0.0
+Turks and Caicos Islands,2020-07-28,99.0,2393.0,36.0,2.0,0.0202,,,2.0,0.0
+Turks and Caicos Islands,2020-07-29,99.0,2393.0,36.0,2.0,0.0202,,,0.0,0.0
+Turks and Caicos Islands,2020-07-30,99.0,2393.0,38.0,2.0,0.0202,,,0.0,0.0
+Turks and Caicos Islands,2020-07-31,104.0,2514.0,38.0,2.0,0.0192,,,5.0,0.0
+Turks and Caicos Islands,2020-08-01,107.0,2586.0,38.0,2.0,0.0187,,,3.0,0.0
+Turks and Caicos Islands,2020-08-02,114.0,2756.0,39.0,2.0,0.0175,,,7.0,0.0
+Turks and Caicos Islands,2020-08-03,114.0,2756.0,39.0,2.0,0.0175,,,0.0,0.0
+Turks and Caicos Islands,2020-08-04,116.0,2804.0,39.0,2.0,0.0172,,,2.0,0.0
+Turks and Caicos Islands,2020-08-05,116.0,2804.0,39.0,2.0,0.0172,,,0.0,0.0
+Turks and Caicos Islands,2020-08-06,116.0,2804.0,39.0,2.0,0.0172,,,0.0,0.0
+Turks and Caicos Islands,2020-08-07,129.0,3118.0,39.0,2.0,0.0155,,,13.0,0.0
+Turks and Caicos Islands,2020-08-08,141.0,3408.0,39.0,2.0,0.0142,,,12.0,0.0
+Turks and Caicos Islands,2020-08-09,170.0,4109.0,40.0,2.0,0.0118,,,29.0,0.0
+Turks and Caicos Islands,2020-08-10,197.0,4762.0,40.0,2.0,0.0102,,,27.0,0.0
+Turks and Caicos Islands,2020-08-11,216.0,5221.0,40.0,2.0,0.0093,,,19.0,0.0
+Turks and Caicos Islands,2020-08-12,216.0,5221.0,40.0,2.0,0.0093,,,0.0,0.0
+Turks and Caicos Islands,2020-08-13,224.0,5415.0,40.0,2.0,0.0089,,,8.0,0.0
+Turks and Caicos Islands,2020-08-14,241.0,5826.0,46.0,2.0,0.0083,,,17.0,0.0
+Turks and Caicos Islands,2020-08-15,258.0,6237.0,53.0,2.0,0.0078,,,17.0,0.0
+Turks and Caicos Islands,2020-08-16,274.0,6623.0,55.0,2.0,0.0073,,,16.0,0.0
+Turks and Caicos Islands,2020-08-17,298.0,7203.0,55.0,2.0,0.0067,,,24.0,0.0
+Turks and Caicos Islands,2020-08-18,298.0,7203.0,55.0,2.0,0.0067,,,0.0,0.0
+Turks and Caicos Islands,2020-08-19,298.0,7203.0,55.0,2.0,0.0067,,,0.0,0.0
+Turks and Caicos Islands,2020-08-20,315.0,7614.0,57.0,2.0,0.0063,,,17.0,0.0
+Turks and Caicos Islands,2020-08-22,334.0,8074.0,103.0,2.0,0.006,,,19.0,0.0
+Turks and Caicos Islands,2020-08-23,347.0,8388.0,103.0,2.0,0.0058,,,13.0,0.0
+Turks and Caicos Islands,2020-08-24,383.0,9258.0,103.0,2.0,0.0052,,,36.0,0.0
+Turks and Caicos Islands,2020-08-25,383.0,9258.0,103.0,2.0,0.0052,,,0.0,0.0
+Turks and Caicos Islands,2020-08-26,383.0,9258.0,103.0,2.0,0.0052,,,0.0,0.0
+Turks and Caicos Islands,2020-08-27,431.0,10418.0,103.0,2.0,0.0046,,,48.0,0.0
+Turks and Caicos Islands,2020-08-28,464.0,11216.0,103.0,3.0,0.0065,,,33.0,1.0
+Turks and Caicos Islands,2020-08-29,482.0,11651.0,103.0,3.0,0.0062,,,18.0,0.0
+Turks and Caicos Islands,2020-08-30,490.0,11845.0,148.0,3.0,0.0061,,,8.0,0.0
+Turks and Caicos Islands,2020-08-31,490.0,11845.0,148.0,3.0,0.0061,,,0.0,0.0
+Turks and Caicos Islands,2020-09-01,507.0,12256.0,201.0,3.0,0.0059,,,17.0,0.0
+Turks and Caicos Islands,2020-09-02,508.0,12280.0,201.0,4.0,0.0079,,,1.0,1.0
+Turks and Caicos Islands,2020-09-03,538.0,13005.0,219.0,4.0,0.0074,,,30.0,0.0
+Turks and Caicos Islands,2020-09-04,555.0,13416.0,221.0,4.0,0.0072,,,17.0,0.0
+Turks and Caicos Islands,2020-09-05,577.0,13948.0,221.0,5.0,0.0087,,,22.0,1.0
+Turks and Caicos Islands,2020-09-07,599.0,14479.0,265.0,5.0,0.0083,,,22.0,0.0
+Turks and Caicos Islands,2020-09-08,599.0,14479.0,265.0,5.0,0.0083,,,0.0,0.0
+Turks and Caicos Islands,2020-09-09,599.0,14479.0,265.0,5.0,0.0083,,,0.0,0.0
+Turks and Caicos Islands,2020-09-10,614.0,14842.0,265.0,5.0,0.0081,,,15.0,0.0
+Turks and Caicos Islands,2020-09-11,628.0,15180.0,267.0,5.0,0.008,,,14.0,0.0
+Turks and Caicos Islands,2020-09-12,638.0,15422.0,271.0,5.0,0.0078,,,10.0,0.0
+Turks and Caicos Islands,2020-09-13,641.0,15495.0,271.0,5.0,0.0078,,,3.0,0.0
+Turks and Caicos Islands,2020-09-14,644.0,15567.0,277.0,5.0,0.0078,,,3.0,0.0
+Turks and Caicos Islands,2020-09-15,646.0,15616.0,533.0,5.0,0.0077,,,2.0,0.0
+Turks and Caicos Islands,2020-09-16,648.0,15664.0,533.0,5.0,0.0077,,,2.0,0.0
+Turks and Caicos Islands,2020-09-17,650.0,15712.0,558.0,5.0,0.0077,,,2.0,0.0
+Turks and Caicos Islands,2020-09-18,659.0,15930.0,562.0,5.0,0.0076,,,9.0,0.0
+Turks and Caicos Islands,2020-09-20,667.0,16123.0,568.0,5.0,0.0075,,,8.0,0.0
+Turks and Caicos Islands,2020-09-21,668.0,16147.0,573.0,5.0,0.0075,,,1.0,0.0
+Turks and Caicos Islands,2020-09-22,668.0,16147.0,573.0,5.0,0.0075,,,0.0,0.0
+Turks and Caicos Islands,2020-09-23,668.0,16147.0,573.0,5.0,0.0075,,,0.0,0.0
+Turks and Caicos Islands,2020-09-24,672.0,0.0,,5.0,0.0074,16244.0,,4.0,0.0
+Turks and Caicos Islands,2020-09-25,676.0,0.0,,5.0,0.0074,16341.0,,4.0,0.0
+Turks and Caicos Islands,2020-09-26,679.0,0.0,,5.0,0.0074,16413.0,,3.0,0.0
+Turks and Caicos Islands,2020-09-27,680.0,0.0,,5.0,0.0074,16437.0,,1.0,0.0
+Turks and Caicos Islands,2020-09-28,681.0,0.0,,5.0,0.0073,16462.0,,1.0,0.0
+Turks and Caicos Islands,2020-09-29,682.0,0.0,,5.0,0.0073,16486.0,,1.0,0.0
+Turks and Caicos Islands,2020-09-30,682.0,0.0,,5.0,0.0073,16486.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-02,689.0,0.0,,5.0,0.0073,16655.0,,7.0,0.0
+Turks and Caicos Islands,2020-10-03,690.0,0.0,,6.0,0.0087,16679.0,,1.0,1.0
+Turks and Caicos Islands,2020-10-04,695.0,0.0,,6.0,0.0086,16800.0,,5.0,0.0
+Turks and Caicos Islands,2020-10-05,695.0,0.0,,6.0,0.0086,16800.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-06,695.0,0.0,,6.0,0.0086,16800.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-08,695.0,0.0,,6.0,0.0086,16800.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-09,695.0,0.0,,6.0,0.0086,16800.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-10,695.0,0.0,,6.0,0.0086,16800.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-11,695.0,0.0,,6.0,0.0086,16800.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-12,696.0,0.0,,6.0,0.0086,16824.0,,1.0,0.0
+Turks and Caicos Islands,2020-10-13,696.0,0.0,,6.0,0.0086,16824.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-14,696.0,0.0,,6.0,0.0086,16824.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-15,696.0,0.0,,6.0,0.0086,16824.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-18,697.0,0.0,,6.0,0.0086,16848.0,,1.0,0.0
+Turks and Caicos Islands,2020-10-19,698.0,0.0,,6.0,0.0086,16873.0,,1.0,0.0
+Turks and Caicos Islands,2020-10-20,698.0,0.0,,6.0,0.0086,16873.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-22,698.0,0.0,,6.0,0.0086,16873.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-23,698.0,0.0,,6.0,0.0086,16873.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-24,698.0,0.0,,6.0,0.0086,16873.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-25,699.0,0.0,,6.0,0.0086,16897.0,,1.0,0.0
+Turks and Caicos Islands,2020-10-26,701.0,0.0,,6.0,0.0086,16945.0,,2.0,0.0
+Turks and Caicos Islands,2020-10-27,701.0,0.0,,6.0,0.0086,16945.0,,0.0,0.0
+Turks and Caicos Islands,2020-10-28,703.0,16993.0,,6.0,0.0085,,2.0,2.0,0.0
