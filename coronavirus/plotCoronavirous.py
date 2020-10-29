@@ -653,8 +653,8 @@ def plotNewCasesByCountry(csvpath=r'./data/'):
         print('Read date record error:',dateBefore)
         return
     
-    print(pdDate.head())
-    print(pdDateBefore.head())
+    #print(pdDate.head())
+    #print(pdDateBefore.head())
     # print(pdDate.index)
     # print(pdDateBefore.index)
     # print(pdDate.index == pdDateBefore.index )
@@ -668,6 +668,8 @@ def plotNewCasesByCountryData(df,number = 40):
     df.set_index(["Location"], inplace=True)
     #print('newDf=\n',df.head()) #df.head()
     #print(df.shape)
+    
+    df = df.drop(index = 'Worldwide')
     
     if number>df.shape[0]:
         number = df.shape[0]
@@ -685,6 +687,7 @@ def plotNewCasesByCountryData(df,number = 40):
     df = df.sort_values(by=['NewDeaths'], ascending=False)
     df2 = df.iloc[1:number,[1]]
     
+    #print('df1=\n',df1)
     #print('df2=\n',df2)
     
     #print(df.head())
@@ -981,9 +984,9 @@ if __name__ == '__main__':
     # plotData(df, number=60)
     
     #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
-    plotChangeBydata(csvpath)
+    #plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
     #plotWorldStatDeathsByTime()
     #plotWorldStatisticByTime()
-    #plotNewCasesByCountry(csvpath)
+    plotNewCasesByCountry(csvpath)
     #plotCountriesInfo(csvpath)

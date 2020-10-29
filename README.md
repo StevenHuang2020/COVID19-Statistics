@@ -41,7 +41,7 @@ Updated to adapt to the new google page.<br/>
  
 <br/>
 
-#### Statistics cases by time.
+### Statistics cases by time
 <br/>
 
 |||
@@ -59,7 +59,8 @@ Updated to adapt to the new google page.<br/>
 |<img src="images/WorldChange_newCases.png" width="320" height="240" />|<img src="images/WorldChange_mortality.png" width="320" height="240" />|
 |||
 <br/>
-#### World Prediction
+
+### World Prediction
 <br/>
 The world predicted confirmed cases by using LSTM algorithm.<br/>
 Source reference: https://ourworldindata.org/covid-cases<br/>
