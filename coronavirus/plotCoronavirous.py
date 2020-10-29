@@ -379,6 +379,15 @@ def getAlldateWorldRecord(csvpath):
         worldDf.insert(worldDf.shape[1], "DataTime", dateTime, True) 
         pdDate = pdDate.append(worldDf)
         
+    #start add NewCases column
+    pdDate = pdDate.drop(columns=['Cases per 1 million people'])
+    #print('pdDate.columns=',pdDate.columns)
+    #print('pdDate.dtypes=',pdDate.dtypes)
+    pdDate["NewCases"] = 0
+    for i in range(1, pdDate.shape[0]):#NewCases
+        #print(pdDate.iloc[i,0], pdDate.iloc[i-1,0])
+        pdDate.iloc[i, 6] =  pdDate.iloc[i,0] - pdDate.iloc[i-1,0]
+        
     return pdDate
 
 def plotChangeBydata(csvpath=r'./data/', fontsize = 7):
@@ -394,22 +403,26 @@ def plotChangeBydata(csvpath=r'./data/', fontsize = 7):
         plt.show()
         
     pdDate = getAlldateWorldRecord(csvpath)
-    #print(pdDate.head())
-    #print(pdDate.shape)
-    pdDate = pdDate.loc[:,['DataTime','Confirmed','Case_Per_1M_people','Deaths','Mortality']]
-    #print(pdDate.head())
-    
+    # print(pdDate.head())
+    # print(pdDate.shape)
+
+    pdDate = pdDate.loc[:,['DataTime','Confirmed','NewCases','Case_Per_1M_people','Deaths','Mortality']]
+    print(pdDate.head())
+
     pdDate.set_index(["DataTime"], inplace=True)
     #df = pdDate.sort_values(by=['DataTime'],ascending=False)
     #print(pdDate)
     
     dfConfirmed = pdDate.loc[:,['Confirmed']]
+    dfNewCases = pdDate.loc[:,['NewCases']]
     dfDeaths = pdDate.loc[:,['Deaths']]
     dfCasePer1MPeople = pdDate.loc[:,['Case_Per_1M_people']]
     dfMortality = pdDate.loc[:,['Mortality']]
     #print('dfConfirmed=\n', dfConfirmed)
     
-    plotItem(pdDate)
+    #plotItem(pdDate)
+    plotItem(dfConfirmed,str='confirmed')
+    plotItem(dfNewCases,str='newCases')
     plotItem(dfDeaths,str='deaths')
     plotItem(dfCasePer1MPeople,str='case_per1M_people')
     plotItem(dfMortality,str='mortality')
@@ -505,8 +518,8 @@ def plotWorldStatisticByTime(csvpath=r'./'):
     
     newRecentDays = 30
     dfWorldNew = dfWorld.iloc[-1-newRecentDays:-1, :]
-    dfWorld = dfWorld.iloc[::3]
-    dfWorld = binaryDf(dfWorld,False) #drop half
+    #dfWorld = dfWorld.iloc[::3]
+    #dfWorld = binaryDf(dfWorld,False) #drop half
     
     plotPdColumn(dfWorld.index,dfWorld['total_cases'],title='World COVID-19 Cases',label='Cases')
     plotPdColumn(dfWorld.index,dfWorld['new_cases'],title='World COVID-19 NewCases',label='NewCases',color='y')
@@ -968,9 +981,9 @@ if __name__ == '__main__':
     # plotData(df, number=60)
     
     #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
-    #plotChangeBydata(csvpath)
+    plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
     #plotWorldStatDeathsByTime()
     #plotWorldStatisticByTime()
-    plotNewCasesByCountry(csvpath)
+    #plotNewCasesByCountry(csvpath)
     #plotCountriesInfo(csvpath)

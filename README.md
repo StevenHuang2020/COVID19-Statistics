@@ -30,118 +30,57 @@ For detailed statistics of covid-19 in NZ, please refer to
 Updated to adapt to the new google page.<br/>
 <br/>
 
-<table>
-  <tr>
-    <td><img src="images/nc1.png" width="320" height="240" /></td>
-    <td><img src="images/nd2.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/1.png" width="320" height="240" /></td>
-    <td><img src="images/2.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/3.png" width="320" height="240" /></td>
-    <td><img src="images/4.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/5.png" width="320" height="240" /></td>
-    <td><img src="images/6.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/7.png" width="320" height="240" /></td>
-    <td><img src="images/8.png" width="320" height="240" /></td>
-  </tr>
-   <tr>
-    <td><img src="images/9.png" width="320" height="240" /></td>
-  </tr>
- </table>
+|||
+|---|---|
+|<img src="images/nc1.png" width="320" height="240" />|<img src="images/nd2.png" width="320" height="240" />|
+|<img src="images/1.png" width="320" height="240" />|<img src="images/2.png" width="320" height="240" />|
+|<img src="images/3.png" width="320" height="240" />|<img src="images/4.png" width="320" height="240" />|
+|<img src="images/5.png" width="320" height="240" />|<img src="images/6.png" width="320" height="240" />|
+|<img src="images/7.png" width="320" height="240" />|<img src="images/8.png" width="320" height="240" />|
+|<img src="images/9.png" width="320" height="240" />||
  
 <br/>
 
 #### Statistics cases by time.
 <br/>
-<table>
-  <tr>
-    <td><img src="images/countries_Confirmed.png" width="320" height="240" /></td>
-    <td><img src="images/countries_Deaths.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/countries_NewConfirmed.png" width="320" height="240" /></td>
-    <td><img src="images/countries_NewDeaths.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/countries0_Confirmed.png" width="320" height="240" /></td>
-    <td><img src="images/countries0_Deaths.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/countries0_NewConfirmed.png" width="320" height="240" /></td>
-    <td><img src="images/countries0_NewDeaths.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/countries1_Confirmed.png" width="320" height="240" /></td>
-    <td><img src="images/countries1_Deaths.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/countries1_NewConfirmed.png" width="320" height="240" /></td>
-    <td><img src="images/countries1_NewDeaths.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/World_Cases.png" width="320" height="240" /></td>
-    <td><img src="images/World_NewCases.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/World_RecentNewCases.png" width="320" height="240" /></td>
-    <td><img src="images/World_Deaths.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/World_NewDeaths.png" width="320" height="240" /></td>
-    <td><img src="images/World_RecentNewDeaths.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/WorldChange_all.png" width="320" height="240" /></td>
-    <td><img src="images/WorldChange_deaths.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/WorldChange_mortality.png" width="320" height="240" /></td>
-  </tr>  
- </table>
-<br/>
 
+|||
+|---|---|
+|<img src="images/countries_Confirmed.png" width="320" height="240" />|<img src="images/countries_Deaths.png" width="320" height="240" />|
+|<img src="images/countries_NewConfirmed.png" width="320" height="240" />|<img src="images/countries_NewDeaths.png" width="320" height="240" />|
+|<img src="images/countries0_Confirmed.png" width="320" height="240" />|<img src="images/countries0_Deaths.png" width="320" height="240" />|
+|<img src="images/countries0_NewConfirmed.png" width="320" height="240" />|<img src="images/countries0_NewDeaths.png" width="320" height="240" />|
+|<img src="images/countries1_Confirmed.png" width="320" height="240" />|<img src="images/countries1_Deaths.png" width="320" height="240" />|
+|<img src="images/countries1_NewConfirmed.png" width="320" height="240" />|<img src="images/countries1_NewDeaths.png" width="320" height="240" />|
+|<img src="images/World_Cases.png" width="320" height="240" />|<img src="images/World_NewCases.png" width="320" height="240" />|
+|<img src="images/World_RecentNewCases.png" width="320" height="240" />|<img src="images/World_Deaths.png" width="320" height="240" />|
+|<img src="images/World_NewDeaths.png" width="320" height="240" />|<img src="images/World_RecentNewDeaths.png" width="320" height="240" />|
+|<img src="images/WorldChange_confirmed.png" width="320" height="240" />|<img src="images/WorldChange_deaths.png" width="320" height="240" />|
+|<img src="images/WorldChange_newCases.png" width="320" height="240" />|<img src="images/WorldChange_mortality.png" width="320" height="240" />|
+|||
+<br/>
 #### World Prediction
 <br/>
 The world predicted confirmed cases by using LSTM algorithm.<br/>
 Source reference: https://ourworldindata.org/covid-cases<br/>
 <br/>
 
-<table>
-  <tr>
-    <td><img src="images/WorldPredictCompare.png" width="320" height="240" /></td>
-    <td><img src="images/WorldFuturePredict.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/WorldFuturePredictPrecise.png" width="320" height="240" /></td>
-  </tr>
-</table>
+|||
+|---|---|
+|<img src="images/WorldPredictCompare.png" width="320" height="240" />|<img src="images/WorldFuturePredict.png" width="320" height="240" />|
+|<img src="images/WorldFuturePredictPrecise.png" width="320" height="240" />||
+|||
 
 ### NZ Covid-19 Statistic
 <br/>
 Source reference: https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-current-cases-details#download<br/>
 <br/>
 
-<table>
-  <tr>
-    <td><img src="images/NZ_Gender.png" width="320" height="240" /></td>
-    <td><img src="images/NZ_DHB.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/NZ_AgeGroup.png" width="320" height="240" /></td>
-    <td><img src="images/NZ_NZ_COVID-19_RecentCases.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/NZ_NZ_COVID-19_EveryDayCases.png" width="320" height="240" /></td>
-    <td><img src="images/NZ_NZ_COVID-19_CumlativeCases.png" width="320" height="240" /></td>
-  </tr>
-  <tr>
-    <td><img src="images/NZ_IsOVerseas.png" width="320" height="240" /></td>
-  </tr>
-</table>
+|||
+|---|---|
+|<img src="images/NZ_Gender.png" width="320" height="240" />|<img src="images/NZ_DHB.png" width="320" height="240" />|
+|<img src="images/NZ_AgeGroup.png" width="320" height="240" />|<img src="images/NZ_COVID-19_RecentCases.png" width="320" height="240" />|
+|<img src="images/NZ_COVID-19_EveryDayCases.png" width="320" height="240" />|<img src="images/NZ_COVID-19_CumlativeCases.png" width="320" height="240" />|
+|<img src="images/NZ_IsOVerseas.png" width="320" height="240" />||
+|||
+

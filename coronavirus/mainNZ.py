@@ -87,7 +87,7 @@ def plotTotal(df,title,label):
     plt.xlabel('')
     plt.ylabel('')
     plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None) 
-    plt.savefig(gSaveBasePath + 'NZ_'+label+'.png')
+    plt.savefig(gSaveBasePath + label + '.png')
     plt.show()
     
 locationColumns = 'Last location before return' #'Last country before return'
