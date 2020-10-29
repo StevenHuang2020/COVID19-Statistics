@@ -145,7 +145,13 @@ def plotPredictFuture(model,trainY,index,data):
     print('predict period:',newIndex)
     
     df = pd.DataFrame({'Date':newIndex,'Predicted cases':pred})
-    #print('table:',df)
+    
+    #add predict day newCases
+    df['Predicted day newCases'] = 0
+    for i in range(1, df.shape[0]):
+        df.iloc[i, 2] =  df.iloc[i,1] - df.iloc[i-1,1]
+        
+    print('table:',df)
     
     startIndex = datetime.datetime.strptime(startIndex, '%m/%d/%Y')
     predictTime=datetime.datetime.strftime(startIndex,'%Y-%m-%d')
