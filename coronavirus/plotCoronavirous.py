@@ -420,7 +420,7 @@ def plotChangeBydata(csvpath=r'./data/', fontsize = 7):
     dfMortality = pdDate.loc[:,['Mortality']]
     #print('dfConfirmed=\n', dfConfirmed)
     
-    #plotItem(pdDate)
+    plotItem(pdDate)
     plotItem(dfConfirmed,str='confirmed')
     plotItem(dfNewCases,str='newCases')
     plotItem(dfDeaths,str='deaths')
