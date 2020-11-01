@@ -51,14 +51,12 @@ def readExcel(file,sheetname=0,header=2,verbose=False):
 
 def plotStatistcs(df,title,label):
     fontsize = 7
-    
     kind='bar'
     # if df.shape[0]>25:
     #     kind='barh'
-            
     ax = df.plot(kind=kind,legend=False) #color='gray'
     
-    x_offset = -0.05
+    x_offset = -0.06
     y_offset = 2.5
     for p in ax.patches:
         b = p.get_bbox()
@@ -181,19 +179,19 @@ def plotNZDataChange(df):
         #print(delta.days) #type(days)
         return delta.days
     
-    print(df.head())
+    #print(df.head())
     dfDate = df['Date notified of potential case']
-    print(dfDate.shape)
+    #print(dfDate.shape)
     
     dfDate = list(set(dfDate))
     dfDate.sort()
-    print(len(dfDate))
+    #print(len(dfDate))
     #print(dfDate)
     
     startDate = dfDate[0]
     stopDate = dfDate[-1]
     days = totalDays(startDate,stopDate)
-    print('startDate,stopDate=',startDate,stopDate,days)
+   # print('startDate,stopDate=',startDate,stopDate,days)
 
     columns=['Date','Number','Cumlative']
     dfStat  = pd.DataFrame()
@@ -237,11 +235,15 @@ def getNZCovid19():
  
     dfConfirmed = readExcel(r'./NZ'+'/'+name,'Confirmed') #'Probable'
     #dfConfirmed = readExcel(file, ['Confirmed','Probable'])
-    parseConfirmed(dfConfirmed)
-    plotNZDataChange(dfConfirmed)
+    return dfConfirmed
+    
+def plotStatistic(df):
+    parseConfirmed(df)
+    plotNZDataChange(df)
     
 def main():
-    getNZCovid19()
+    df = getNZCovid19()
+    plotStatistic(df)
     
 if __name__ == '__main__':
     main()

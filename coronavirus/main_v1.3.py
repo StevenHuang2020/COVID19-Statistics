@@ -12,7 +12,7 @@ from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 import argparse 
-from main import plotData,preprocessData
+from main_v1 import plotData,preprocessData
 #from predictStatistics import predict
 
 mainUrl = 'https://google.com/covid19-map/'

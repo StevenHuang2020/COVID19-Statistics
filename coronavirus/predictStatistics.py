@@ -184,8 +184,14 @@ def createModel(look_back = 1):
     
     lr = 1e-3
     #opt = optimizers.SGD(learning_rate=lr) #optimizers.SGD(learning_rate=lr, momentum=0.8, nesterov=False)
-    opt = optimizers.Adam(learning_rate=lr)
     #opt = optimizers.RMSprop(learning_rate=lr, rho=0.9, epsilon=1e-08)
+    opt = optimizers.Adam(learning_rate=lr,beta_1=0.8)
+    #opt = optimizers.Adadelta(learning_rate=lr)
+    #opt = optimizers.Adagrad(learning_rate=lr)
+    #opt = optimizers.Adamax(learning_rate=lr)
+    #opt = optimizers.Nadam(learning_rate=lr)
+    #opt = optimizers.Ftrl(learning_rate=lr)
+    
     model.compile(optimizer=opt, loss='mean_squared_error')  #optimizer='adam'
     model.summary()
     return model
@@ -293,7 +299,7 @@ def predict():
     datasetToday = getDataSet()
     train(datasetToday)
 
-    file = getNewestFile(r'.\dataPredict',index=-2) #compare last time predict 
+    file = getNewestFile(r'.\dataPredict',index=-4) #compare last time predict 
     print('Last predicted file:',file)
     evaulatePredition(datasetToday, file)
     

@@ -392,7 +392,7 @@ def getAlldateWorldRecord(csvpath):
 
 def plotChangeBydata(csvpath=r'./data/', fontsize = 7):
     def plotItem(df, str='all', title='World COVID19'):
-        ax = df.plot(kind='line')
+        ax = df.plot(kind='line',xlabel='',ylabel='') #
         ax.set_title(title + ' ' + str)
         
         plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
@@ -400,14 +400,14 @@ def plotChangeBydata(csvpath=r'./data/', fontsize = 7):
         plt.subplots_adjust(left=0.07, bottom=0.16, right=0.96, top=0.94, wspace=None, hspace=None)
         #plt.yscale("log")
         plt.savefig(gSaveBasePath + 'WorldChange_' + str + '.png')
-        plt.show()
+        #plt.show()
         
     pdDate = getAlldateWorldRecord(csvpath)
     # print(pdDate.head())
     # print(pdDate.shape)
 
     pdDate = pdDate.loc[:,['DataTime','Confirmed','NewCases','Case_Per_1M_people','Deaths','Mortality']]
-    print(pdDate.head())
+    #print(pdDate.head())
 
     pdDate.set_index(["DataTime"], inplace=True)
     #df = pdDate.sort_values(by=['DataTime'],ascending=False)
@@ -426,7 +426,7 @@ def plotChangeBydata(csvpath=r'./data/', fontsize = 7):
     plotItem(dfDeaths,str='deaths')
     plotItem(dfCasePer1MPeople,str='case_per1M_people')
     plotItem(dfMortality,str='mortality')
-    
+    plt.show()
     
 def plotPdColumn(index,data,title,label,color=None):
     fontsize = 7
@@ -444,7 +444,7 @@ def plotPdColumn(index,data,title,label,color=None):
     plt.subplots_adjust(left=0.08, bottom=None, right=0.98, top=0.92, wspace=None, hspace=None)
     #plt.yscale("log")
     plt.savefig(gSaveBasePath + 'World_' + label+'.png')
-    plt.show()
+    #plt.show()
   
 def getWorldDf(csvpath):
     all = getAlldateRecord(csvpath)
@@ -528,7 +528,8 @@ def plotWorldStatisticByTime(csvpath=r'./'):
     plotPdColumn(dfWorld.index,dfWorld['total_deaths'],title='World COVID-19 Deaths',label='Deaths',color='r')
     plotPdColumn(dfWorld.index,dfWorld['new_deaths'],title='World COVID-19 NewDeaths',label='NewDeaths',color='r')
     plotPdColumn(dfWorldNew.index,dfWorldNew['new_deaths'],title='World COVID-19 Recent NewDeaths',label='RecentNewDeaths',color='r')
-       
+    plt.show()
+    
 def plotWorldStatDeathsByTime(csvpath=r'./'):
     csv = csvpath + 'total-deaths-covid-19.csv'
     df = readCsv(csv)
@@ -757,7 +758,6 @@ def getAlldateRecord(csvpath):
         dateT = getDateFromFileName(i)
         df = readCsv(i)
         allInfos.append([dateT,df])
-    
     return allInfos
 
 def plotCountry(all):
@@ -771,11 +771,11 @@ def plotCountry(all):
     plotCountryInfo2(all,column='NewConfirmed')
     plotCountryInfo2(all,column='NewDeaths')
     
-    plotCountryInfo3(all)
-    plotCountryInfo3(all,column='Deaths')
-    plotCountryInfo3(all,column='NewConfirmed')
-    plotCountryInfo3(all,column='NewDeaths')
-
+    # plotCountryInfo3(all)
+    # plotCountryInfo3(all,column='Deaths')
+    # plotCountryInfo3(all,column='NewConfirmed')
+    # plotCountryInfo3(all,column='NewDeaths')
+    plt.show()
 
 def plotCountriesInfo(csvpath=r'./data/'):
     import threading
@@ -846,7 +846,7 @@ def plotCountryInfo(all,column='Confirmed'):
         
     #plt.xlim('2020-05-01', '2020-06-20') 
     plt.savefig(gSaveBasePath + 'countries_' + column + '.png')
-    plt.show()
+    #plt.show()
     
 def plotCountryInfo2(all,column='Confirmed'):
     countriesNumbers = 8
@@ -984,9 +984,9 @@ if __name__ == '__main__':
     # plotData(df, number=60)
     
     #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
-    #plotChangeBydata(csvpath)
+    plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
     #plotWorldStatDeathsByTime()
     #plotWorldStatisticByTime()
-    plotNewCasesByCountry(csvpath)
+    #plotNewCasesByCountry(csvpath)
     #plotCountriesInfo(csvpath)

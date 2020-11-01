@@ -50,8 +50,6 @@ Updated to adapt to the new google page.<br/>
 |<img src="images/countries_NewConfirmed.png" width="320" height="240" />|<img src="images/countries_NewDeaths.png" width="320" height="240" />|
 |<img src="images/countries0_Confirmed.png" width="320" height="240" />|<img src="images/countries0_Deaths.png" width="320" height="240" />|
 |<img src="images/countries0_NewConfirmed.png" width="320" height="240" />|<img src="images/countries0_NewDeaths.png" width="320" height="240" />|
-|<img src="images/countries1_Confirmed.png" width="320" height="240" />|<img src="images/countries1_Deaths.png" width="320" height="240" />|
-|<img src="images/countries1_NewConfirmed.png" width="320" height="240" />|<img src="images/countries1_NewDeaths.png" width="320" height="240" />|
 |<img src="images/World_Cases.png" width="320" height="240" />|<img src="images/World_NewCases.png" width="320" height="240" />|
 |<img src="images/World_RecentNewCases.png" width="320" height="240" />|<img src="images/World_Deaths.png" width="320" height="240" />|
 |<img src="images/World_NewDeaths.png" width="320" height="240" />|<img src="images/World_RecentNewDeaths.png" width="320" height="240" />|
@@ -74,7 +72,7 @@ Data Source reference: https://ourworldindata.org/covid-cases<br/>
 
 ### NZ Covid-19 Statistic
 <br/>
-Source reference: https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-current-cases-details#download<br/>
+Data Source reference: https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-current-cases-details#download<br/>
 <br/>
 
 |||
