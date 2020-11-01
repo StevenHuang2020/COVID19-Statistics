@@ -444,7 +444,7 @@ def plotPdColumn(index,data,title,label,color=None):
     plt.subplots_adjust(left=0.08, bottom=None, right=0.98, top=0.92, wspace=None, hspace=None)
     #plt.yscale("log")
     plt.savefig(gSaveBasePath + 'World_' + label+'.png')
-    #plt.show()
+    plt.show()
   
 def getWorldDf(csvpath):
     all = getAlldateRecord(csvpath)
@@ -528,7 +528,6 @@ def plotWorldStatisticByTime(csvpath=r'./'):
     plotPdColumn(dfWorld.index,dfWorld['total_deaths'],title='World COVID-19 Deaths',label='Deaths',color='r')
     plotPdColumn(dfWorld.index,dfWorld['new_deaths'],title='World COVID-19 NewDeaths',label='NewDeaths',color='r')
     plotPdColumn(dfWorldNew.index,dfWorldNew['new_deaths'],title='World COVID-19 Recent NewDeaths',label='RecentNewDeaths',color='r')
-    plt.show()
     
 def plotWorldStatDeathsByTime(csvpath=r'./'):
     csv = csvpath + 'total-deaths-covid-19.csv'
@@ -984,9 +983,8 @@ if __name__ == '__main__':
     # plotData(df, number=60)
     
     #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
-    plotChangeBydata(csvpath)
+    #plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
-    #plotWorldStatDeathsByTime()
-    #plotWorldStatisticByTime()
+    plotWorldStatisticByTime()
     #plotNewCasesByCountry(csvpath)
     #plotCountriesInfo(csvpath)
