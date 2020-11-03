@@ -597,8 +597,8 @@ def plotWorldStatConfirmCaseByTime(csvpath=r'./'):
     dfWorld = binaryDf(dfWorld,False) #drop half
     
     plotPdColumn(dfWorld.index,dfWorld['Cases'],title='World COVID-19 Cases',label='Cases')
-    plotPdColumn(dfWorld.index,dfWorld['newCases'],title='World COVID-19 NewCases',label='NewCases',color='y')
-    plotPdColumn(dfWorldNew.index,dfWorldNew['newCases'],title='World COVID-19 Recent NewCases',label='RecentNewCases',color='y')
+    plotPdColumn(dfWorld.index,dfWorld['newCases'],title='World COVID-19 NewCases',label='NewCases')
+    plotPdColumn(dfWorldNew.index,dfWorldNew['newCases'],title='World COVID-19 Recent NewCases',label='RecentNewCases')
         
 def getAlldateRecord(csvpath, date='2020-06-16'):
     for i in pathsFiles(csvpath,'csv'):
