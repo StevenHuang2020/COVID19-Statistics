@@ -19,14 +19,14 @@ from common.getHtml import openUrl, openUrlUrlLib
 #https://www.health.govt.nz/system/files/documents/pages/covid-cases-24july20.xlsx
 
 mainUrl='https://www.health.govt.nz/'
-url=mainUrl + 'our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-current-cases-details#download'
+url=mainUrl + 'our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-data-and-statistics/covid-19-case-demographics'
 
 def getDataFileFromWeb(url=url):
     html = openUrl(url) #openUrlUrlLib(url)
     #print(html)
     html = etree.HTML(html)
-    X = '//*[@id="node-10866"]/div/div/div/ul[2]/li[1]/a'
-    
+    #X = '//*[@id="node-10866"]/div/div/div/ul[2]/li[1]/a'
+    X = '//*[@id="node-10866"]/div[2]/div/div/p[12]/a'
     #X = '//table'
     res = html.xpath(X)
     #print(len(res), res)
@@ -227,7 +227,7 @@ def getNZCovid19():
     file = getDataFileFromWeb()
     if file is None:
         print(r"Can't find the file, something wrong!")
-        return
+        return None
     
     name = file[file.rfind('/')+1:]
     print(file,'name=',name)
@@ -243,7 +243,8 @@ def plotStatistic(df):
     
 def main():
     df = getNZCovid19()
-    plotStatistic(df)
+    if df is not None:
+        plotStatistic(df)
     
 if __name__ == '__main__':
     main()

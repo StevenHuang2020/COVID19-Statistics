@@ -12,6 +12,13 @@ Please note that this is not necessarily the correct definition.<br/>
 Data Reference: https://google.com/covid19-map/ <br/>
 https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv
 <br/>
+
+Usage: <br/>
+python main_v1.3.py         #visualize world covid-19 statistics  <br/>
+python mainNZ.py            #visualize New Zealand covid-19 statistics  <br/>
+python predictStatistics.py #predict world covid-19 cases  <br/>
+
+<br/>
 Please report any bugs [here.](https://github.com/StevenHuang2020/COVID-19-Statistics/issues)
 #### main_v1.0.py
 Using lxml to get data from the website.
@@ -55,7 +62,7 @@ Updated to adapt to the new google page.<br/>
 |<img src="images/World_NewDeaths.png" width="320" height="240" />|<img src="images/World_RecentNewDeaths.png" width="320" height="240" />|
 |<img src="images/WorldChange_confirmed.png" width="320" height="240" />|<img src="images/WorldChange_deaths.png" width="320" height="240" />|
 |<img src="images/WorldChange_newCases.png" width="320" height="240" />|<img src="images/WorldChange_mortality.png" width="320" height="240" />|
-|<img src="images/WorldChange_all.png" width="320" height="240" />||
+|<img src="images/WorldChange_case_per1M_people.png" width="320" height="240" />|<img src="images/WorldChange_all.png" width="320" height="240" />|
 <br/>
 
 ### World Prediction
@@ -72,7 +79,7 @@ Data Source reference: https://ourworldindata.org/covid-cases<br/>
 
 ### NZ Covid-19 Statistic
 <br/>
-Data Source reference: https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-current-situation/covid-19-current-cases/covid-19-current-cases-details#download<br/>
+Data Source reference: [here](https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-data-and-statistics/covid-19-case-demographics) <br/>
 <br/>
 
 |||

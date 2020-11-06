@@ -420,6 +420,10 @@ def plotChangeBydata(csvpath=r'./data/', fontsize = 7):
     dfMortality = pdDate.loc[:,['Mortality']]
     #print('dfConfirmed=\n', dfConfirmed)
     
+    dfNewCases = dfNewCases[dfNewCases['NewCases'] > 0]
+    dfCasePer1MPeople = dfCasePer1MPeople[dfCasePer1MPeople['Case_Per_1M_people'] > 0] #filter no data line
+    #dfCasePer1MPeople = dfCasePer1MPeople.loc['2020-09-14' : ]
+
     plotItem(pdDate)
     plotItem(dfConfirmed,str='confirmed')
     plotItem(dfNewCases,str='newCases')
@@ -522,8 +526,8 @@ def plotWorldStatisticByTime(csvpath=r'./'):
     #dfWorld = binaryDf(dfWorld,False) #drop half
     
     plotPdColumn(dfWorld.index,dfWorld['total_cases'],title='World COVID-19 Cases',label='Cases')
-    plotPdColumn(dfWorld.index,dfWorld['new_cases'],title='World COVID-19 NewCases',label='NewCases',color='y')
-    plotPdColumn(dfWorldNew.index,dfWorldNew['new_cases'],title='World COVID-19 Recent NewCases',label='RecentNewCases',color='y')
+    plotPdColumn(dfWorld.index,dfWorld['new_cases'],title='World COVID-19 NewCases',label='NewCases')
+    plotPdColumn(dfWorldNew.index,dfWorldNew['new_cases'],title='World COVID-19 Recent NewCases',label='RecentNewCases')
     
     plotPdColumn(dfWorld.index,dfWorld['total_deaths'],title='World COVID-19 Deaths',label='Deaths',color='r')
     plotPdColumn(dfWorld.index,dfWorld['new_deaths'],title='World COVID-19 NewDeaths',label='NewDeaths',color='r')
@@ -983,8 +987,8 @@ if __name__ == '__main__':
     # plotData(df, number=60)
     
     #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
-    #plotChangeBydata(csvpath)
+    plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
-    plotWorldStatisticByTime()
+    #plotWorldStatisticByTime()
     #plotNewCasesByCountry(csvpath)
     #plotCountriesInfo(csvpath)
