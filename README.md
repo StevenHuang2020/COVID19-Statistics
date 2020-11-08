@@ -38,7 +38,6 @@ For detailed statistics of covid-19 in NZ, please refer to
 
 #### main_v1.3.py
 Updated to adapt to the new google page.<br/>
-<br/>
 
 |||
 |---|---|
@@ -51,8 +50,7 @@ Updated to adapt to the new google page.<br/>
  
 <br/>
 
-### Statistics cases by time
-<br/>
+### Statistics cases by time <br/>
 
 |||
 |---|---|
@@ -69,7 +67,6 @@ Updated to adapt to the new google page.<br/>
 <br/>
 
 ### World Prediction
-<br/>
 The world predicted confirmed cases by using LSTM algorithm.<br/>
 Data Source reference: https://ourworldindata.org/covid-cases<br/>
 <br/>
@@ -81,9 +78,7 @@ Data Source reference: https://ourworldindata.org/covid-cases<br/>
 |||
 
 ### NZ Covid-19 Statistic
-<br/>
-Data Source reference: [here.] ( https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-data-and-statistics/covid-19-case-demographics ) 
-
+Data Source reference: [here.](https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-data-and-statistics/covid-19-case-demographics) 
 
 |||
 |---|---|
