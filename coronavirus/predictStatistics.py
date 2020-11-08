@@ -185,7 +185,7 @@ def createModel(look_back = 1):
     lr = 1e-3
     #opt = optimizers.SGD(learning_rate=lr) #optimizers.SGD(learning_rate=lr, momentum=0.8, nesterov=False)
     #opt = optimizers.RMSprop(learning_rate=lr, rho=0.9, epsilon=1e-08)
-    opt = optimizers.Adam(learning_rate=lr,beta_1=0.8)
+    opt = optimizers.Adam(learning_rate=lr)
     #opt = optimizers.Adadelta(learning_rate=lr)
     #opt = optimizers.Adagrad(learning_rate=lr)
     #opt = optimizers.Adamax(learning_rate=lr)
@@ -215,7 +215,7 @@ def train(dataset):
     x_train, y_train, index,rawdata = prepareDataset(dataset,look_back)
     
     model = createModel(look_back)
-    model.fit(x_train, y_train, epochs=400, batch_size=150, verbose=2) #500
+    model.fit(x_train, y_train, epochs=500, batch_size=150, verbose=2) #500
     
     # a = np.array([trainY[-1]]).reshape(-1,1,1)
     # #a = np.array([[0.88964097]]).reshape(-1,1,1)
