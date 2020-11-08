@@ -12,6 +12,8 @@ Please note that this is not necessarily the correct definition.<br/>
 Data Reference: https://google.com/covid19-map/ <br/>
 https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv
 <br/>
+Please report any bugs [here.](https://github.com/StevenHuang2020/COVID-19-Statistics/issues )
+<br/>
 
 Usage: <br/>
 |||
@@ -21,9 +23,6 @@ Usage: <br/>
 |python predictStatistics.py|#predict world covid-19 cases |
 |||
 
-Please report any bugs [here.](https://github.com/StevenHuang2020/COVID-19-Statistics/issues )
-<br/>
-
 #### main_v1.0.py
 Using lxml to get data from the website.
 <br/>
@@ -31,11 +30,11 @@ Using lxml to get data from the website.
 #### main_v1.2.py
 Using selenium to crawl data.
 Requirements: pip install selenium. <br/>
-Download the proper version of [chromdriver.exe](https://chromedriver.chromium.org/downloads )
+Download the proper version of [chromdriver.exe](https://chromedriver.chromium.org/downloads)
 then put it into your python install path(.\python36\Scripts\).
 <br/>
 For detailed statistics of covid-19 in NZ, please refer to 
-[here](https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-data-and-statistics/covid-19-case-demographics )
+[here.](https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-data-and-statistics/covid-19-case-demographics )
 
 #### main_v1.3.py
 Updated to adapt to the new google page.<br/>
@@ -83,7 +82,7 @@ Data Source reference: https://ourworldindata.org/covid-cases<br/>
 
 ### NZ Covid-19 Statistic
 <br/>
-Data Source reference: [here](https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-data-and-statistics/covid-19-case-demographics ) 
+Data Source reference: [here.] ( https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-data-and-statistics/covid-19-case-demographics ) 
 
 
 |||
