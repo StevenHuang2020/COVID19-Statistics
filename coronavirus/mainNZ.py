@@ -27,6 +27,7 @@ def getDataFileFromWeb(url=url):
     html = etree.HTML(html)
     #X = '//*[@id="node-10866"]/div/div/div/ul[2]/li[1]/a'
     X = '//*[@id="node-10866"]/div[2]/div/div/p[12]/a'
+    X = '//*[@id="case-details-csv-file"]'
     #X = '//table'
     res = html.xpath(X)
     #print(len(res), res)
@@ -37,6 +38,20 @@ def getDataFileFromWeb(url=url):
 
 def readExcel(file,sheetname=0,header=2,verbose=False):
     df = pd.read_excel(file,sheet_name=sheetname,header=header)
+    print(type(df),'df.shape=',df.shape)
+    
+    if verbose:
+        print(df.describe().transpose())
+        print(df.head())
+        #df.set_index(["Location"], inplace=True)
+        print('df.columns=',df.columns)
+        print('df.dtypes = ',df.dtypes)
+        #df = df.apply(pd.to_numeric, axis=0)
+        #print('df.dtypes = ',df.dtypes)
+    return df
+
+def readCSV(file,sheetname=0,header=0,verbose=False):
+    df = pd.read_csv(file,header=header)
     print(type(df),'df.shape=',df.shape)
     
     if verbose:
@@ -92,13 +107,15 @@ locationColumns = 'Last location before return' #'Last country before return'
 def parseConfirmed(df):
     print('Confirmed dataset:\n',df.head())
     Sex = list(set(df['Sex']))
-    #AgeGroup = list(set(df['Age group']))
-    #AgeGroup.sort()
-    AgeGroup = [ '<1', '1 to 4', '5 to 9', '10 to 14', '15 to 19', '20 to 29', '30 to 39', '40 to 49', '50 to 59', '60 to 69', '70+']
+    AgeGroup = list(set(df['Age group']))
+    AgeGroup.sort()
+    #AgeGroup = [ '<1', '1 to 4', '5 to 9', '10 to 14', '15 to 19', '20 to 29', '30 to 39', '40 to 49', '50 to 59', '60 to 69', '70+']
     
     DHB = list(set(df['DHB']))
     bOverseas = list(set(df['Overseas travel']))
-    bOverseas.remove(' ')
+    
+    if ' ' in bOverseas:
+        bOverseas.remove(' ')
     #LastTravelCountry = list(set(df[locationColumns]))
     #LastTravelCountry.remove(np.nan)
     
@@ -171,7 +188,7 @@ def parseConfirmed(df):
     
 def plotNZDataChange(df):
     def getDataRecordNum(df,date):
-        records = df[df['Date notified of potential case'] == date]
+        records = df[df['Report Date'] == date]
         return records.shape[0]
     
     def totalDays(start,stop):
@@ -180,7 +197,9 @@ def plotNZDataChange(df):
         return delta.days
     
     #print(df.head())
-    dfDate = df['Date notified of potential case']
+    dfDate = df['Report Date']
+    dfDate= pd.to_datetime(dfDate)
+    print('dtypes=', dfDate.dtypes)
     #print(dfDate.shape)
     
     dfDate = list(set(dfDate))
@@ -233,8 +252,9 @@ def getNZCovid19():
     print(file,'name=',name)
     downloadFile(file,r'./NZ')
  
-    dfConfirmed = readExcel(r'./NZ'+'/'+name,'Confirmed') #'Probable'
-    #dfConfirmed = readExcel(file, ['Confirmed','Probable'])
+    excel = r'./NZ'+'/'+name
+    #dfConfirmed = readExcel(excel,'Confirmed') #'Probable'
+    dfConfirmed = readCSV(excel)
     return dfConfirmed
     
 def plotStatistic(df):
