@@ -9,11 +9,10 @@
 
 The added mortality column calculated by  this: df['Deaths'] / df['Confirmed'].<br/>
 Please note that this is not necessarily the correct definition.<br/>
-Data Reference: https://google.com/covid19-map/ <br/>
-https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv
-<br/>
-Please report any bugs [here.](https://github.com/StevenHuang2020/COVID-19-Statistics/issues )
-<br/>
+Data Reference: <br/>
+https://google.com/covid19-map/ <br/>
+https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv <br/>
+Please report any bugs [here.](https://github.com/StevenHuang2020/COVID-19-Statistics/issues)<br/>
 
 Usage: <br/>
 |||
