@@ -15,7 +15,7 @@ https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.cs
 Please report any bugs [here.](https://github.com/StevenHuang2020/COVID-19-Statistics/issues)<br/>
 
 Usage: <br/>
-|||
+|CMD|Description|
 |---|---|
 |python main_v1.3.py|#visualize world covid-19 statistics|
 |python mainNZ.py |#visualize New Zealand covid-19 statistics|
