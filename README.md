@@ -1,7 +1,7 @@
 # COVID-19 Statistics
 ![GitHub Stars](https://img.shields.io/github/stars/StevenHuang2020/WebSpider?label=Stars&style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/StevenHuang2020/WebSpider?label=Watch) 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue)
 ![Python Version](https://img.shields.io/badge/Python-v3-blue)
 ![Tensorflow Version](https://img.shields.io/badge/Tensorflow-V2.2.0-brightgreen)
 ![Last update](https://img.shields.io/endpoint?color=brightgreen&style=flat-square&url=https%3A%2F%2Fraw.githubusercontent.com%2FStevenHuang2020%2FWebSpider%2Fmaster%2Fcoronavirus%2Fupdate.json)
@@ -12,6 +12,10 @@ Please note that this is not necessarily the correct definition.<br/>
 Data Reference: <br/>
 https://google.com/covid19-map/ <br/>
 https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv <br/>
+COVID-19 world data: ./coronavirus/data <br/>
+COVID-19 Country data: ./coronavirus/dataCountry <br/>
+COVID-19 NZ data: ./coronavirus/NZ <br/>
+<br/>
 Please report any bugs [here.](https://github.com/StevenHuang2020/COVID-19-Statistics/issues)<br/>
 
 Usage: <br/>
