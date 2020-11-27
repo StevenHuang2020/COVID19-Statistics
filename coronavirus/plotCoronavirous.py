@@ -502,8 +502,8 @@ def downloadFile(url,dstPath):
         dst = dstPath + "/" + fileName
 
     print('url=',url)
-    print('filename=',fileName)
-    print('dst=',dst)
+    #print('filename=',fileName)
+    #print('dst=',dst)
     #wget.download(url, out=dst)
     downWebFile(url,dst)
     

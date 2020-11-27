@@ -31,7 +31,7 @@ def plotDataSet(data):
     
 def preprocessDb(dataset):
     dataset = gScaler.fit_transform(dataset)
-    print('dataset=',dataset[:5])
+    #print('dataset=',dataset[:5])
     return dataset
 
 # convert an array of values into a dataset matrix
@@ -158,17 +158,27 @@ def plotPredictFuture(model,trainY,index,data):
     df.to_csv(gSavePredict+predictTime+'_predict.csv',index=True)
     
     offset=150#70 #120
-    plt.figure(figsize=(8,6))
+    #plt.figure(figsize=(8,6))
     plt.title('Future ' + str(Number) + ' days Covid-19,' + ' Prediction time: '+ getDataTime())
        
-    ax = plt.subplot(1,1,1)
-    plotData(ax,index[offset:],data[offset:],'now cases')
+    ax = plt.gca()
+    #ax = plt.subplot(1,1,1)
+    plotData(ax,index[offset:],data[offset:],'Now cases')
     
     newIndex = changeNewIndexFmt(newIndex)
-    plotData(ax,newIndex,pred,'predict cases')
+    plotData(ax,newIndex,pred,'Predicted cases')
     #print('oldIndex=',index[offset:])
     #print('newIndex=',newIndex)
-    ax.table(cellText=df.values, colLabels=df.columns, loc='center') #,clip_box=[[0,5],[0+100,5+100]]
+    
+    #ax.table(cellText=df.values, colLabels=df.columns, loc='center') #,clip_box=[[0,5],[0+100,5+100]]
+    tb = plt.table(cellText=df.values, colLabels=df.columns, loc='center',cellLoc='center')
+    tb.auto_set_font_size(False)
+    tb.set_fontsize(8)
+    #colList = list(range(len(df.columns)))
+    colList = [2]
+    tb.auto_set_column_width(col=colList)
+    
+    #plt.axis('off')
     plt.savefig(gSaveBasePath + 'WorldFuturePredict.png')
     plt.show()
     
@@ -274,12 +284,20 @@ def evaulatePredition(df,file):
     predict = predict.iloc[:,1:] #remove index number column
     #print(predict)
     
-    plt.figure(figsize=(8,6))
-    plt.title('Prediction Precision,\n' + 'PredictTime: ' + predictTime + ' CheckTime: '+ getDataTime())
-    ax = plt.subplot(1,1,1)
-    ax.table(cellText=predict.values, colLabels=predict.columns, loc='center')
+    #plt.figure(figsize=(8,6))
+    title = 'Prediction Precision\n' + 'PredictTime: ' + predictTime + ' CheckTime: '+ getDataTime()
+    plt.title(title,fontsize=9)
+    tb = plt.table(cellText=predict.values, colLabels=predict.columns, loc='center',  cellLoc='center')
+    tb.auto_set_font_size(False)
+    tb.set_fontsize(8)
+    #colList = list(range(len(predict.columns)))
+    colList = [1,2]
+    tb.auto_set_column_width(col=colList)
+    
+    plt.axis('off')
     plt.savefig(gSaveBasePath + 'WorldFuturePredictPrecise.png')
     plt.show()
+
     
 def getNewestFile(path,fmt='csv',index=-1):
     file_dict = {}

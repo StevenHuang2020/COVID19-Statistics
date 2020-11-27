@@ -91,7 +91,7 @@ def Load(url):
     table_id = driver.find_element_by_xpath(X)
     
     scroll_down_element(driver,table_id) #do an table action to get all table lines
-    sleep(1)
+    sleep(2)
     
     thead = table_id.find_element_by_tag_name('thead')
     tbody = table_id.find_element_by_tag_name('tbody')

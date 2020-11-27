@@ -87,11 +87,19 @@ def plotStatistcs(df,title,label):
     plt.savefig(gSaveBasePath + 'NZ_'+label+'.png')
     plt.show()
     
-def plotTotal(df,title,label):
+def plotTotal(df,title,label,showNumberOnBar=False):
     fontsize = 8
     kind='bar'    
     ax = df.plot(kind=kind,legend=False) 
     
+    if showNumberOnBar:
+        x_offset = -0.3
+        y_offset = 0.2
+        for p in ax.patches:
+            b = p.get_bbox()
+            val = "{}".format(int(b.y1 + b.y0))        
+            ax.annotate(val, ((b.x0 + b.x1)/2 + x_offset, b.y1 + y_offset), fontsize=fontsize)
+        
     ax.set_title(title,fontsize=fontsize)
     #ax.legend(fontsize=fontsize)
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
@@ -198,7 +206,7 @@ def plotNZDataChange(df):
     #print(df.head())
     dfDate = df['Report Date']
     dfDate= pd.to_datetime(dfDate)
-    print('dtypes=', dfDate.dtypes)
+    #print('dtypes=', dfDate.dtypes)
     #print(dfDate.shape)
     
     dfDate = list(set(dfDate))
@@ -236,9 +244,10 @@ def plotNZDataChange(df):
     #plotTotal(dfStat['Cumlative'][::4],label=label, title=label + ' ' + today)
     plotTotal(dfStat['Cumlative'],label=label, title=label + ' ' + today)
     #print(dfStat['Number'][-30:])
-    recentDays=30
+    recentDays=40
     label='NZ_COVID-19_RecentCases'
-    plotTotal(dfStat['Number'][-1*recentDays:],label=label, title=label + ' ' + today)
+    title=label + ' ' + str(recentDays) + 'days ' + today
+    plotTotal(dfStat['Number'][-1*recentDays:],label=label, title=title, showNumberOnBar=True)
     
 def getNZCovid19():
     #file=r'.\NZ\covid-cases-24july20.xlsx'
@@ -253,11 +262,10 @@ def getNZCovid19():
  
     excel = r'./NZ'+'/'+name
     #dfConfirmed = readExcel(excel,'Confirmed') #'Probable'
-    dfConfirmed = readCSV(excel)
-    return dfConfirmed
-    
+    return readCSV(excel)
+        
 def plotStatistic(df):
-    parseConfirmed(df)
+    #parseConfirmed(df)
     plotNZDataChange(df)
     
 def main():
