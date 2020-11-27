@@ -12,9 +12,12 @@ Please note that this is not necessarily the correct definition.<br/>
 Data Reference: <br/>
 https://google.com/covid19-map/ <br/>
 https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv <br/>
-COVID-19 world data: ./coronavirus/data <br/>
-COVID-19 Country data: ./coronavirus/dataCountry <br/>
-COVID-19 NZ data: ./coronavirus/NZ <br/>
+<br/>
+COVID-19 Datasets:<br/>
+World data: ./coronavirus/data <br/>
+Country data: ./coronavirus/dataCountry <br/>
+NZ data: ./coronavirus/NZ <br/>
+
 <br/>
 Please report any bugs [here.](https://github.com/StevenHuang2020/COVID-19-Statistics/issues)<br/>
 
