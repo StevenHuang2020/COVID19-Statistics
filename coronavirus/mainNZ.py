@@ -246,7 +246,7 @@ def plotNZDataChange(df):
     #print(dfStat['Number'][-30:])
     recentDays=40
     label='NZ_COVID-19_RecentCases'
-    title=label + ' ' + str(recentDays) + 'days ' + today
+    title=label + ' ' + str(recentDays) + ' days, ' + today
     plotTotal(dfStat['Number'][-1*recentDays:],label=label, title=title, showNumberOnBar=True)
     
 def getNZCovid19():

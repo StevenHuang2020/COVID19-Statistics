@@ -4,3 +4,6 @@ pandas
 matplotlib
 scikit-learn
 selenium
+fake_useragent
+wget
+sklearn

@@ -2,7 +2,7 @@
 ![GitHub Stars](https://img.shields.io/github/stars/StevenHuang2020/WebSpider?label=Stars&style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/StevenHuang2020/WebSpider?label=Watch) 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue)
-![Python Version](https://img.shields.io/badge/Python-v3-blue)
+![Python Version](https://img.shields.io/badge/Python-v3.6-blue)
 ![Tensorflow Version](https://img.shields.io/badge/Tensorflow-V2.2.0-brightgreen)
 ![Last update](https://img.shields.io/endpoint?color=brightgreen&style=flat-square&url=https%3A%2F%2Fraw.githubusercontent.com%2FStevenHuang2020%2FWebSpider%2Fmaster%2Fcoronavirus%2Fupdate.json)
 
@@ -14,9 +14,9 @@ https://google.com/covid19-map/ <br/>
 https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv <br/>
 
 COVID-19 Datasets:<br/>
-World data: ./coronavirus/data <br/>
-Country data: ./coronavirus/dataCountry <br/>
-NZ data: ./coronavirus/NZ <br/>
+World data: [./coronavirus/data](https://github.com/StevenHuang2020/COVID-19-Statistics/tree/master/coronavirus/data) <br/>
+Country data: [./coronavirus/dataCountry](https://github.com/StevenHuang2020/COVID-19-Statistics/tree/master/coronavirus/dataCountry) <br/>
+NZ data: [./coronavirus/NZ](https://github.com/StevenHuang2020/COVID-19-Statistics/tree/master/coronavirus/NZ) <br/>
 
 Please report any bugs [here.](https://github.com/StevenHuang2020/COVID-19-Statistics/issues)<br/>
 
@@ -26,7 +26,7 @@ Usage: <br/>
 |python main_v1.3.py|#visualize world covid-19 statistics|
 |python mainNZ.py |#visualize New Zealand covid-19 statistics|
 |python predictStatistics.py|#predict world covid-19 cases |
-|||
+
 
 #### main_v1.0.py
 Using lxml to get data from the website.
@@ -80,7 +80,7 @@ Data Source reference: https://ourworldindata.org/covid-cases<br/>
 |---|---|
 |<img src="images/WorldPredictCompare.png" width="320" height="240" />|<img src="images/WorldFuturePredict.png" width="320" height="240" />|
 |<img src="images/WorldFuturePredictPrecise.png" width="320" height="240" />||
-|||
+
 
 ### NZ Covid-19 Statistic
 Data Source reference: [here.](https://www.health.govt.nz/our-work/diseases-and-conditions/covid-19-novel-coronavirus/covid-19-data-and-statistics/covid-19-case-demographics) 
@@ -91,5 +91,5 @@ Data Source reference: [here.](https://www.health.govt.nz/our-work/diseases-and-
 |<img src="images/NZ_AgeGroup.png" width="320" height="240" />|<img src="images/NZ_COVID-19_RecentCases.png" width="320" height="240" />|
 |<img src="images/NZ_COVID-19_EveryDayCases.png" width="320" height="240" />|<img src="images/NZ_COVID-19_CumlativeCases.png" width="320" height="240" />|
 |<img src="images/NZ_IsOVerseas.png" width="320" height="240" />||
-|||
+
 
