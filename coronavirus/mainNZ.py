@@ -70,7 +70,7 @@ def plotStatistcs(df,title,label):
     ax = df.plot(kind=kind,legend=False) #color='gray'
     
     x_offset = -0.06
-    y_offset = 2.5
+    y_offset = 2.0
     for p in ax.patches:
         b = p.get_bbox()
         val = "{}".format(int(b.y1 + b.y0))        
@@ -84,31 +84,8 @@ def plotStatistcs(df,title,label):
     plt.ylabel('')
     plt.subplots_adjust(left=0.2, bottom=0.22, right=0.98, top=0.94, wspace=None, hspace=None) 
     plt.savefig(gSaveBasePath + 'NZ_'+label+'.png')
-    plt.show()
-    
-def plotTotal(df,title,label,showNumberOnBar=False):
-    fontsize = 8
-    kind='bar'    
-    ax = df.plot(kind=kind,legend=False) 
-    
-    if showNumberOnBar:
-        x_offset = -0.3
-        y_offset = 0.2
-        for p in ax.patches:
-            b = p.get_bbox()
-            val = "{}".format(int(b.y1 + b.y0))        
-            ax.annotate(val, ((b.x0 + b.x1)/2 + x_offset, b.y1 + y_offset), fontsize=fontsize)
+    #plt.show()
         
-    ax.set_title(title,fontsize=fontsize)
-    #ax.legend(fontsize=fontsize)
-    plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
-    plt.setp(ax.get_yticklabels(),rotation=30, fontsize=fontsize)
-    plt.xlabel('')
-    plt.ylabel('')
-    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None) 
-    plt.savefig(gSaveBasePath + label + '.png')
-    plt.show()
-    
 locationColumns = 'Last location before return' #'Last country before return'
 def parseConfirmed(df):
     print('Confirmed dataset:\n',df.head())
@@ -191,7 +168,31 @@ def parseConfirmed(df):
     plotStatistcs(dfbOverseas,label=label,title=label + ' ' + today)
     #label='LastTravelCountry'
     #plotStatistcs(dfLastTravelCountry,label=label,title=label + ' ' + today)
+    plt.show()
     
+def plotTotal(df,title,label,showNumberOnBar=False):
+    fontsize = 8 
+    plt.figure()
+    ax = df.plot(kind='bar',legend=False) 
+    
+    if showNumberOnBar:
+        x_offset = -0.3
+        y_offset = 0.1
+        for p in ax.patches:
+            b = p.get_bbox()
+            val = "{}".format(int(b.y1 + b.y0))        
+            ax.annotate(val, ((b.x0 + b.x1)/2 + x_offset, b.y1 + y_offset), fontsize=fontsize)
+        
+    ax.set_title(title,fontsize=fontsize)
+    #ax.legend(fontsize=fontsize)
+    plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
+    plt.setp(ax.get_yticklabels(),rotation=30, fontsize=fontsize)
+    plt.xlabel('')
+    plt.ylabel('')
+    plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None) 
+    plt.savefig(gSaveBasePath + label + '.png')
+    #plt.show()
+
 def plotNZDataChange(df):
     def getDataRecordNum(df,date):
         records = df[df['Report Date'] == date]
@@ -216,7 +217,7 @@ def plotNZDataChange(df):
     startDate = dfDate[0]
     stopDate = dfDate[-1]
     days = totalDays(startDate,stopDate)
-   # print('startDate,stopDate=',startDate,stopDate,days)
+    #print('startDate,stopDate=',startDate,stopDate,days)
 
     columns=['Date','Number','Cumlative']
     dfStat  = pd.DataFrame()
@@ -235,18 +236,19 @@ def plotNZDataChange(df):
     
     dfStat.set_index(["Date"], inplace=True)
     #print(dfStat)
+
     label='NZ_COVID-19_EveryDayCases'
-    #plotTotal(dfStat['Number'][::4],label=label, title=label + ' ' + today)
-    plotTotal(dfStat['Number'],label=label, title=label + ' ' + today)
+    plotTotal(dfStat['Number'], label=label, title=label + ' ' + today)
     
     label='NZ_COVID-19_CumlativeCases'
-    #plotTotal(dfStat['Cumlative'][::4],label=label, title=label + ' ' + today)
-    plotTotal(dfStat['Cumlative'],label=label, title=label + ' ' + today)
+    plotTotal(dfStat['Cumlative'], label=label, title=label + ' ' + today)
     #print(dfStat['Number'][-30:])
+    
     recentDays=40
     label='NZ_COVID-19_RecentCases'
     title=label + ' ' + str(recentDays) + ' days, ' + today
-    plotTotal(dfStat['Number'][-1*recentDays:],label=label, title=title, showNumberOnBar=True)
+    plotTotal(dfStat['Number'][-1*recentDays:], label=label, title=title, showNumberOnBar=True)
+    plt.show()
     
 def getNZCovid19():
     #file=r'.\NZ\covid-cases-24july20.xlsx'
@@ -264,7 +266,7 @@ def getNZCovid19():
     return readCSV(excel)
         
 def plotStatistic(df):
-    #parseConfirmed(df)
+    parseConfirmed(df)
     plotNZDataChange(df)
     
 def main():

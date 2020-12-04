@@ -392,7 +392,7 @@ def getAlldateWorldRecord(csvpath):
 
 def plotChangeBydata(csvpath=r'./data/', fontsize = 7):
     def plotItem(df, str='all', title='World COVID19'):
-        ax = df.plot(kind='line',xlabel='',ylabel='') #
+        ax = df.plot(kind='line', xlabel='',ylabel='') #
         
         '''
         if str != 'all':
@@ -406,8 +406,8 @@ def plotChangeBydata(csvpath=r'./data/', fontsize = 7):
         
         ax.set_title(title + ' ' + str)
         
-        plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
-        plt.setp(ax.get_yticklabels(),fontsize=fontsize)
+        plt.setp(ax.get_xticklabels(), rotation=30, ha="right", fontsize=fontsize)
+        plt.setp(ax.get_yticklabels(), fontsize=fontsize)
         plt.subplots_adjust(left=0.07, bottom=0.16, right=0.96, top=0.94, wspace=None, hspace=None)
         #plt.yscale("log")
         plt.savefig(gSaveBasePath + 'WorldChange_' + str + '.png')
@@ -1008,9 +1008,9 @@ if __name__ == '__main__':
     # plotData(df, number=60)
     
     #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
-    #plotChangeBydata(csvpath)
+    plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
-    plotWorldStatisticByTime()
+    #plotWorldStatisticByTime()
     #plotNewCasesByCountry(csvpath)
     #plotCountriesInfo(csvpath)
     
