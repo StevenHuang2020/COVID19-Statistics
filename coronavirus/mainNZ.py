@@ -51,8 +51,7 @@ def readExcel(file,sheetname=0,header=2,verbose=False):
 
 def readCSV(file,sheetname=0,header=0,verbose=False):
     df = pd.read_csv(file,header=header)
-    print(type(df),'df.shape=',df.shape)
-    
+    #print(type(df),'df.shape=',df.shape)
     if verbose:
         print(df.describe().transpose())
         print(df.head())

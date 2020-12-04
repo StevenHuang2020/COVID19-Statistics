@@ -444,22 +444,21 @@ def plotChangeBydata(csvpath=r'./data/', fontsize = 7):
     plt.show()
     
 def plotPdColumn(index,data,title,label,color=None):
-    fontsize = 6
-    ax = plt.subplot(1,1,1)
-    
-    ax.set_title(title,fontsize=fontsize)
-    #ax.barh(dfWorld.index,dfWorld['Cases'])
+    fontsize = 7
+    plt.figure(figsize=(8,5))
+    #ax = plt.subplot(1,1,1)
+    plt.title(title,fontsize=fontsize)
     if color:
-        ax.bar(index,data,label=label,width=0.6,color=color)
+        plt.bar(index,data,label=label,width=0.6,color=color)
     else:            
-        ax.bar(index,data,label=label,width=0.6)
+        plt.bar(index,data,label=label,width=0.6)
     
-    plt.setp(ax.get_xticklabels(), rotation=30, ha="right",fontsize=fontsize)
-    plt.setp(ax.get_yticklabels(),fontsize=fontsize)
+    plt.xticks(rotation=30, ha="right",fontsize=fontsize)
+    plt.yticks(fontsize=fontsize)
     plt.subplots_adjust(left=0.08, bottom=None, right=0.98, top=0.92, wspace=None, hspace=None)
     #plt.yscale("log")
     plt.savefig(gSaveBasePath + 'World_' + label+'.png')
-    plt.show()
+    #plt.show()
   
 def getWorldDf(csvpath):
     all = getAlldateRecord(csvpath)
@@ -477,31 +476,6 @@ def getWorldDf(csvpath):
             
     #print(df.head())    
     return df
-  
-def plotWorldStatisticByTime2(csvpath=r'./data/'):
-    dfWorld = getWorldDf(csvpath)
-    dfWorld.set_index(["Date"], inplace=True)
-    
-    dfNewCases = [0]
-    for i in range(dfWorld.shape[0] -1):
-        numberI = dfWorld.iloc[i,1]
-        numberINext = dfWorld.iloc[i+1,1]
-        newCases = numberINext-numberI
-        #print(numberI,numberINext,newCases)
-        dfNewCases.append(newCases)
-    
-    #print(dfWorld.shape,len(dfNewCases))
-    dfWorld.insert(2, "newCases", dfNewCases, True) 
-    #print(dfWorld.head())   
-    #print(dfWorld)
-    
-    newRecentDays = 30
-    dfWorldNew = dfWorld.iloc[-1-newRecentDays:-1, :]
-    dfWorld = dfWorld.iloc[::3] # even #dfWorld.iloc[1::2] #odd
-    
-    plotPdColumn(dfWorld.index,dfWorld['Confirmed'],title='World COVID-19 Confirmed',label='Confirmed')
-    plotPdColumn(dfWorldNew.index,dfWorldNew['newCases'],title='World COVID-19 Recent NewCases',label='recentNewCases',color='y')
-    plotPdColumn(dfWorld.index,dfWorld['newCases'],title='World COVID-19 NewCases',label='newCases',color='y')
  
 def downloadFile(url,dstPath):
     fileName = url[url.rfind("/")+1:]
@@ -548,8 +522,34 @@ def plotWorldStatisticByTime(csvpath=r'./'):
     
     title='World COVID-19 Recent ' + strRecent + ' NewDeaths'
     plotPdColumn(dfWorldNew.index,dfWorldNew['new_deaths'],title=title,label='RecentNewDeaths',color='r')
+    plt.show()
     
 '''
+def plotWorldStatisticByTime2(csvpath=r'./data/'):
+    dfWorld = getWorldDf(csvpath)
+    dfWorld.set_index(["Date"], inplace=True)
+    
+    dfNewCases = [0]
+    for i in range(dfWorld.shape[0] -1):
+        numberI = dfWorld.iloc[i,1]
+        numberINext = dfWorld.iloc[i+1,1]
+        newCases = numberINext-numberI
+        #print(numberI,numberINext,newCases)
+        dfNewCases.append(newCases)
+    
+    #print(dfWorld.shape,len(dfNewCases))
+    dfWorld.insert(2, "newCases", dfNewCases, True) 
+    #print(dfWorld.head())   
+    #print(dfWorld)
+    
+    newRecentDays = 30
+    dfWorldNew = dfWorld.iloc[-1-newRecentDays:-1, :]
+    dfWorld = dfWorld.iloc[::3] # even #dfWorld.iloc[1::2] #odd
+    
+    plotPdColumn(dfWorld.index,dfWorld['Confirmed'],title='World COVID-19 Confirmed',label='Confirmed')
+    plotPdColumn(dfWorldNew.index,dfWorldNew['newCases'],title='World COVID-19 Recent NewCases',label='recentNewCases',color='y')
+    plotPdColumn(dfWorld.index,dfWorld['newCases'],title='World COVID-19 NewCases',label='newCases',color='y')
+    
 def plotWorldStatDeathsByTime(csvpath=r'./'):
     csv = csvpath + 'total-deaths-covid-19.csv'
     df = readCsv(csv)
@@ -634,6 +634,9 @@ def getAlldateRecord(csvpath, date='2020-06-16'):
 
 def getNewCasesDf(pdDate,pdDateBefore):
     locations = pdDate['Location']
+    #print('pdDate=', pdDate)
+    #print('pdDateBefore=', pdDateBefore)
+    #print('locations=', locations)
     pdNewCases = pd.DataFrame()
     for i in locations:
         dataD = pdDate[pdDate['Location'] == i]
@@ -664,7 +667,7 @@ def plotNewCasesByCountry(csvpath=r'./data/'):
     
     date = str(today)#'2020-06-16'
     dateBefore = d   #'2020-06-15'
-    #print(date,dateBefore)
+    print('date,before=',date,dateBefore)
 
     pdDate = getDateRecord(date,csvpath)
     pdDateBefore = getDateRecord(dateBefore, csvpath)
@@ -1005,9 +1008,9 @@ if __name__ == '__main__':
     # plotData(df, number=60)
     
     #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
-    plotChangeBydata(csvpath)
+    #plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
-    #plotWorldStatisticByTime()
+    plotWorldStatisticByTime()
     #plotNewCasesByCountry(csvpath)
     #plotCountriesInfo(csvpath)
     

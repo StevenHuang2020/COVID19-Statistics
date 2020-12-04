@@ -24,10 +24,11 @@ def parseXpathTr(tr,columns):
     #path='//th/div[@class="pcAJd"]'
     #path='//th//div'
     #div = tr.find_elements_by_xpath(path)
-    div = tr.find_elements(By.TAG_NAME,'div')
+    #div = tr.find_elements(By.TAG_NAME,'div')
+    div = tr.find_elements(By.CLASS_NAME,'pcAJd')
     #print('len=',len(div))
     if len(div)>0:
-        location = div[1].text
+        location = div[0].text #third div store the location
     
     tds = tr.find_elements(By.TAG_NAME, "td")
     #print(len(tds))
@@ -65,9 +66,9 @@ def getHeader(thead):
     return columns
 
 def clickBtn(driver,btnXpath):
-        btn = driver.find_element_by_xpath(btnXpath)
-        if btn:
-            btn.click()
+    btn = driver.find_element_by_xpath(btnXpath)
+    if btn:
+        btn.click()
 
 def scroll_down_element(driver, element):
     try:
