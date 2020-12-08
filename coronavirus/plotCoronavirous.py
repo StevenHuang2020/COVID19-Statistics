@@ -915,7 +915,7 @@ def plotCountryInfo2(all,column='Confirmed'):
     #ax.set_yscale('log')
     plt.tight_layout()
     plt.savefig(gSaveBasePath + 'countries0_' + column + '.png')
-    plt.show()
+    #plt.show()
     
 def plotCountryInfo3(all,column='Confirmed'):
     countriesNumbers = 8
@@ -1008,9 +1008,9 @@ if __name__ == '__main__':
     # plotData(df, number=60)
     
     #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
-    plotChangeBydata(csvpath)
+    #plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
     #plotWorldStatisticByTime()
     #plotNewCasesByCountry(csvpath)
-    #plotCountriesInfo(csvpath)
+    plotCountriesInfo(csvpath)
     
