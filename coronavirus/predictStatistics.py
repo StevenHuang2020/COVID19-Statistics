@@ -62,6 +62,8 @@ def getDataSet():
         dataset = dataset.loc[:, ['date','total_cases']]
         dataset = dataset.rename(columns={'date':'Date', "total_cases": "Cases"})
         #dataset = dataset['Date', 'Cases']
+        
+    dataset = dataset.dropna()
     
     #print(dataset.describe().T)
     print(dataset.head())
@@ -79,7 +81,7 @@ def plotData(ax,x,y,label=''):
     plt.setp(ax.get_yticklabels(), fontsize=fontsize)
     plt.subplots_adjust(left=0.02, bottom=0.09, right=0.99, top=0.92, wspace=None, hspace=None)
 
-def predictFutuer(model,start,Number=5):
+def predictFuture(model,start,Number=5):
     print('---------------future')
     print(start)    
     #print(start.shape,'startval:', gScaler.inverse_transform(start.reshape(1,-1)))
@@ -127,7 +129,7 @@ def changeNewIndexFmt(newIndex):
 
 def plotPredictFuture(model,trainY,index,data):
     Number = 10 #predict future Number days
-    pred = predictFutuer(model,trainY[-1],Number)
+    pred = predictFuture(model,trainY[-1],Number)
     print('predict start date:',index[-1])
 
     startIndex = index[-1]
