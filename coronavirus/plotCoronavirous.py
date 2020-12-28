@@ -805,7 +805,7 @@ def plotCountriesInfo(csvpath=r'./data/'):
     import threading
     all = getAlldateRecord(csvpath)
     if 0:
-        #saveCountriesInfo(all)
+        saveCountriesInfo(all)
         plotCountry(all)
     else:
         t = threading.Thread(target=saveCountriesInfo, name='Save country covid-19 data file', args=(all, ))
@@ -1011,6 +1011,6 @@ if __name__ == '__main__':
     #plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
     #plotWorldStatisticByTime()
-    #plotNewCasesByCountry(csvpath)
+    plotNewCasesByCountry(csvpath)
     plotCountriesInfo(csvpath)
     
