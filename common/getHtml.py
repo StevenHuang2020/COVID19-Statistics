@@ -72,16 +72,20 @@ def openUrlUrlLib(url,save=False, file=r'./a.html'):
         saveToFile(html,file)
     return html
 
-
 def downWebFile(url,dst):
     if 0:
         wget.download(url, out=dst)
     else:
-        print('Beginning file download with requests')
+        print('Beginning file download with requests...')
         r = requests.get(url)
         # # Retrieve HTTP meta-data
-        # print(r.status_code)
+        statusCode = r.status_code
+        print('statusCode=', statusCode)
         # print(r.headers['content-type'])
         # print(r.encoding)
-        with open(dst, 'wb') as f:
-            f.write(r.content)
+        if statusCode == 200:
+            with open(dst, 'wb') as f:
+                f.write(r.content)
+            return True
+        
+    return False
