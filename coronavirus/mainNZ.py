@@ -259,12 +259,15 @@ def getNZCovid19():
     
     name = file[file.rfind('/')+1:]
     print(file,'name=',name)
-    downloadFile(file,r'./NZ')
- 
+    res = downloadFile(file,r'./NZ')
+    if not res:
+        print(r"Download file failed, please check the real url!")
+        return None
+    
     excel = r'./NZ'+'/'+name
     #dfConfirmed = readExcel(excel,'Confirmed') #'Probable'
     return readCSV(excel)
-        
+    
 def plotStatistic(df):
     parseConfirmed(df)
     plotNZDataChange(df)

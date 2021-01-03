@@ -490,13 +490,13 @@ def downloadFile(url,dstPath):
     #print('filename=',fileName)
     #print('dst=',dst)
     #wget.download(url, out=dst)
-    downWebFile(url,dst)
+    return downWebFile(url,dst)
     
 def plotWorldStatisticByTime(csvpath=r'./'):   
     fileName = 'owid-covid-data.csv'
     if os.path.exists(fileName):
         os.remove(fileName) 
-    downloadFile(gCovidCsv,r'.')
+    downloadFile(gCovidCsv, r'.')
     
     df = readCsv(gCovidCsv)
     df = df[df['location'] == 'World' ]
