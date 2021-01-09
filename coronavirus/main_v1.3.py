@@ -98,14 +98,14 @@ def Load(url):
     tbody = table_id.find_element_by_tag_name('tbody')
     
     originalColumns = getHeader(thead)
-    print('originalColumns = ', originalColumns)
+    print('Original Columns: ', originalColumns)
     columns = []
     columns.append('Location')
     columns.append('Confirmed')
     columns.append('NewCases')
     columns.append('Case_Per_1M_people')
     columns.append('Deaths')
-    print('columns = ', columns)
+    print('Columns: ', columns)
     
     df = pd.DataFrame()
     result = tbody.find_elements(By.TAG_NAME, "tr")

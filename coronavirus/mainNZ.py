@@ -203,16 +203,16 @@ def plotNZDataChange(df):
         #print(delta.days) #type(days)
         return delta.days
     
+    DATEFORMAT='%d/%m/%Y'
     #print(df.head())
     dfDate = df['Report Date']
-    dfDate= pd.to_datetime(dfDate)
+    dfDate= pd.to_datetime(dfDate, format=DATEFORMAT)
     #print('dtypes=', dfDate.dtypes)
     #print(dfDate.shape)
     
     dfDate = list(set(dfDate))
     dfDate.sort()
-    #print(len(dfDate))
-    #print(dfDate)
+    #print('dfDate=', len(dfDate),dfDate)
     
     startDate = dfDate[0]
     stopDate = dfDate[-1]
@@ -224,7 +224,7 @@ def plotNZDataChange(df):
     s = 0
     for i in range(days+1):
         d = startDate + datetime.timedelta(days=i)
-        d = datetime.datetime.strftime(d,'%Y-%m-%d')
+        d = datetime.datetime.strftime(d, DATEFORMAT)
         number = getDataRecordNum(df,d)
         #print(d,number)
         s += number
@@ -235,7 +235,7 @@ def plotNZDataChange(df):
     today = str(' Date:') + str(now.strftime("%Y-%m-%d %H:%M:%S"))
     
     dfStat.set_index(["Date"], inplace=True)
-    #print(dfStat)
+    #print('dfStat=', dfStat)
 
     label='NZ_COVID-19_EveryDayCases'
     plotTotal(dfStat['Number'], label=label, title=label + ' ' + today)
