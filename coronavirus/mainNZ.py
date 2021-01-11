@@ -203,10 +203,12 @@ def plotNZDataChange(df):
         #print(delta.days) #type(days)
         return delta.days
     
-    DATEFORMAT='%d/%m/%Y'
+    DATEFORMAT=r'%Y-%m-%d' #r'%d/%m/%Y'
     #print(df.head())
+    #pd.to_datetime(df['Report Date'])
+    
     dfDate = df['Report Date']
-    dfDate= pd.to_datetime(dfDate, format=DATEFORMAT)
+    dfDate= pd.to_datetime(dfDate)#format=DATEFORMAT
     #print('dtypes=', dfDate.dtypes)
     #print(dfDate.shape)
     

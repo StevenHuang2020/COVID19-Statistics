@@ -8,6 +8,7 @@ sys.path.append("..")
 import os
 import datetime
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from progressBar import SimpleProgressBar
@@ -359,26 +360,50 @@ def getDateFromFileName(name):
     return name
 
 def getAlldateWorldRecord(csvpath):
+    def getWorldDf(df):
+        #print('\n', df.head())
+        #print(df.iloc[0]['Confirmed'], df.iloc[0]['Case_Per_1M_people'])
+        #print(df.iloc[0]['Recovered'], df.iloc[0]['Deaths'], df.iloc[0]['Mortality'])
+        
+        try:
+            totalConfirmed = int(np.sum(df.iloc[1:]['Confirmed']))
+            #totalRecovered = int(np.sum(df.iloc[1:]['Recovered']))
+            totalDeaths = int(np.sum(df.iloc[1:]['Deaths']))
+            mortality = round(totalDeaths/totalConfirmed, 6)
+        except:
+            print('\n', df.head())
+            
+        #print('totalConfirmed=', totalConfirmed, totalRecovered, totalDeaths, mortality)
+        df.loc['Worldwide', 'Confirmed'] = totalConfirmed
+        #df.loc['Worldwide', 'Recovered'] = totalRecovered
+        df.loc['Worldwide', 'Deaths'] = totalDeaths
+        df.loc['Worldwide', 'Mortality'] = mortality
+        
+        #print('\n', df.head())
+        worldDf = df.iloc[:1,:]
+        return worldDf
+    
     pdDate = pd.DataFrame()
     for i in pathsFiles(csvpath,'csv'):
         #print(i,getDateFromFileName(i))
+        
         df = readCsv(i)
         df.set_index(["Location"], inplace=True)
         
         dateTime = getDateFromFileName(i)
         
-        #print(df)
-        #print(worldDf.values)
+        #print('\n', df.head())        
         if pdDate.shape[0]>0:
             if pdDate['DataTime'].isin([dateTime]).any():
                 continue
             
-        worldDf = df.iloc[:1,:]    
-        #print('worldDf.shape=',worldDf.shape)    
+        worldDf = getWorldDf(df)#df.iloc[:1,:]    
+        #print('worldDf.shape=',worldDf.shape, worldDf)    
         #worldDf['DataTime'] = dateTime
         worldDf.insert(worldDf.shape[1], "DataTime", dateTime, True) 
         pdDate = pdDate.append(worldDf)
-        
+        #break
+    
     #start add NewCases column
     pdDate = pdDate.drop(columns=['Cases per 1 million people'])
     #print('pdDate.columns=',pdDate.columns)
@@ -1008,9 +1033,9 @@ if __name__ == '__main__':
     # plotData(df, number=60)
     
     #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
-    #plotChangeBydata(csvpath)
+    plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
     #plotWorldStatisticByTime()
-    plotNewCasesByCountry(csvpath)
-    plotCountriesInfo(csvpath)
+    #plotNewCasesByCountry(csvpath)
+    #plotCountriesInfo(csvpath)
     
