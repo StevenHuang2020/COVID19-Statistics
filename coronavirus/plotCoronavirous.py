@@ -1033,9 +1033,9 @@ if __name__ == '__main__':
     # plotData(df, number=60)
     
     #readCsv(csvpath+'coronavirous_2020-07-02_110250.csv')
-    plotChangeBydata(csvpath)
+    #plotChangeBydata(csvpath)
     #plotWorldStatConfirmCaseByTime()
     #plotWorldStatisticByTime()
     #plotNewCasesByCountry(csvpath)
-    #plotCountriesInfo(csvpath)
+    plotCountriesInfo(csvpath)
     
